@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Голодание с улыбкой — Метод военврача Александрова</title>
+<meta name="description" content="Пошаговый видеокурс по лечебному голоданию от военврача с 10-летним опытом. От 4 до 7 дней — без срывов, без вреда, с результатом.">
+<meta property="og:title" content="Голодание с улыбкой — метод военврача, который работает">
+<meta property="og:description" content="Пошаговый курс от врача — без воды, без вебинаров, только практика.">
+<meta property="og:image" content="https://golodanie-s-ulybkoy.ru/images/hero.jpg">
+<meta property="og:url" content="https://golodanie-s-ulybkoy.ru">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="images/icon.png">
+<link rel="apple-touch-icon" href="images/icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0f1a;
+  --bg2:#111827;
+  --gold:#c8a44e;
+  --gold-l:#e2c97e;
+  --gold-d:#a07c2e;
+  --txt:#f0ead6;
+  --txt2:#9ca3af;
+  --txt3:#6b7280;
+  --green:#22c55e;
+  --red:#ef4444;
+  --border:#1e293b
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;font-size:16px}
+
+/* LAYOUT */
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.section{padding:80px 0}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,15,26,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1100px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--txt)}
+.logo-text{font-family:'Playfair Display',serif;font-size:19px;font-weight:700}
+.nav{display:flex;align-items:center;gap:28px}
+.nav a{color:var(--txt2);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}
+.nav a:hover{color:var(--gold)}
+.btn-nav{background:var(--gold);color:var(--bg)!important;padding:10px 22px;border-radius:6px;font-weight:600;transition:background .2s!important}
+.btn-nav:hover{background:var(--gold-l)!important}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.burger span{display:block;width:24px;height:2px;background:var(--txt);border-radius:2px}
+
+/* HERO */
+.hero{padding:120px 0 80px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,164,78,.1);border:1px solid rgba(200,164,78,.25);color:var(--gold);padding:8px 16px;border-radius:20px;font-size:13px;font-weight:500;margin-bottom:24px}
+.hero-title{font-family:'Playfair Display',serif;font-size:58px;font-weight:900;line-height:1.1;margin-bottom:20px}
+.gold{color:var(--gold)}
+.hero-sub{color:var(--txt2);font-size:17px;line-height:1.7;margin-bottom:32px}
+.hero-buttons{display:flex;flex-direction:column;gap:12px;margin-bottom:40px;max-width:380px}
+.btn-primary{display:block;text-align:center;background:var(--gold);color:#0a0f1a;padding:15px 28px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;transition:background .2s,transform .18s,box-shadow .18s;box-shadow:0 3px 18px rgba(200,164,78,.22)}
+.btn-primary:hover{background:var(--gold-l);transform:translateY(-2.5px) scale(1.018);box-shadow:0 8px 32px rgba(200,164,78,.35),0 4px 12px rgba(0,0,0,.55)}
+.btn-secondary{display:block;text-align:center;background:transparent;color:var(--gold);padding:13px 28px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;border:2px solid rgba(200,164,78,.5);transition:background .2s,transform .18s,box-shadow .18s}
+.btn-secondary:hover{background:rgba(200,164,78,.08);transform:translateY(-2.5px);border-color:var(--gold)}
+.hero-stats{display:flex;gap:36px;padding-top:32px;border-top:1px solid var(--border)}
+.stat-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1}
+.stat-label{font-size:13px;color:var(--txt3);margin-top:4px}
+.hero-video{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--bg2)}
+.hero-video img{width:100%;display:block}
+.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:68px;background:rgba(200,164,78,.92);border-radius:50%;cursor:pointer;transition:transform .2s,background .2s}
+.play-btn::after{content:'';position:absolute;top:50%;left:55%;transform:translate(-50%,-50%);border:solid transparent;border-width:11px 0 11px 20px;border-left-color:#0a0f1a}
+.play-btn:hover{transform:translate(-50%,-50%) scale(1.1);background:var(--gold)}
+.video-cap{text-align:center;font-size:13px;color:var(--txt3);margin-top:10px}
+
+/* SECTION TITLES */
+.section-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;text-align:center;margin-bottom:14px;line-height:1.2}
+.section-sub{text-align:center;color:var(--txt2);font-size:17px;max-width:620px;margin:0 auto 52px}
+
+/* PROBLEMS */
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.prob-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:28px;transition:border-color .2s,transform .2s}
+.prob-card:hover{border-color:rgba(200,164,78,.4);transform:translateY(-2px)}
+.prob-icon{font-size:32px;margin-bottom:16px}
+.prob-card h3{font-size:17px;font-weight:600;margin-bottom:8px}
+.prob-card p{color:var(--txt2);font-size:15px;line-height:1.6}
+
+/* METHOD */
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.method-list{list-style:none;display:flex;flex-direction:column;gap:22px}
+.method-list li{display:flex;gap:14px;align-items:flex-start}
+.m-check{width:26px;height:26px;background:rgba(200,164,78,.12);border:1px solid rgba(200,164,78,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;flex-shrink:0;margin-top:2px}
+.method-list strong{display:block;font-size:16px;margin-bottom:4px;color:var(--txt)}
+.method-list span{color:var(--txt2);font-size:14px;line-height:1.6}
+.method-quote{background:var(--bg2);border-left:3px solid var(--gold);padding:22px 26px;border-radius:0 12px 12px 0;margin-bottom:16px}
+.method-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;margin-bottom:8px;line-height:1.5}
+.method-quote cite{color:var(--txt3);font-size:13px}
+
+/* RESULTS */
+.res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.res-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:22px 24px;display:flex;gap:16px;align-items:flex-start;transition:border-color .2s,transform .2s}
+.res-card:hover{border-color:rgba(200,164,78,.3);transform:translateY(-2px)}
+.res-icon{font-size:30px;flex-shrink:0;margin-top:2px}
+.res-card h3{font-size:16px;font-weight:600;margin-bottom:4px}
+.res-card p{color:var(--txt2);font-size:14px;margin-bottom:10px;line-height:1.5}
+.res-tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:10px;background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.25);text-transform:uppercase;letter-spacing:.04em}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:300px 1fr;gap:52px;align-items:start}
+.about-photo{border-radius:16px;overflow:hidden;border:2px solid var(--border)}
+.about-photo img{width:100%;display:block}
+.about-text h3{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:6px}
+.about-role{color:var(--gold);font-size:14px;font-weight:500;margin-bottom:22px;letter-spacing:.03em}
+.about-text p{color:var(--txt2);font-size:15px;margin-bottom:14px;line-height:1.7}
+.about-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.badge{background:var(--bg2);border:1px solid var(--border);padding:7px 16px;border-radius:20px;font-size:13px;color:var(--txt2)}
+
+/* PROGRAM */
+.prog-cards{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+.prog-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:24px 28px;display:flex;gap:24px;align-items:flex-start;transition:border-color .2s}
+.prog-card:hover{border-color:rgba(200,164,78,.35)}
+.prog-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--gold);opacity:.4;flex-shrink:0;line-height:1}
+.prog-card h3{font-size:17px;font-weight:600;margin-bottom:6px}
+.prog-card p{color:var(--txt2);font-size:14px;line-height:1.6}
+.prog-note{background:rgba(200,164,78,.07);border:1px solid rgba(200,164,78,.18);border-radius:12px;padding:22px 28px;text-align:center}
+.prog-note p{color:var(--txt2);font-size:15px;line-height:1.7}
+.prog-note strong{color:var(--txt)}
+
+/* PRICING */
+.price-card{max-width:500px;margin:0 auto;background:var(--bg2);border:2px solid var(--gold);border-radius:20px;padding:44px;text-align:center;box-shadow:0 0 60px rgba(200,164,78,.1)}
+.price-label{display:inline-block;background:var(--gold);color:#0a0f1a;padding:4px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.price-name{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;margin-bottom:8px}
+.price-desc{color:var(--txt2);font-size:15px;margin-bottom:28px}
+.price-amount{font-family:'Playfair Display',serif;font-size:60px;font-weight:900;color:var(--gold);line-height:1}
+.price-amount span{font-size:34px}
+.price-once{color:var(--txt3);font-size:13px;margin:8px 0 30px}
+.price-features{list-style:none;text-align:left;display:flex;flex-direction:column;gap:12px;margin-bottom:34px}
+.price-features li{font-size:15px;display:flex;gap:10px;align-items:flex-start;color:var(--txt)}
+.price-btn{display:block;background:var(--gold);color:#0a0f1a;padding:17px;border-radius:10px;font-weight:700;font-size:17px;text-decoration:none;transition:background .2s,transform .18s;box-shadow:0 4px 20px rgba(200,164,78,.3)}
+.price-btn:hover{background:var(--gold-l);transform:translateY(-2px)}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:10px;max-width:800px;margin:0 auto}
+.faq-item{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s}
+.faq-item.active{border-color:rgba(200,164,78,.4)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;user-select:none;gap:16px}
+.faq-q h3{font-size:16px;font-weight:500;color:var(--txt)}
+.faq-toggle{width:30px;height:30px;background:rgba(200,164,78,.1);border:1px solid rgba(200,164,78,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:20px;font-weight:300;flex-shrink:0;transition:transform .3s,background .2s}
+.faq-item.active .faq-toggle{transform:rotate(45deg);background:rgba(200,164,78,.2)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a-inner{padding:0 24px 20px;color:var(--txt2);font-size:15px;line-height:1.7}
+
+/* DISCLAIMER */
+.disc-inner{background:var(--bg2);border:1px solid rgba(239,68,68,.25);border-radius:16px;padding:40px;max-width:800px;margin:0 auto;text-align:center}
+.disc-inner h2{font-size:22px;margin-bottom:18px;color:#fca5a5}
+.disc-inner p{color:var(--txt2);font-size:14px;margin-bottom:12px;line-height:1.7}
+
+/* FOOTER */
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:52px 0 24px}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;gap:32px}
+.footer-info p{color:var(--txt3);font-size:13px;margin-top:14px;line-height:1.9}
+.footer-links{display:flex;flex-direction:column;gap:12px;text-align:right}
+.footer-links a{color:var(--txt2);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:22px;text-align:center;color:var(--txt3);font-size:13px}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-title{font-size:44px}
+  .method-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .about-photo{max-width:260px}
+  .prob-grid{grid-template-columns:1fr}
+  .res-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .nav{display:none;position:fixed;top:64px;left:0;right:0;background:var(--bg2);flex-direction:column;padding:24px;gap:16px;border-bottom:1px solid var(--border);z-index:999}
+  .nav.open{display:flex}
+  .burger{display:flex}
+  .hero{padding:90px 0 60px}
+  .hero-title{font-size:36px}
+  .section-title{font-size:30px}
+  .hero-stats{gap:20px}
+  .stat-num{font-size:28px}
+  .footer-top{flex-direction:column}
+  .footer-links{text-align:left}
+  .price-card{padding:28px 20px}
+}
+/* LIBRARY */
+.lib-list{display:flex;flex-direction:column;gap:10px}
+.lib-item{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s}
+.lib-item.active{border-color:rgba(200,164,78,.4)}
+.lib-q{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;user-select:none;gap:16px}
+.lib-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold);opacity:.4;flex-shrink:0;line-height:1;min-width:48px}
+.lib-q h3{font-size:16px;font-weight:600;color:var(--txt);flex:1}
+.lib-toggle{width:30px;height:30px;background:rgba(200,164,78,.1);border:1px solid rgba(200,164,78,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:20px;font-weight:300;flex-shrink:0;transition:transform .3s,background .2s}
+.lib-item.active .lib-toggle{transform:rotate(45deg);background:rgba(200,164,78,.2)}
+.lib-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.lib-a-inner{padding:0 24px 24px 96px;border-top:1px solid var(--border)}
+.lib-a-inner p{color:var(--txt2);font-size:15px;line-height:1.8;margin-bottom:14px}
+.lib-a-inner p:last-child{margin-bottom:0}
+.lib-author{background:var(--bg2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:12px}
+.lib-author strong{display:block;color:var(--txt);font-size:15px;margin-bottom:4px}
+.lib-author span{color:var(--txt2);font-size:14px;line-height:1.6}
+.lib-conclusion{background:rgba(200,164,78,.07);border:1px solid rgba(200,164,78,.2);border-radius:10px;padding:16px 20px;margin-top:16px}
+.lib-conclusion p{color:var(--gold)!important;font-weight:500;margin-bottom:0!important}
+</style>
+</head>
+<!-- Yandex.Metrika -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+  m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+  m[i].l=1*new Date();
+  for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+  k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=106832047','ym');
+ym(106832047,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106832047" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+<div class="header-inner">
+  <a href="https://t.me/golodanie_s_ulybkoy_bot" target="_blank" class="logo">
+    <span style="font-size:26px;color:var(--gold)">⚓</span>
+    <span class="logo-text">Dr. Alexandrov</span>
+  </a>
+  <button class="burger" onclick="document.querySelector('.nav').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav">
+    <a href="#method">Метод</a>
+    <a href="#results">Результаты</a>
+    <a href="#about">Об авторе</a>
+    <a href="#program">Программа</a>
+    <a href="#price" class="btn-nav">Записаться</a>
+  </nav>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero section">
+<div class="container">
+<div class="hero-grid">
+  <div>
+    <div class="hero-badge">⚕️ Метод военврача с 10-летним опытом</div>
+    <h1 class="hero-title">Голодание<br><span class="gold">с улыбкой</span></h1>
+    <p class="hero-sub">Пошаговый видеокурс по лечебному голоданию от 4 до 7 дней. Без вебинаров, без тестов, без воды — только рабочая инструкция от врача.</p>
+    <div class="hero-buttons">
+      <a href="https://t.me/golodanie_s_ulybkoy_bot" target="_blank" class="btn-primary">📩 Получить курс в Telegram</a>
+      <a href="https://t.me/doconhunger" target="_blank" class="btn-secondary">📢 Новостной канал</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">10+</div><div class="stat-label">лет практики</div></div>
+      <div><div class="stat-num">100+</div><div class="stat-label">человек прошли</div></div>
+      <div><div class="stat-num">7</div><div class="stat-label">дней — один курс</div></div>
+    </div>
+  </div>
+  <div>
+    <div class="hero-video">
+      <img src="images/hero.png" alt="Метод военврача Александрова">
+      <div class="play-btn"></div>
+    </div>
+    <p class="video-cap">▶ Видео о методе — 25 минут, которые изменят ваш подход к здоровью</p>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- PROBLEMS -->
+<section class="problems section">
+<div class="container">
+  <h2 class="section-title">Почему у большинства <span class="gold">не получается</span></h2>
+  <p class="section-sub">Под каждым видео о лечебном голодании — миллион вопросов. А что пить? А как не сорваться? А если семья готовит? Ответов нет.</p>
+  <div class="prob-grid">
+    <div class="prob-card"><div class="prob-icon">🎯</div><h3>Лезут в голод вслепую</h3><p>Ни подготовки, ни плана, ни понимания процессов. Итог — срыв на второй день и разочарование.</p></div>
+    <div class="prob-card"><div class="prob-icon">🧠</div><h3>Неправильный настрой</h3><p>Нет мотивации, нет психологической подготовки. Голова сдаётся раньше тела — и человек бросает.</p></div>
+    <div class="prob-card"><div class="prob-icon">❓</div><h3>Слишком много вопросов</h3><p>А что такое содовая вода? А как ходить на работу? А что делать, если в семье готовят? Без ответов — без результата.</p></div>
+  </div>
+</div>
+</section>
+
+<!-- METHOD -->
+<section id="method" class="section">
+<div class="container">
+  <h2 class="section-title">Суть метода</h2>
+  <p class="section-sub">Недельное голодание раз в месяц — полноценная перезагрузка организма</p>
+  <div class="method-grid">
+    <div>
+      <ul class="method-list">
+        <li><div class="m-check">✓</div><div><strong>7 дней — оптимальный срок</strong><span>Польза начинается после 3-го дня, когда включается аутофагия. Организм переходит на жировые резервы и начинает сжигать повреждённые клетки</span></div></li>
+        <li><div class="m-check">✓</div><div><strong>Ежедневные процедуры</strong><span>Организм не копит токсины — голодать комфортно. Чёткая инструкция на каждый день</span></div></li>
+        <li><div class="m-check">✓</div><div><strong>Техники против чувства голода</strong><span>Показываю, как спокойно переносить наплывы голода — без надрыва, без истерик, без силы воли</span></div></li>
+        <li><div class="m-check">✓</div><div><strong>Замена микробиома</strong><span>Это основная часть голодания. Заменяем «виртуальный орган», который управляет нашими пищевыми привычками</span></div></li>
+        <li><div class="m-check">✓</div><div><strong>Грамотный выход</strong><span>По моему методу ограничений по выбору еды нет. Есть ограничения по калориям — и то не критично</span></div></li>
+      </ul>
+    </div>
+    <div>
+      <div class="method-quote"><p>«Дисциплина — это свобода от лишнего»</p><cite>— В.Ю. Александров</cite></div>
+      <div class="method-quote" style="margin-top:16px;border-left-color:var(--green)"><p style="color:#86efac">«Для меня голодание — не модный тренд, а рабочий инструмент. Почти панацея.»</p><cite>— из 10-летнего опыта</cite></div>
+<div style="margin-top:16px;background:var(--bg);border:1px solid rgba(200,164,78,0.25);border-left:4px solid var(--gold);border-radius:12px;padding:24px 26px">
+        <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:12px">Не ищите виноватых!</h3>
+        <p style="color:var(--txt2);font-size:14px;margin-bottom:10px;line-height:1.7">🔖 Не перекладывайте ответственность за свою жизнь на других — это короткая дорога к стагнации.</p>
+        <p style="color:var(--txt2);font-size:14px;margin-bottom:10px;line-height:1.7">🟢 Развитие начинается там, где вы честно говорите: <em>«Это моя жизнь и мои решения»</em>.</p>
+        <p style="font-size:15px;font-weight:600;color:var(--gold);line-height:1.6">🔊 Примите контроль — и у вас появится свобода менять что угодно.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- RESULTS -->
+<section id="results" class="section" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<div class="container">
+  <h2 class="section-title">Что уходит после курса</h2>
+  <p class="section-sub">Личные результаты автора и людей, прошедших метод</p>
+  <div class="res-grid">
+    <div class="res-card"><div class="res-icon">🫁</div><div><h3>Астма</h3><p>Была бронхиальная астма — полностью ушла</p><div class="res-tag">Личный опыт</div></div></div>
+    <div class="res-card"><div class="res-icon">🤧</div><div><h3>Аллергия</h3><p>Сопли, слёзы каждую весну — всё, тишина</p><div class="res-tag">Личный опыт</div></div></div>
+    <div class="res-card"><div class="res-icon">🔥</div><div><h3>Гастрит и изжога</h3><p>Гастрит поздней стадии — стал историей</p><div class="res-tag">Личный опыт</div></div></div>
+    <div class="res-card"><div class="res-icon">🦴</div><div><h3>Артрит, суставы</h3><p>Воспаления ушли, каждый день играю в волейбол</p><div class="res-tag">Личный опыт</div></div></div>
+    <div class="res-card"><div class="res-icon">💊</div><div><h3>Гипертония</h3><p>Давление нормализуется, уходит зависимость от таблеток</p><div class="res-tag">Общий эффект</div></div></div>
+    <div class="res-card"><div class="res-icon">🧬</div><div><h3>Герпес и кожные болезни</h3><p>Высыпания уходят, кожа очищается изнутри</p><div class="res-tag">Общий эффект</div></div></div>
+    <div class="res-card"><div class="res-icon">⚡</div><div><h3>Многократный прирост энергии</h3><p>Усиление терморегуляции, повышенная выносливость, бодрость с утра</p><div class="res-tag">Общий эффект</div></div></div>
+    <div class="res-card"><div class="res-icon">🧠</div><div><h3>Ясность мышления</h3><p>Мозг работает чётче, ощущение «я проснулся»</p><div class="res-tag">Общий эффект</div></div></div>
+    <div class="res-card"><div class="res-icon">🔬</div><div><h3>Обновление иммунитета</h3><p>Выработка гормона роста, обновление метаболизма, обновление 95% эритроцитов крови</p><div class="res-tag">Научный факт</div></div></div>
+    <div class="res-card"><div class="res-icon">⏳</div><div><h3>Снижение биологического возраста</h3><p>Минус 2,5 года биологического возраста за один курс голодания</p><div class="res-tag">Научный факт</div></div></div>
+    <div class="res-card"><div class="res-icon">⚖️</div><div><h3>Минус 7 кг за неделю</h3><p>Уходит вес, отёки, тяга к перекусам</p><div class="res-tag">Средний результат</div></div></div>
+    <div class="res-card"><div class="res-icon">🛡️</div><div><h3>Перезагрузка организма</h3><p>Аутофагия — организм сжигает битые клетки, мусор, повреждённые ткани</p><div class="res-tag">Научный факт</div></div></div>
+  </div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+<div class="container">
+  <h2 class="section-title">Об авторе</h2>
+  <div style="height:48px"></div>
+  <div class="about-grid">
+    <div class="about-photo"><img src="images/autor.png" alt="Александров В.Ю."></div>
+    <div class="about-text">
+      <h3>Александров Вячеслав Юрьевич</h3>
+      <div class="about-role">Военный врач • Практик лечебного голодания</div>
+      <p>Занимаюсь лечебным голоданием более 10 лет. Начинал с классиков — Николаев, Кокосов, Брэгг, Шелтон. Всё перечитал, переложил через себя, а дальше началась практика.</p>
+      <p>Сначала голодал сам, экспериментировал. Потом друзья и сослуживцы начали спрашивать: «Почему ты так молодо выглядишь? Почему не ходишь с аптечкой?» Так всё переросло в мини-клинику.</p>
+      <p>Через мои руки прошли десятки, если не сотни человек. На себе вычистил: астму, аллергию, геморрой, гастрит, артрит. Сейчас играю в волейбол каждый день как пацан.</p>
+      <div class="about-badges">
+        <span class="badge">🎖 Военный врач</span>
+        <span class="badge">📚 10+ лет практики</span>
+        <span class="badge">👥 Сотни пациентов</span>
+        <span class="badge">🏐 Активный спорт</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program" class="section" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<div class="container">
+  <h2 class="section-title">Что внутри курса</h2>
+  <p class="section-sub">Одно видео. Полная инструкция. Ничего лишнего.</p>
+  <div class="prog-cards">
+    <div class="prog-card"><div class="prog-num">01</div><div><h3>Подготовка и настрой</h3><p>Что купить заранее, как подготовить тело и голову. Психологический настрой и мотивация — чтобы не сойти с дистанции.</p></div></div>
+    <div class="prog-card"><div class="prog-num">02</div><div><h3>Первые процедуры по шагам</h3><p>Чёткая пошаговая инструкция: что делать, в какой последовательности, как подготовить организм к голоданию.</p></div></div>
+    <div class="prog-card"><div class="prog-num">03</div><div><h3>Процесс голодания (4–7 дней)</h3><p>Что делать каждый день. Психологические и физиологические лайфхаки. Как противостоять чувству голода без надрыва и истерик.</p></div></div>
+    <div class="prog-card"><div class="prog-num">04</div><div><h3>Замена микробиома</h3><p>Чёткая инструкция, как заменить наш «виртуальный орган» — микробиом. Это основная часть всего процесса голодания.</p></div></div>
+    <div class="prog-card"><div class="prog-num">05</div><div><h3>Правильный выход</h3><p>По моему методу ограничений по выбору еды нет. Есть ограничения по калориям — и то не критично. Пошаговый план на 3 дня после голода.</p></div></div>
+  </div>
+  <div class="prog-note">
+    <p><strong>Никаких вебинаров. Никаких тестов. Никаких домашних заданий.</strong><br>Просто видеокурс — смотрите, делаете, получаете результат.</p>
+  </div>
+</div>
+</section>
+<!-- LIBRARY -->
+<section class="section" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<div class="container">
+  <h2 class="section-title">📚 Библиотека знаний</h2>
+  <p class="section-sub">Полный справочник по лечебному голоданию — от истории до практики</p>
+  <div class="lib-list">
+
+    <!-- РАЗДЕЛ 1 -->
+    <div class="lib-item">
+      <div class="lib-q" onclick="this.parentElement.classList.toggle('active');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'">
+        <div class="lib-num">01</div>
+        <h3>Введение и историческая эволюция</h3>
+        <div class="lib-toggle">+</div>
+      </div>
+      <div class="lib-a"><div class="lib-a-inner">
+        <p>Практика лечебного голодания уходит в глубокую древность. Древнегреческие философы Пифагор, Сократ и Платон голодали, понимая, что эта практика обеспечивает крепкое здоровье и ясность ума. Знаменитые врачи Гиппократ и Авиценна использовали голодание в своём терапевтическом инструментарии.</p>
+        <p>Однако современный подход к лечебному голоданию как систематическому медицинскому вмешательству начал формироваться только в XX веке.</p>
+
+        <div class="lib-author">
+          <strong>Профессор Юрий Сергеевич Николаев (1905–1998)</strong>
+          <span>Российский врач и исследователь, работавший в Московском институте психиатрии. Основоположник современной науки о терапевтическом голодании. Разработал методику РДТ (Разгрузочно-Диетическая Терапия) — превратил голодание из философской практики в научную дисциплину с чёткими протоколами, дозировками и документированными результатами.</span>
+        </div>
+
+        <div class="lib-author">
+          <strong>Пол Брэгг</strong>
+          <span>Американский популяризатор голодания. Показал, что регулярное умеренное голодание можно интегрировать в повседневную жизнь без медицинского наблюдения. Его система: еженедельные 24–36-часовые голодания, ежеквартальные 7–10-дневные, ежегодные 21-дневные.</span>
+        </div>
+
+        <div class="lib-author">
+          <strong>Герберт Шелтон</strong>
+          <span>Американский натуропат. Разработал комплексный оздоровительный подход — не только голодание, но и структурированный отдых, массаж, гидротерапия и специализированные процедуры поддержки.</span>
+        </div>
+
+        <div class="lib-author">
+          <strong>Порфирий Иванов</strong>
+          <span>Русский практик. Интегрировал голодание в систему духовного и физического развития, включающую закаливание, вегетарианскую диету и этико-нравственную работу.</span>
+        </div>
+
+        <div class="lib-author">
+          <strong>Алексей Суворин</strong>
+          <span>Русский врач-писатель. Разработал методы домашнего голодания, доступные практикующим без специализированных клиник.</span>
+        </div>
+
+        <div class="lib-conclusion">
+          <p>🔑 Ключевой вывод: все эти методологии сходятся в одном — голодание от 4 до 7 дней является оптимальным окном для достижения результатов при минимальных рисках.</p>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- СЮДА ПОЙДУТ СЛЕДУЮЩИЕ РАЗДЕЛЫ -->
+
+  </div>
+</div>
+</section>
+<!-- PRICING -->
+<section id="price" class="pricing section">
+<div class="container">
+  <h2 class="section-title">Стоимость</h2>
+  <p class="section-sub">Одна цена — полный метод</p>
+  <div class="price-card">
+    <div class="price-label">Видеокурс</div>
+    <div class="price-name">Голодание с улыбкой</div>
+    <div class="price-desc">Полная пошаговая инструкция от военврача</div>
+    <div class="price-amount">2 900 <span>₽</span></div>
+    <div class="price-once">разовый платёж, доступ навсегда</div>
+    <ul class="price-features">
+      <li><span style="color:var(--green)">✓</span> Полный видеокурс с инструкцией по дням</li>
+      <li><span style="color:var(--green)">✓</span> Подготовка, процесс, выход — всё в одном видео</li>
+      <li><span style="color:var(--green)">✓</span> Несколько техник против чувства голода</li>
+      <li><span style="color:var(--green)">✓</span> Инструкция по замене микробиома</li>
+      <li><span style="color:var(--green)">✓</span> Список всего необходимого для курса</li>
+      <li><span style="color:var(--green)">✓</span> Доступ через Telegram — удобно с телефона</li>
+    </ul>
+    <a href="https://t.me/golodanie_s_ulybkoy_bot" target="_blank" class="price-btn">Получить курс в Telegram →</a>
+    <p style="margin-top:14px;font-size:13px;color:var(--txt3)">Оплата через безопасный платёжный шлюз</p>
+  </div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+<div class="container">
+  <h2 class="section-title">Частые вопросы</h2>
+  <div style="height:48px"></div>
+  <div class="faq-list">
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('active');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><h3>Это безопасно?</h3><div class="faq-toggle">+</div></div><div class="faq-a"><div class="faq-a-inner">При грамотном подходе — да. Именно поэтому в курсе подробно разобрана подготовка, ежедневные процедуры очищения и выход. Но если у вас есть серьёзные хронические заболевания — обязательно проконсультируйтесь с врачом перед началом.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('active');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><h3>Я никогда не голодал — справлюсь?</h3><div class="faq-toggle">+</div></div><div class="faq-a"><div class="faq-a-inner">Курс рассчитан именно на тех, кто делает это впервые. Всё разжёвано по шагам: что купить, что делать в какой день, как убирать чувство голода, как не сорваться.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('active');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><h3>Что если я сорвусь на 3-й день?</h3><div class="faq-toggle">+</div></div><div class="faq-a"><div class="faq-a-inner">Ничего страшного — вы не первый. Сорваться можно только из-за собственных мыслей. В курсе я даю техники контроля. При этом сам организм после правильной подготовки есть почти не просит.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('active');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><h3>А как это делать дома, если семья готовит?</h3><div class="faq-toggle">+</div></div><div class="faq-a"><div class="faq-a-inner">Это ваша жизнь. Можно дать это видео родственникам, чтобы они понимали процесс. Честно сказать: «У меня неделя процедур, я делаю это для здоровья». Часть процедур — в ванной и туалете, ничего экстремального. Плюс — всегда можно уединиться.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('active');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><h3>Мне нужно покупать что-то дополнительно?</h3><div class="faq-toggle">+</div></div><div class="faq-a"><div class="faq-a-inner">В видео перечислено всё, что нужно — и всё можно купить в обычной аптеке. Также после курса будет возможность приобрести готовый набор с расходниками, если не хотите собирать самостоятельно.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('active');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><h3>Как я получу курс?</h3><div class="faq-toggle">+</div></div><div class="faq-a"><div class="faq-a-inner">После оплаты через Telegram-бот вам мгновенно откроется доступ к видео прямо в Telegram. Смотрите с телефона или компьютера, в любое время, доступ навсегда.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('active');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><h3>А чувство голода сильное?</h3><div class="faq-toggle">+</div></div><div class="faq-a"><div class="faq-a-inner">После правильной подготовки и последовательного исполнения всех инструкций — минимальное. Организм переключается на внутренние резервы, а я даю несколько техник, которые снимают наплывы голода за пару минут.</div></div></div>
+  </div>
+</div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="disclaimer section" style="padding:50px 0">
+<div class="container">
+  <div class="disc-inner">
+    <div style="font-size:36px;margin-bottom:16px">⚠️</div>
+    <h2>Важная информация</h2>
+    <p>Данный видеокурс носит исключительно информационно-образовательный характер и не является медицинской рекомендацией, назначением или заменой консультации врача.</p>
+    <p>Многодневное голодание имеет противопоказания: сердечно-сосудистые заболевания, гипертония, сахарный диабет, тяжёлые хронические болезни, беременность, период лактации. Перед началом курса обязательно проконсультируйтесь с лечащим врачом.</p>
+    <p>Всё, что вы делаете на основании информации из курса, вы делаете добровольно, осознанно и на свой страх и риск. Автор не несёт ответственности за последствия самостоятельного применения описанных методик без наблюдения специалиста.</p>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container">
+  <div class="footer-top">
+    <div class="footer-info">
+      <a href="https://t.me/golodanie_s_ulybkoy_bot" target="_blank" class="logo">
+        <span style="font-size:22px;color:var(--gold)">⚓</span>
+        <span class="logo-text">Dr. Alexandrov</span>
+      </a><a href="oferta.html" style="color:var(--gold);font-weight:600">Публичная оферта</a>
+      <p>ИП Александров Вячеслав Юрьевич<br>ИНН: 780431390845<br>ОГРНИП: 324784700350782</p>
+    </div>
+    <div class="footer-links">
+      <a href="oferta.html" style="color:var(--gold);font-weight:600">Публичная оферта</a>
+      <a href="mailto:doors1111@yandex.ru">doors1111@yandex.ru</a>
+      <a href="tel:+79219001818">+7 921 900-18-18</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Голодание с улыбкой. Все права защищены.</div>
+</div>
+</footer>
+
+</body>
+</html>
