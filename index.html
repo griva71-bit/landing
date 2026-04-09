@@ -231,7 +231,16 @@ ym(106832047,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
     <p class="hero-sub">Пошаговый видеокурс по лечебному голоданию от 4 до 7 дней. Без вебинаров, без тестов, без воды — только рабочая инструкция от врача.</p>
     <div class="hero-buttons">
       <a href="https://t.me/golodanie_s_ulybkoy_bot" target="_blank" class="btn-primary">🧑‍⚕️ Получить курс в Telegram</a>
-      <a href="#price" class="btn-secondary">💳 Купить курс 3 900 ₽</a>
+      <form action="https://yoomoney.ru/quickpay/confirm.xml" method="post" target="_blank" style="display:inline;">
+    <input type="hidden" name="receiver" value="4100118420031768">
+    <input type="hidden" name="quickpay-form" value="shop">
+    <input type="hidden" name="targets" value="Видеокурс Голодание с улыбкой">
+    <input type="hidden" name="paymentType" value="AC">
+    <input type="hidden" name="sum" value="3900">
+    <input type="hidden" name="label" value="course_payment">
+    <input type="hidden" name="successURL" value="https://dr-alexandrov.ru/success.html">
+    <button type="submit" class="btn-secondary">💳 Купить курс 3 900 ₽</button>
+</form>
       <a href="https://t.me/doconhunger" target="_blank" class="btn-secondary">📣 Новостной канал</a>
     </div>
     <div class="hero-stats">
@@ -1212,7 +1221,7 @@ ym(106832047,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
     <input type="hidden" name="sum" value="3900">
     <input type="hidden" name="label" value="course_payment">
     <input type="hidden" name="successURL" value="https://dr-alexandrov.ru/success.html">
-    <button type="submit" class="price-btn">Купить курс за 3 900 ₽ →</button>
+    <button type="submit" class="price-btn" formtarget="_blank">Купить курс за 3 900 ₽ →</button>
 </form>
 <p style="margin-top:14px;font-size:13px;color:var(--txt3)">Оплата через безопасный платёжный шлюз ЮМани</p>
   </div>
