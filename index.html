@@ -230,8 +230,9 @@ ym(106832047,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
     <h1 class="hero-title">Голодание<br><span class="gold">с улыбкой</span></h1>
     <p class="hero-sub">Пошаговый видеокурс по лечебному голоданию от 4 до 7 дней. Без вебинаров, без тестов, без воды — только рабочая инструкция от врача.</p>
     <div class="hero-buttons">
-      <a href="https://t.me/golodanie_s_ulybkoy_bot" target="_blank" class="btn-primary">🧑‍⚕️ Получить курс в Telegram</a>
-      <form action="https://yoomoney.ru/quickpay/confirm.xml" method="post" target="_blank" style="display:inline;">
+
+  <!-- ГЛАВНАЯ КНОПКА — оплата на сайте -->
+  <form action="https://yoomoney.ru/quickpay/confirm.xml" method="post" target="_blank" style="display:block; margin-bottom:12px;">
     <input type="hidden" name="receiver" value="4100118420031768">
     <input type="hidden" name="quickpay-form" value="shop">
     <input type="hidden" name="targets" value="Видеокурс Голодание с улыбкой">
@@ -239,10 +240,24 @@ ym(106832047,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
     <input type="hidden" name="sum" value="3900">
     <input type="hidden" name="label" value="course_payment">
     <input type="hidden" name="successURL" value="https://golodanie-s-ulybkoy.ru/success.html">
-    <button type="submit" class="btn-secondary" style="width:100%;cursor:pointer;font-size:inherit;font-family:inherit;">💳 Купить курс 3 900 ₽</button>
-</form>
-      <a href="https://t.me/doconhunger" target="_blank" class="btn-secondary">📣 Новостной канал</a>
-    </div>
+    <button type="submit" style="width:100%; background:#c9a84c; color:#0d1117; border:none; border-radius:12px; padding:18px 24px; font-size:18px; font-weight:700; cursor:pointer;">
+      💳 Купить курс за 3 900 ₽ — доступ сразу на сайте
+    </button>
+  </form>
+
+  <!-- ВТОРАЯ КНОПКА — через Telegram -->
+  <a href="https://t.me/golodanie_s_ulybkoy_bot" target="_blank" style="display:block; text-align:center; background:#1a2744; color:#e5e7eb; border:1px solid #30363d; border-radius:12px; padding:14px 24px; font-size:15px; font-weight:600; text-decoration:none; margin-bottom:16px;">
+    🤖 Или получить курс через Telegram-бота
+  </a>
+
+  <!-- МАЛЕНЬКАЯ ССЫЛКА — новостной канал -->
+  <div style="text-align:center;">
+    <a href="https://t.me/doconhunger" target="_blank" style="color:#6b7280; font-size:13px; text-decoration:none;">
+      📢 Новостной канал
+    </a>
+  </div>
+
+</div>
     <div class="hero-stats">
       <div><div class="stat-num">10+</div><div class="stat-label">лет практики</div></div>
       <div><div class="stat-num">100+</div><div class="stat-label">человек прошли</div></div>
