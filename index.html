@@ -191,6 +191,16 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
   .price-card{padding:28px 20px}
   .lib-a-inner{padding:20px 16px}
 }
+  .hero-buttons button:hover {
+  background:#b8933d !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201,168,76,0.4);
+}
+.hero-buttons a:hover {
+  border-color:#c9a84c !important;
+  color:#c9a84c !important;
+  transform: translateY(-2px);
+}
 </style>
 </head>
 <script type="text/javascript">
@@ -231,7 +241,13 @@ ym(106832047,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
     <p class="hero-sub">Пошаговый видеокурс по лечебному голоданию от 4 до 7 дней. Без вебинаров, без тестов, без воды — только рабочая инструкция от врача.</p>
     <div class="hero-buttons">
 
-  <!-- ГЛАВНАЯ КНОПКА — оплата на сайте -->
+  <!-- ЦЕНА -->
+  <div style="text-align:center; margin-bottom:16px;">
+    <span style="font-size:28px; font-weight:800; color:#c9a84c;">3 900 ₽</span>
+    <span style="font-size:14px; color:#9ca3af; margin-left:8px;">— полный курс</span>
+  </div>
+
+  <!-- ГЛАВНАЯ КНОПКА — сайт -->
   <form action="https://yoomoney.ru/quickpay/confirm.xml" method="post" target="_blank" style="display:block; margin-bottom:12px;">
     <input type="hidden" name="receiver" value="4100118420031768">
     <input type="hidden" name="quickpay-form" value="shop">
@@ -240,17 +256,17 @@ ym(106832047,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
     <input type="hidden" name="sum" value="3900">
     <input type="hidden" name="label" value="course_payment">
     <input type="hidden" name="successURL" value="https://golodanie-s-ulybkoy.ru/success.html">
-    <button type="submit" style="width:100%; background:#c9a84c; color:#0d1117; border:none; border-radius:12px; padding:18px 24px; font-size:18px; font-weight:700; cursor:pointer;">
-      💳 Купить курс за 3 900 ₽ — доступ сразу на сайте
+    <button type="submit" style="width:100%; background:#c9a84c; color:#0d1117; border:none; border-radius:12px; padding:16px 24px; font-size:16px; font-weight:700; cursor:pointer; transition:all 0.2s ease;">
+      💳 Купить и смотреть на сайте
     </button>
   </form>
 
-  <!-- ВТОРАЯ КНОПКА — через Telegram -->
-  <a href="https://t.me/golodanie_s_ulybkoy_bot" target="_blank" style="display:block; text-align:center; background:#1a2744; color:#e5e7eb; border:1px solid #30363d; border-radius:12px; padding:14px 24px; font-size:15px; font-weight:600; text-decoration:none; margin-bottom:16px;">
-    🤖 Или получить курс через Telegram-бота
+  <!-- ВТОРАЯ КНОПКА — Telegram -->
+  <a href="https://t.me/golodanie_s_ulybkoy_bot" target="_blank" style="display:block; text-align:center; background:#1a2744; color:#e5e7eb; border:2px solid #30363d; border-radius:12px; padding:14px 24px; font-size:16px; font-weight:600; text-decoration:none; margin-bottom:16px; transition:all 0.2s ease;">
+    🤖 Купить и смотреть в Telegram
   </a>
 
-  <!-- МАЛЕНЬКАЯ ССЫЛКА — новостной канал -->
+  <!-- НОВОСТНОЙ КАНАЛ -->
   <div style="text-align:center;">
     <a href="https://t.me/doconhunger" target="_blank" style="color:#6b7280; font-size:13px; text-decoration:none;">
       📢 Новостной канал
