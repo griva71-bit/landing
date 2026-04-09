@@ -114,7 +114,75 @@
                 </iframe>
             </div>
         </div>
+<!-- БЛОК КОРОБКА -->
+<div class="video-block" style="border-color: #c9a84c; margin-top: 40px;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <span style="font-size:40px;">📦</span>
+        <div>
+            <div class="video-title">Набор для голодания — коробка</div>
+            <div class="video-desc" style="margin-bottom:0;">Всё необходимое для курса голодания с доставкой СДЭК по России</div>
+        </div>
+    </div>
 
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px;">
+        <div style="background:#0d1117; border-radius:8px; padding:12px; font-size:14px;">✅ Травяной сбор</div>
+        <div style="background:#0d1117; border-radius:8px; padding:12px; font-size:14px;">✅ Инструкция на бумаге</div>
+        <div style="background:#0d1117; border-radius:8px; padding:12px; font-size:14px;">✅ Дневник голодания</div>
+        <div style="background:#0d1117; border-radius:8px; padding:12px; font-size:14px;">✅ Доставка СДЭК</div>
+    </div>
+
+    <div style="text-align:center; margin-bottom:24px;">
+        <span style="font-size:32px; font-weight:900; color:#c9a84c;">2 900 ₽</span>
+        <span style="color:#9ca3af; font-size:14px; margin-left:8px;">включая доставку</span>
+    </div>
+
+    <!-- Кнопка оплаты коробки -->
+    <form action="https://yoomoney.ru/quickpay/confirm.xml" method="post" target="_blank">
+        <input type="hidden" name="receiver" value="4100118420031768">
+        <input type="hidden" name="quickpay-form" value="shop">
+        <input type="hidden" name="targets" value="Набор для голодания — коробка">
+        <input type="hidden" name="paymentType" value="AC">
+        <input type="hidden" name="sum" value="2900">
+        <input type="hidden" name="label" value="box_payment">
+        <input type="hidden" name="successURL" value="https://golodanie-s-ulybkoy.ru/success.html#order-form">
+        <button type="submit" style="width:100%; background:#c9a84c; color:#000; border:none; border-radius:12px; padding:18px; font-size:18px; font-weight:700; cursor:pointer;">
+            📦 Заказать коробку за 2 900 ₽
+        </button>
+    </form>
+</div>
+
+<!-- ФОРМА ПОСЛЕ ОПЛАТЫ КОРОБКИ -->
+<div id="order-form" class="video-block" style="margin-top:24px;">
+    <div class="video-title" style="margin-bottom:8px;">📬 Укажите адрес доставки</div>
+    <div class="video-desc" style="margin-bottom:24px;">Заполните форму — отправим коробку через СДЭК в течение 2 рабочих дней</div>
+
+    <form action="https://formspree.io/f/xjgpdlnk" method="POST">
+        <div style="margin-bottom:16px;">
+            <label style="display:block; color:#9ca3af; font-size:14px; margin-bottom:6px;">Ваше имя</label>
+            <input type="text" name="name" required
+                style="width:100%; background:#0d1117; border:1px solid #30363d; border-radius:8px; padding:14px; color:#fff; font-size:16px;">
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <label style="display:block; color:#9ca3af; font-size:14px; margin-bottom:6px;">Телефон</label>
+            <input type="tel" name="phone" required placeholder="+7 999 123 45 67"
+                style="width:100%; background:#0d1117; border:1px solid #30363d; border-radius:8px; padding:14px; color:#fff; font-size:16px;">
+        </div>
+
+        <div style="margin-bottom:24px;">
+            <label style="display:block; color:#9ca3af; font-size:14px; margin-bottom:6px;">Адрес доставки СДЭК</label>
+            <textarea name="address" required rows="3" placeholder="Город, улица, дом, квартира, индекс"
+                style="width:100%; background:#0d1117; border:1px solid #30363d; border-radius:8px; padding:14px; color:#fff; font-size:16px; resize:none;"></textarea>
+        </div>
+
+        <input type="hidden" name="_subject" value="Новый заказ коробки!">
+
+        <button type="submit"
+            style="width:100%; background:#1a7a3a; color:#fff; border:none; border-radius:12px; padding:18px; font-size:18px; font-weight:700; cursor:pointer;">
+            ✅ Отправить адрес
+        </button>
+    </form>
+</div>
         <div class="footer">
             <p>Остались вопросы? <a href="https://t.me/doconhunger">Напишите в Telegram</a></p>
             <p style="margin-top:10px;"><a href="/">← Вернуться на сайт</a></p>
