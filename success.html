@@ -153,7 +153,7 @@
 </div>
 
 <!-- ФОРМА ПОСЛЕ ОПЛАТЫ КОРОБКИ -->
-<div id="order-form" class="video-block" style="margin-top:24px;">
+<div id="order-form" class="video-block" style="margin-top:24px; display:none;">
     <div class="video-title" style="margin-bottom:8px;">📬 Укажите адрес доставки</div>
     <div class="video-desc" style="margin-bottom:24px;">Заполните форму — отправим коробку через СДЭК в течение 2 рабочих дней</div>
 
@@ -189,5 +189,12 @@
             <p style="margin-top:10px;"><a href="/">← Вернуться на сайт</a></p>
         </div>
     </div>
+    <script>
+// Показываем форму только если пришли после оплаты коробки
+if (window.location.hash === '#order-form') {
+    document.getElementById('order-form').style.display = 'block';
+    document.getElementById('order-form').scrollIntoView({behavior: 'smooth'});
+}
+</script>
 </body>
 </html>
