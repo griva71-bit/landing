@@ -53,10 +53,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 .gold{color:var(--gold)}
 .hero-sub{color:var(--txt2);font-size:17px;line-height:1.7;margin-bottom:32px}
 .hero-buttons{display:flex;flex-direction:column;gap:12px;margin-bottom:40px;max-width:380px}
-.btn-primary{display:block;text-align:center;background:var(--gold);color:#0a0f1a;padding:15px 28px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;transition:background .2s,transform .18s,box-shadow .18s;box-shadow:0 3px 18px rgba(200,164,78,.22)}
-.btn-primary:hover{background:var(--gold-l);transform:translateY(-2.5px) scale(1.018);box-shadow:0 8px 32px rgba(200,164,78,.35),0 4px 12px rgba(0,0,0,.55)}
-.btn-secondary{display:block;text-align:center;background:transparent;color:var(--gold);padding:13px 28px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;border:2px solid rgba(200,164,78,.5);transition:background .2s,transform .18s,box-shadow .18s}
-.btn-secondary:hover{background:rgba(200,164,78,.08);transform:translateY(-2.5px);border-color:var(--gold)}
+.btn-primary{display:block;text-align:center;background:#0a0f1a;color:#ffd84d;padding:16px 28px;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none;position:relative;box-shadow:0 0 0 1px rgba(140,120,255,.4),0 0 20px rgba(120,90,255,.55),0 0 40px rgba(90,120,255,.45),0 0 70px rgba(120,90,255,.3);transition:all .25s ease}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(160,140,255,.6),0 0 28px rgba(140,110,255,.75),0 0 55px rgba(110,140,255,.6),0 0 90px rgba(140,110,255,.45)}
+.btn-secondary{display:block;text-align:center;background:#0a0f1a;color:#ffd84d;padding:16px 28px;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none;position:relative;box-shadow:0 0 0 1px rgba(140,120,255,.4),0 0 20px rgba(120,90,255,.55),0 0 40px rgba(90,120,255,.45),0 0 70px rgba(120,90,255,.3);transition:all .25s ease}
+.btn-secondary:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(160,140,255,.6),0 0 28px rgba(140,110,255,.75),0 0 55px rgba(110,140,255,.6),0 0 90px rgba(140,110,255,.45)}
 .hero-stats{display:flex;gap:36px;padding-top:32px;border-top:1px solid var(--border)}
 .stat-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1}
 .stat-label{font-size:13px;color:var(--txt3);margin-top:4px}
@@ -192,16 +192,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
   .price-card{padding:28px 20px}
   .lib-a-inner{padding:20px 16px}
 }
-  .hero-buttons button:hover {
-  background:#b8933d !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(201,168,76,0.4);
-}
-.hero-buttons a:hover {
-  border-color:#c9a84c !important;
-  color:#c9a84c !important;
-  transform: translateY(-2px);
-}
+
 </style>
 </head>
 <script type="text/javascript">
