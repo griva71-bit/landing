@@ -12,7 +12,7 @@
 <meta property="og:locale" content="ru_RU">
 <link rel="icon" type="image/png" href="images/icon.png">
 <link rel="apple-touch-icon" href="images/icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -29,45 +29,164 @@
   --red:#ef4444;
   --border:#1e293b;
   --paper:#f5e9c8;
+  --paper-edge:#e8d9a8;
   --paper-line:#d9c89a;
-  --ink:#3a2e15
+  --ink:#3a2e15;
+  --ink-fear:#7a2418
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;font-size:16px;min-height:100vh}
-.container{max-width:920px;margin:0 auto;padding:0 24px}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
 
-/* HEADER (минимальный) */
+/* HEADER */
 .q-header{padding:20px 0;border-bottom:1px solid var(--border)}
-.q-header-inner{display:flex;align-items:center;justify-content:center;max-width:920px;margin:0 auto;padding:0 24px}
+.q-header-inner{display:flex;align-items:center;justify-content:center;max-width:1180px;margin:0 auto;padding:0 24px}
 .q-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--txt)}
 .q-logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700}
 
 /* MAIN — стартовый экран */
 .q-main{padding:60px 0 80px}
-.q-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,164,78,.1);border:1px solid rgba(200,164,78,.25);color:var(--gold);padding:8px 18px;border-radius:20px;font-size:13px;font-weight:500;margin-bottom:24px}
-.q-title{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;line-height:1.1;margin-bottom:20px;text-align:center}
-.q-title .gold{color:var(--gold)}
-.q-sub{color:var(--txt2);font-size:18px;line-height:1.6;margin-bottom:48px;text-align:center;max-width:680px;margin-left:auto;margin-right:auto}
-.q-center{text-align:center}
 
-/* ОКОШКО — рукописный дневник */
-.diary-frame{position:relative;max-width:560px;margin:0 auto 48px;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--bg2);box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.diary-frame::before{content:'';position:absolute;top:0;left:0;right:0;height:32px;background:linear-gradient(180deg,rgba(10,15,26,.95) 0%,rgba(10,15,26,0) 100%);z-index:2;pointer-events:none}
-.diary-frame::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(0deg,rgba(17,24,39,1) 0%,rgba(17,24,39,0) 100%);z-index:2;pointer-events:none}
-.diary-paper{background:var(--paper);background-image:repeating-linear-gradient(transparent,transparent 36px,var(--paper-line) 36px,var(--paper-line) 37px);padding:40px 36px 60px;min-height:380px;position:relative}
-.diary-paper::before{content:'';position:absolute;top:0;bottom:0;left:54px;width:1px;background:rgba(200,80,80,.35)}
-.diary-text{font-family:'Caveat',cursive;font-size:26px;line-height:36px;color:var(--ink);padding-left:30px}
-.diary-line{display:block;margin-bottom:0;min-height:36px}
-.diary-line.fade{opacity:.45;filter:blur(.3px)}
-.diary-line.fade-more{opacity:.25;filter:blur(.5px)}
+/* === ДВУХКОЛОНОЧНЫЙ HERO === */
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+  align-items:center;
+  max-width:1180px;
+  margin:0 auto;
+}
+.hero-left{display:flex;flex-direction:column;align-items:flex-start}
+.hero-right{position:relative;display:flex;justify-content:center;align-items:center;min-height:520px}
+
+.q-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,164,78,.1);border:1px solid rgba(200,164,78,.25);color:var(--gold);padding:8px 18px;border-radius:20px;font-size:13px;font-weight:500;margin-bottom:24px}
+.q-title{font-family:'Playfair Display',serif;font-size:54px;font-weight:900;line-height:1.05;margin-bottom:22px;text-align:left}
+.q-title .gold{color:var(--gold)}
+.q-sub{color:var(--txt2);font-size:18px;line-height:1.6;margin-bottom:36px;text-align:left;max-width:520px}
 
 /* CTA */
-.cta-wrap{text-align:center;margin-bottom:24px}
+.cta-wrap{text-align:left}
 .cta-btn{display:inline-block;background:var(--gold);color:#0a0f1a;padding:18px 42px;border-radius:12px;font-weight:700;font-size:18px;text-decoration:none;border:none;cursor:pointer;transition:all .25s ease;box-shadow:0 4px 24px rgba(200,164,78,.3)}
 .cta-btn:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 8px 32px rgba(200,164,78,.45)}
 .cta-note{color:var(--txt3);font-size:13px;margin-top:14px}
 
-/* QUIZ — сам тест */
+/* === ОКНО В ДРУГОЙ МИР (тетрадка) === */
+.diary-window{
+  position:relative;
+  width:100%;
+  max-width:520px;
+  transform:rotate(-1.2deg);
+  filter:drop-shadow(0 30px 50px rgba(0,0,0,.6));
+}
+.diary-frame{
+  position:relative;
+  border-radius:6px;
+  overflow:hidden;
+  /* Эффект объёмного окна: свет сверху-слева, тень снизу-справа */
+  box-shadow:
+    inset 2px 2px 0 rgba(255,235,180,.25),
+    inset -2px -2px 0 rgba(0,0,0,.4),
+    inset 0 0 60px rgba(0,0,0,.5),
+    0 0 0 1px rgba(0,0,0,.6),
+    0 0 0 8px #1a1410,
+    0 0 0 9px rgba(200,164,78,.2);
+}
+.diary-paper{
+  background:var(--paper);
+  background-image:
+    repeating-linear-gradient(transparent,transparent 34px,var(--paper-line) 34px,var(--paper-line) 35px);
+  padding:46px 40px 80px 80px;
+  min-height:460px;
+  position:relative;
+}
+/* Красная вертикальная линия — поле слева */
+.diary-paper::before{
+  content:'';
+  position:absolute;
+  top:0;bottom:0;left:62px;
+  width:1px;
+  background:rgba(180,60,60,.5);
+}
+/* Затемнение сверху и снизу — эффект "подглядывания в окно" */
+.diary-paper::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;height:120px;
+  background:linear-gradient(0deg,rgba(245,233,200,1) 0%,rgba(245,233,200,0) 100%);
+  pointer-events:none;
+}
+
+/* Основной текст — печатные дни */
+.diary-text{
+  font-family:'Caveat',cursive;
+  font-size:24px;
+  line-height:34px;
+  color:var(--ink);
+  position:relative;
+  z-index:1;
+}
+.diary-line{display:block;min-height:34px}
+.diary-line.fade{opacity:.5}
+.diary-line.fade-more{opacity:.28}
+
+/* === СТРАХИ НА ПОЛЯХ — нервная пропись === */
+.fear-note{
+  position:absolute;
+  font-family:'Kalam',cursive;
+  font-weight:400;
+  color:var(--ink-fear);
+  font-size:14px;
+  line-height:1.25;
+  max-width:130px;
+  z-index:2;
+  opacity:.85;
+}
+/* Левое поле — между краем бумаги и красной линией */
+.fear-1{top:60px;left:8px;transform:rotate(-4deg);max-width:54px;font-size:11px}
+.fear-2{top:155px;left:6px;transform:rotate(2deg);max-width:54px;font-size:11px}
+.fear-3{top:255px;left:8px;transform:rotate(-3deg);max-width:54px;font-size:11px}
+.fear-4{top:360px;left:6px;transform:rotate(3deg);max-width:54px;font-size:11px}
+
+/* Правое поле — после основного текста, на свободном крае */
+.fear-r1{top:90px;right:14px;transform:rotate(5deg);max-width:140px}
+.fear-r2{top:280px;right:10px;transform:rotate(-3deg);max-width:130px}
+
+/* Подчёркивание / зачёркивание для эмоции */
+.fear-underline{border-bottom:1.5px solid var(--ink-fear);padding-bottom:1px}
+
+/* Уголок-намёк на пальцы/ручку (CSS-стилизация, без картинки) */
+.diary-corner{
+  position:absolute;
+  bottom:-20px;
+  right:30px;
+  width:80px;
+  height:60px;
+  background:linear-gradient(135deg,transparent 0%,transparent 40%,rgba(0,0,0,.35) 60%,rgba(0,0,0,.55) 100%);
+  border-radius:0 0 50% 0;
+  filter:blur(8px);
+  pointer-events:none;
+  z-index:3;
+}
+
+/* Метка "дневник практика" над окном */
+.diary-tag{
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%) rotate(-2deg);
+  background:var(--gold);
+  color:#0a0f1a;
+  padding:6px 16px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  border-radius:3px;
+  z-index:4;
+  box-shadow:0 4px 12px rgba(0,0,0,.4);
+}
+
+/* QUIZ */
 .quiz-block{display:none;max-width:640px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:40px}
 .quiz-block.active{display:block}
 .quiz-progress{font-size:13px;color:var(--txt3);text-align:center;margin-bottom:18px;letter-spacing:.05em;text-transform:uppercase}
@@ -93,23 +212,48 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 .verdict-red{border-color:rgba(239,68,68,.4)}
 .verdict-red .verdict-title{color:#fca5a5}
 
+/* Вторичная кнопка */
+.cta-btn-secondary{display:inline-block;margin-top:14px;padding:14px 32px;background:transparent;color:var(--txt2);border:1px solid var(--txt3);border-radius:12px;font-size:15px;font-weight:500;text-decoration:none;transition:all .25s ease}
+.cta-btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Glow */
+.cta-glow{position:relative;box-shadow:0 0 20px rgba(212,175,55,.4),0 0 40px rgba(212,175,55,.2);animation:pulse-glow 2.4s ease-in-out infinite}
+@keyframes pulse-glow{
+  0%,100%{box-shadow:0 0 20px rgba(212,175,55,.4),0 0 40px rgba(212,175,55,.2)}
+  50%{box-shadow:0 0 30px rgba(212,175,55,.7),0 0 60px rgba(212,175,55,.35)}
+}
+.cta-glow:hover{animation:none;box-shadow:0 0 35px rgba(212,175,55,.8),0 0 70px rgba(212,175,55,.4);transform:translateY(-2px)}
+
 /* DISCLAIMER */
 .q-foot{padding:24px 0 40px;text-align:center;color:var(--txt3);font-size:12px;line-height:1.7;border-top:1px solid var(--border);margin-top:60px}
 .q-foot a{color:var(--txt3);text-decoration:underline}
 
-/* RESPONSIVE */
+/* === RESPONSIVE === */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-left{align-items:center;text-align:center}
+  .q-title{text-align:center;font-size:42px}
+  .q-sub{text-align:center;margin-left:auto;margin-right:auto}
+  .cta-wrap{text-align:center;width:100%}
+  .hero-right{min-height:auto;order:2}
+  .diary-window{max-width:440px}
+}
 @media(max-width:600px){
-  .q-title{font-size:34px}
-  .q-sub{font-size:16px;margin-bottom:32px}
-  .q-main{padding:40px 0 60px}
-  .diary-paper{padding:30px 24px 50px}
-  .diary-text{font-size:22px;line-height:32px;padding-left:22px}
+  .q-title{font-size:32px}
+  .q-sub{font-size:16px;margin-bottom:28px}
+  .q-main{padding:32px 0 60px}
+  .cta-btn{padding:16px 28px;font-size:16px;width:100%;text-align:center}
+  .diary-window{max-width:100%;transform:rotate(-0.8deg)}
+  .diary-paper{padding:36px 24px 70px 56px;min-height:380px}
   .diary-paper::before{left:42px}
-  .cta-btn{padding:16px 32px;font-size:16px;width:100%}
+  .diary-text{font-size:21px;line-height:30px}
+  .fear-1,.fear-2,.fear-3,.fear-4{max-width:38px;font-size:9px;left:4px}
+  .fear-r1,.fear-r2{max-width:100px;font-size:12px}
   .quiz-block{padding:28px 20px}
   .quiz-question{font-size:21px}
   .verdict-block{padding:36px 24px}
   .verdict-title{font-size:24px}
+  .cta-btn-secondary{font-size:14px;padding:12px 24px}
 }
 </style>
 </head>
@@ -129,37 +273,61 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 <main class="q-main" id="screen-start">
   <div class="container">
 
-    <div class="q-center">
-      <div class="q-badge">⚕️ Бесплатный тест · 3 минуты</div>
-    </div>
+    <div class="hero-grid">
 
-    <h1 class="q-title">Можно ли вам<br><span class="gold">голодать</span> прямо сейчас?</h1>
+      <!-- ЛЕВАЯ КОЛОНКА: текст + кнопка -->
+      <div class="hero-left">
+        <div class="q-badge">⚕️ Бесплатный тест · 3 минуты</div>
 
-    <p class="q-sub">Ответьте на 7 вопросов — и получите персональный вердикт от военврача с 10-летним опытом. Без воды, без вебинаров, без слива контактов.</p>
+        <h1 class="q-title">Можно ли вам<br><span class="gold">голодать</span><br>прямо сейчас?</h1>
 
-    <!-- ОКОШКО — рукописный дневник -->
-    <div class="diary-frame">
-      <div class="diary-paper">
-        <div class="diary-text">
-          <span class="diary-line">День 1. Голова шумит,</span>
-          <span class="diary-line">но я держусь. Решил —</span>
-          <span class="diary-line">значит дойду.</span>
-          <span class="diary-line">&nbsp;</span>
-          <span class="diary-line">День 3. Кризис прошёл</span>
-          <span class="diary-line">ночью. Утром встал —</span>
-          <span class="diary-line">как будто проснулся</span>
-          <span class="diary-line">впервые за десять лет.</span>
-          <span class="diary-line fade">&nbsp;</span>
-          <span class="diary-line fade">День 5. Голода нет.</span>
-          <span class="diary-line fade">Энергии — на двоих.</span>
-          <span class="diary-line fade-more">Это не диета. Это...</span>
+        <p class="q-sub">Ответьте на 7 вопросов — получите персональный вердикт от военврача с 10-летним опытом. Без воды, без вебинаров, без слива контактов.</p>
+
+        <div class="cta-wrap">
+          <button class="cta-btn cta-glow" onclick="startQuiz()">Пройти тест →</button>
+          <p class="cta-note">Бесплатно · 7 вопросов · Без регистрации</p>
         </div>
       </div>
-    </div>
 
-    <div class="cta-wrap">
-      <button class="cta-btn" onclick="startQuiz()">Узнать, можно ли мне →</button>
-      <p class="cta-note">Бесплатно · 7 вопросов · Без регистрации</p>
+      <!-- ПРАВАЯ КОЛОНКА: окно-дневник -->
+      <div class="hero-right">
+        <div class="diary-window">
+          <span class="diary-tag">Дневник практика</span>
+          <div class="diary-frame">
+            <div class="diary-paper">
+
+              <!-- Страхи на левом поле -->
+              <span class="fear-note fear-1">я не<br>вытерплю</span>
+              <span class="fear-note fear-2">а если<br>таблетки?</span>
+              <span class="fear-note fear-3">это не<br>для меня</span>
+              <span class="fear-note fear-4">умру от<br>голода</span>
+
+              <!-- Основной текст — дневник -->
+              <div class="diary-text">
+                <span class="diary-line">День 1. Голова шумит,</span>
+                <span class="diary-line">но я держусь. Решил —</span>
+                <span class="diary-line">значит дойду.</span>
+                <span class="diary-line">&nbsp;</span>
+                <span class="diary-line">День 3. Кризис прошёл</span>
+                <span class="diary-line">ночью. Утром встал —</span>
+                <span class="diary-line">как будто проснулся</span>
+                <span class="diary-line">впервые за 10 лет.</span>
+                <span class="diary-line fade">&nbsp;</span>
+                <span class="diary-line fade">День 5. Голода нет.</span>
+                <span class="diary-line fade">Энергии — на двоих.</span>
+                <span class="diary-line fade-more">Это не диета. Это...</span>
+              </div>
+
+              <!-- Страхи на правом свободном крае -->
+              <span class="fear-note fear-r1">«а как же<br><span class="fear-underline">семья</span>?<br>они готовят»</span>
+              <span class="fear-note fear-r2">«у меня нет<br>силы воли»</span>
+
+            </div>
+          </div>
+          <div class="diary-corner"></div>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -182,6 +350,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 
   </div>
 </section>
+
 <!-- ЭКРАНЫ ВЕРДИКТОВ -->
 <section class="q-main" id="screen-verdict" style="display:none">
   <div class="container">
@@ -209,7 +378,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         <li>✓ Закрытый клуб практиков на всё время курса</li>
       </ul>
 
-      <div class="cta-wrap">
+      <div class="cta-wrap" style="text-align:center">
         <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303235353734375f30343731636431633833303665383330616434373333343231396536353030393537353639396661" class="cta-btn cta-glow">Купить курс — 3 900 ₽ →</a>
         <a href="/" class="cta-btn-secondary">Сначала изучить на сайте</a>
         <p class="cta-note">Доступ к курсу и клубу — сразу после оплаты</p>
@@ -239,7 +408,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         <li><strong style="color:var(--gold)">4.</strong> Когда будете готовы — заходите на курс</li>
       </ul>
 
-      <div class="cta-wrap">
+      <div class="cta-wrap" style="text-align:center">
         <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303235353734375f30343731636431633833303665383330616434373333343231396536353030393537353639396661" class="cta-btn cta-glow">Купить курс — 3 900 ₽ →</a>
         <a href="/" class="cta-btn-secondary">Сначала изучить на сайте</a>
         <p class="cta-note">Доступ навсегда. Пройдёте, когда будете готовы.</p>
@@ -273,7 +442,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         На сайте есть библиотека материалов и вводное видео о методе — для общего понимания, для близких или просто из интереса. Решение остаётся за вами.
       </p>
 
-      <div class="cta-wrap">
+      <div class="cta-wrap" style="text-align:center">
         <a href="/" class="cta-btn-secondary">Перейти на сайт</a>
         <p class="cta-note">Сохраните страницу. Когда состояние изменится — тест будет ждать.</p>
       </div>
@@ -290,61 +459,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
     <p style="margin-top:10px">© 2025 Голодание с улыбкой · <a href="/">На главную</a></p>
   </div>
 </footer>
-
-<style>
-/* Вторичная кнопка (прозрачная) */
-.cta-btn-secondary{
-  display:inline-block;
-  margin-top:14px;
-  padding:14px 32px;
-  background:transparent;
-  color:var(--txt2);
-  border:1px solid var(--txt3);
-  border-radius:12px;
-  font-size:15px;
-  font-weight:500;
-  text-decoration:none;
-  transition:all .25s ease;
-}
-.cta-btn-secondary:hover{
-  border-color:var(--gold);
-  color:var(--gold);
-}
-
-/* Главная кнопка с glow-эффектом */
-.cta-glow{
-  position:relative;
-  box-shadow:
-    0 0 20px rgba(212,175,55,0.4),
-    0 0 40px rgba(212,175,55,0.2);
-  animation:pulse-glow 2.4s ease-in-out infinite;
-}
-@keyframes pulse-glow{
-  0%, 100%{
-    box-shadow:
-      0 0 20px rgba(212,175,55,0.4),
-      0 0 40px rgba(212,175,55,0.2);
-  }
-  50%{
-    box-shadow:
-      0 0 30px rgba(212,175,55,0.7),
-      0 0 60px rgba(212,175,55,0.35);
-  }
-}
-.cta-glow:hover{
-  animation:none;
-  box-shadow:
-    0 0 35px rgba(212,175,55,0.8),
-    0 0 70px rgba(212,175,55,0.4);
-  transform:translateY(-2px);
-}
-
-/* Мобилка */
-@media(max-width:600px){
-  .cta-btn{font-size:16px;padding:16px 24px}
-  .cta-btn-secondary{font-size:14px;padding:12px 24px}
-}
-</style>
 
 <script>
 function startQuiz(){
