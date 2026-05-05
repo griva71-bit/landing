@@ -210,8 +210,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
       </ul>
 
       <div class="cta-wrap">
-        <a href="/" class="cta-btn">Начать курс →</a>
-        <p class="cta-note">7-дневный курс · 3 900 ₽ · Доступ навсегда</p>
+        <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303235353734375f30343731636431633833303665383330616434373333343231396536353030393537353639396661" class="cta-btn cta-glow">Купить курс — 3 900 ₽ →</a>
+        <a href="/" class="cta-btn-secondary">Сначала изучить на сайте</a>
+        <p class="cta-note">Доступ к курсу и клубу — сразу после оплаты</p>
       </div>
 
     </div>
@@ -227,20 +228,21 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
       </p>
 
       <p class="verdict-text">
-        Это нормально. Большинство людей приходят к голоданию именно так — через подготовку, изучение, преодоление страхов.
+        Это нормально. Большинство людей приходят к голоданию именно так — через подготовку, изучение, преодоление страхов. Курс можно купить сейчас и пройти позже — доступ остаётся навсегда.
       </p>
 
       <h3 style="color:var(--gold);font-size:20px;margin:32px 0 16px">Что сделать перед курсом:</h3>
       <ul style="text-align:left;color:var(--txt2);font-size:16px;line-height:1.8;list-style:none;padding:0">
         <li><strong style="color:var(--gold)">1.</strong> Сходите к врачу — базовый осмотр, анализы крови</li>
-        <li><strong style="color:var(--gold)">2.</strong> Изучите материалы в библиотеке курса</li>
+        <li><strong style="color:var(--gold)">2.</strong> Изучите материалы курса в спокойном режиме</li>
         <li><strong style="color:var(--gold)">3.</strong> Начните с малого — попробуйте 16/8 на неделю</li>
         <li><strong style="color:var(--gold)">4.</strong> Когда будете готовы — заходите на курс</li>
       </ul>
 
       <div class="cta-wrap">
-        <a href="/" class="cta-btn">Изучить курс и подготовиться →</a>
-        <p class="cta-note">Без спешки. Курс никуда не денется.</p>
+        <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303235353734375f30343731636431633833303665383330616434373333343231396536353030393537353639396661" class="cta-btn cta-glow">Купить курс — 3 900 ₽ →</a>
+        <a href="/" class="cta-btn-secondary">Сначала изучить на сайте</a>
+        <p class="cta-note">Доступ навсегда. Пройдёте, когда будете готовы.</p>
       </div>
 
     </div>
@@ -268,11 +270,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
       </ul>
 
       <p class="verdict-text" style="margin-top:32px;font-style:italic;color:var(--txt3);font-size:15px">
-        Если хотите изучить методику для общего понимания, для близких или просто из интереса — на сайте есть библиотека материалов. Решение остаётся за вами.
+        На сайте есть библиотека материалов и вводное видео о методе — для общего понимания, для близких или просто из интереса. Решение остаётся за вами.
       </p>
 
       <div class="cta-wrap">
-        <a href="/" class="cta-btn" style="background:transparent;border:2px solid var(--gold);color:var(--gold)">Перейти на сайт</a>
+        <a href="/" class="cta-btn-secondary">Перейти на сайт</a>
         <p class="cta-note">Сохраните страницу. Когда состояние изменится — тест будет ждать.</p>
       </div>
 
@@ -288,6 +290,61 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
     <p style="margin-top:10px">© 2025 Голодание с улыбкой · <a href="/">На главную</a></p>
   </div>
 </footer>
+
+<style>
+/* Вторичная кнопка (прозрачная) */
+.cta-btn-secondary{
+  display:inline-block;
+  margin-top:14px;
+  padding:14px 32px;
+  background:transparent;
+  color:var(--txt2);
+  border:1px solid var(--txt3);
+  border-radius:12px;
+  font-size:15px;
+  font-weight:500;
+  text-decoration:none;
+  transition:all .25s ease;
+}
+.cta-btn-secondary:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+
+/* Главная кнопка с glow-эффектом */
+.cta-glow{
+  position:relative;
+  box-shadow:
+    0 0 20px rgba(212,175,55,0.4),
+    0 0 40px rgba(212,175,55,0.2);
+  animation:pulse-glow 2.4s ease-in-out infinite;
+}
+@keyframes pulse-glow{
+  0%, 100%{
+    box-shadow:
+      0 0 20px rgba(212,175,55,0.4),
+      0 0 40px rgba(212,175,55,0.2);
+  }
+  50%{
+    box-shadow:
+      0 0 30px rgba(212,175,55,0.7),
+      0 0 60px rgba(212,175,55,0.35);
+  }
+}
+.cta-glow:hover{
+  animation:none;
+  box-shadow:
+    0 0 35px rgba(212,175,55,0.8),
+    0 0 70px rgba(212,175,55,0.4);
+  transform:translateY(-2px);
+}
+
+/* Мобилка */
+@media(max-width:600px){
+  .cta-btn{font-size:16px;padding:16px 24px}
+  .cta-btn-secondary{font-size:14px;padding:12px 24px}
+}
+</style>
 
 <script>
 function startQuiz(){
@@ -324,11 +381,6 @@ function showVerdict(){
   if(val==='senior')document.getElementById('v-red').style.display='block';
 
   window.scrollTo({top:0,behavior:'instant'});
-}
-</script>
-
-</body>
-</html>
 }
 </script>
 
