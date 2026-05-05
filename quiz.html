@@ -27,12 +27,7 @@
   --green:#22c55e;
   --yellow:#eab308;
   --red:#ef4444;
-  --border:#1e293b;
-  --paper:#f5e9c8;
-  --paper-edge:#e8d9a8;
-  --paper-line:#d9c89a;
-  --ink:#3a2e15;
-  --ink-fear:#7a2418
+  --border:#1e293b
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;font-size:16px;min-height:100vh}
@@ -64,13 +59,50 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 .q-title .gold{color:var(--gold)}
 .q-sub{color:var(--txt2);font-size:18px;line-height:1.6;margin-bottom:36px;text-align:left;max-width:520px}
 
-/* CTA */
-.cta-wrap{text-align:left}
-.cta-btn{display:inline-block;background:var(--gold);color:#0a0f1a;padding:18px 42px;border-radius:12px;font-weight:700;font-size:18px;text-decoration:none;border:none;cursor:pointer;transition:all .25s ease;box-shadow:0 4px 24px rgba(200,164,78,.3)}
-.cta-btn:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 8px 32px rgba(200,164,78,.45)}
+/* CTA — кнопка-пилюля с неоновым ореолом при hover */
+.cta-wrap{text-align:left;position:relative;display:inline-block}
+.cta-btn{
+  position:relative;
+  display:inline-block;
+  background:#0d0d0d;
+  color:var(--gold);
+  padding:18px 42px;
+  border-radius:48px;
+  font-weight:700;
+  font-size:18px;
+  text-decoration:none;
+  border:1px solid rgba(200,164,78,.3);
+  cursor:pointer;
+  transition:all .3s ease;
+  z-index:2;
+  letter-spacing:.01em;
+}
+/* Неоновый ореол — слой ПОД кнопкой, выезжает наружу */
+.cta-btn::before{
+  content:'';
+  position:absolute;
+  inset:-30px;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(168,85,247,.55) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(236,72,153,.45) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(234,179,8,.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 20%, rgba(99,102,241,.4) 0%, transparent 50%);
+  border-radius:60px;
+  filter:blur(24px);
+  opacity:0;
+  transition:opacity .35s ease;
+  z-index:-1;
+  pointer-events:none;
+}
+.cta-btn:hover{
+  color:var(--gold-l);
+  border-color:rgba(200,164,78,.6);
+  transform:translateY(-1px);
+}
+.cta-btn:hover::before{opacity:1}
 .cta-note{color:var(--txt3);font-size:13px;margin-top:14px}
 
-/* === ОКНО В ДРУГОЙ МИР (тетрадка) === */
+/* === ОКНО-РАМКА С КАРТИНКОЙ ДНЕВНИКА === */
 .diary-window{
   position:relative;
   width:100%;
@@ -78,100 +110,50 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
   transform:rotate(-1.2deg);
   filter:drop-shadow(0 30px 50px rgba(0,0,0,.6));
 }
+/* Внешняя рамка — "окно", через которое смотрим */
 .diary-frame{
   position:relative;
-  border-radius:6px;
-  overflow:hidden;
-  /* Эффект объёмного окна: свет сверху-слева, тень снизу-справа */
+  padding:14px;
+  background:linear-gradient(145deg,#1a1410 0%,#0d0a07 100%);
+  border-radius:8px;
   box-shadow:
-    inset 2px 2px 0 rgba(255,235,180,.25),
-    inset -2px -2px 0 rgba(0,0,0,.4),
-    inset 0 0 60px rgba(0,0,0,.5),
-    0 0 0 1px rgba(0,0,0,.6),
-    0 0 0 8px #1a1410,
-    0 0 0 9px rgba(200,164,78,.2);
+    0 0 0 1px rgba(200,164,78,.35),
+    0 0 0 2px rgba(0,0,0,.6),
+    inset 2px 2px 8px rgba(255,235,180,.08),
+    inset -2px -2px 8px rgba(0,0,0,.6);
 }
-.diary-paper{
-  background:var(--paper);
-  background-image:
-    repeating-linear-gradient(transparent,transparent 34px,var(--paper-line) 34px,var(--paper-line) 35px);
-  padding:46px 40px 80px 80px;
-  min-height:460px;
-  position:relative;
-}
-/* Красная вертикальная линия — поле слева */
-.diary-paper::before{
+/* Внутренний паспарту */
+.diary-frame::before{
   content:'';
   position:absolute;
-  top:0;bottom:0;left:62px;
-  width:1px;
-  background:rgba(180,60,60,.5);
-}
-/* Затемнение сверху и снизу — эффект "подглядывания в окно" */
-.diary-paper::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:0;right:0;height:120px;
-  background:linear-gradient(0deg,rgba(245,233,200,1) 0%,rgba(245,233,200,0) 100%);
+  inset:8px;
+  border:1px solid rgba(200,164,78,.25);
+  border-radius:4px;
   pointer-events:none;
+  z-index:2;
 }
-
-/* Основной текст — печатные дни */
-.diary-text{
-  font-family:'Caveat',cursive;
-  font-size:24px;
-  line-height:34px;
-  color:var(--ink);
-  position:relative;
+/* Сама картинка */
+.diary-img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:3px;
+  filter:brightness(.92) contrast(1.05);
+}
+/* Виньетка — эффект "далеко в окне", углы темнее */
+.diary-frame::after{
+  content:'';
+  position:absolute;
+  inset:14px;
+  border-radius:3px;
+  background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.45) 100%);
+  pointer-events:none;
   z-index:1;
 }
-.diary-line{display:block;min-height:34px}
-.diary-line.fade{opacity:.5}
-.diary-line.fade-more{opacity:.28}
-
-/* === СТРАХИ НА ПОЛЯХ — нервная пропись === */
-.fear-note{
-  position:absolute;
-  font-family:'Kalam',cursive;
-  font-weight:400;
-  color:var(--ink-fear);
-  font-size:14px;
-  line-height:1.25;
-  max-width:130px;
-  z-index:2;
-  opacity:.85;
-}
-/* Левое поле — между краем бумаги и красной линией */
-.fear-1{top:60px;left:8px;transform:rotate(-4deg);max-width:54px;font-size:11px}
-.fear-2{top:155px;left:6px;transform:rotate(2deg);max-width:54px;font-size:11px}
-.fear-3{top:255px;left:8px;transform:rotate(-3deg);max-width:54px;font-size:11px}
-.fear-4{top:360px;left:6px;transform:rotate(3deg);max-width:54px;font-size:11px}
-
-/* Правое поле — после основного текста, на свободном крае */
-.fear-r1{top:90px;right:14px;transform:rotate(5deg);max-width:140px}
-.fear-r2{top:280px;right:10px;transform:rotate(-3deg);max-width:130px}
-
-/* Подчёркивание / зачёркивание для эмоции */
-.fear-underline{border-bottom:1.5px solid var(--ink-fear);padding-bottom:1px}
-
-/* Уголок-намёк на пальцы/ручку (CSS-стилизация, без картинки) */
-.diary-corner{
-  position:absolute;
-  bottom:-20px;
-  right:30px;
-  width:80px;
-  height:60px;
-  background:linear-gradient(135deg,transparent 0%,transparent 40%,rgba(0,0,0,.35) 60%,rgba(0,0,0,.55) 100%);
-  border-radius:0 0 50% 0;
-  filter:blur(8px);
-  pointer-events:none;
-  z-index:3;
-}
-
-/* Метка "дневник практика" над окном */
+/* Метка "дневник практика" */
 .diary-tag{
   position:absolute;
-  top:-18px;
+  top:-14px;
   left:50%;
   transform:translateX(-50%) rotate(-2deg);
   background:var(--gold);
@@ -182,8 +164,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
   letter-spacing:.05em;
   text-transform:uppercase;
   border-radius:3px;
-  z-index:4;
-  box-shadow:0 4px 12px rgba(0,0,0,.4);
+  z-index:5;
+  box-shadow:0 4px 12px rgba(0,0,0,.5);
 }
 
 /* QUIZ */
@@ -216,14 +198,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 .cta-btn-secondary{display:inline-block;margin-top:14px;padding:14px 32px;background:transparent;color:var(--txt2);border:1px solid var(--txt3);border-radius:12px;font-size:15px;font-weight:500;text-decoration:none;transition:all .25s ease}
 .cta-btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
 
-/* Glow */
-.cta-glow{position:relative;box-shadow:0 0 20px rgba(212,175,55,.4),0 0 40px rgba(212,175,55,.2);animation:pulse-glow 2.4s ease-in-out infinite}
-@keyframes pulse-glow{
-  0%,100%{box-shadow:0 0 20px rgba(212,175,55,.4),0 0 40px rgba(212,175,55,.2)}
-  50%{box-shadow:0 0 30px rgba(212,175,55,.7),0 0 60px rgba(212,175,55,.35)}
-}
-.cta-glow:hover{animation:none;box-shadow:0 0 35px rgba(212,175,55,.8),0 0 70px rgba(212,175,55,.4);transform:translateY(-2px)}
-
 /* DISCLAIMER */
 .q-foot{padding:24px 0 40px;text-align:center;color:var(--txt3);font-size:12px;line-height:1.7;border-top:1px solid var(--border);margin-top:60px}
 .q-foot a{color:var(--txt3);text-decoration:underline}
@@ -242,13 +216,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
   .q-title{font-size:32px}
   .q-sub{font-size:16px;margin-bottom:28px}
   .q-main{padding:32px 0 60px}
-  .cta-btn{padding:16px 28px;font-size:16px;width:100%;text-align:center}
+  .cta-btn{padding:16px 28px;font-size:16px}
   .diary-window{max-width:100%;transform:rotate(-0.8deg)}
-  .diary-paper{padding:36px 24px 70px 56px;min-height:380px}
-  .diary-paper::before{left:42px}
-  .diary-text{font-size:21px;line-height:30px}
-  .fear-1,.fear-2,.fear-3,.fear-4{max-width:38px;font-size:9px;left:4px}
-  .fear-r1,.fear-r2{max-width:100px;font-size:12px}
   .quiz-block{padding:28px 20px}
   .quiz-question{font-size:21px}
   .verdict-block{padding:36px 24px}
@@ -284,7 +253,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         <p class="q-sub">Ответьте на 7 вопросов — получите персональный вердикт от военврача с 10-летним опытом. Без воды, без вебинаров, без слива контактов.</p>
 
         <div class="cta-wrap">
-          <button class="cta-btn cta-glow" onclick="startQuiz()">Пройти тест →</button>
+          <button class="cta-btn" onclick="startQuiz()">Пройти тест →</button>
           <p class="cta-note">Бесплатно · 7 вопросов · Без регистрации</p>
         </div>
       </div>
@@ -294,37 +263,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         <div class="diary-window">
           <span class="diary-tag">Дневник практика</span>
           <div class="diary-frame">
-            <div class="diary-paper">
-
-              <!-- Страхи на левом поле -->
-              <span class="fear-note fear-1">я не<br>вытерплю</span>
-              <span class="fear-note fear-2">а если<br>таблетки?</span>
-              <span class="fear-note fear-3">это не<br>для меня</span>
-              <span class="fear-note fear-4">умру от<br>голода</span>
-
-              <!-- Основной текст — дневник -->
-              <div class="diary-text">
-                <span class="diary-line">День 1. Голова шумит,</span>
-                <span class="diary-line">но я держусь. Решил —</span>
-                <span class="diary-line">значит дойду.</span>
-                <span class="diary-line">&nbsp;</span>
-                <span class="diary-line">День 3. Кризис прошёл</span>
-                <span class="diary-line">ночью. Утром встал —</span>
-                <span class="diary-line">как будто проснулся</span>
-                <span class="diary-line">впервые за 10 лет.</span>
-                <span class="diary-line fade">&nbsp;</span>
-                <span class="diary-line fade">День 5. Голода нет.</span>
-                <span class="diary-line fade">Энергии — на двоих.</span>
-                <span class="diary-line fade-more">Это не диета. Это...</span>
-              </div>
-
-              <!-- Страхи на правом свободном крае -->
-              <span class="fear-note fear-r1">«а как же<br><span class="fear-underline">семья</span>?<br>они готовят»</span>
-              <span class="fear-note fear-r2">«у меня нет<br>силы воли»</span>
-
-            </div>
+            <img src="images/diary-window.jpg" alt="Дневник практика лечебного голодания" class="diary-img">
           </div>
-          <div class="diary-corner"></div>
         </div>
       </div>
 
@@ -379,7 +319,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
       </ul>
 
       <div class="cta-wrap" style="text-align:center">
-        <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303235353734375f30343731636431633833303665383330616434373333343231396536353030393537353639396661" class="cta-btn cta-glow">Купить курс — 3 900 ₽ →</a>
+        <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303235353734375f30343731636431633833303665383330616434373333343231396536353030393537353639396661" class="cta-btn">Купить курс — 3 900 ₽ →</a>
         <a href="/" class="cta-btn-secondary">Сначала изучить на сайте</a>
         <p class="cta-note">Доступ к курсу и клубу — сразу после оплаты</p>
       </div>
@@ -409,7 +349,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
       </ul>
 
       <div class="cta-wrap" style="text-align:center">
-        <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303235353734375f30343731636431633833303665383330616434373333343231396536353030393537353639396661" class="cta-btn cta-glow">Купить курс — 3 900 ₽ →</a>
+        <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303235353734375f30343731636431633833303665383330616434373333343231396536353030393537353639396661" class="cta-btn">Купить курс — 3 900 ₽ →</a>
         <a href="/" class="cta-btn-secondary">Сначала изучить на сайте</a>
         <p class="cta-note">Доступ навсегда. Пройдёте, когда будете готовы.</p>
       </div>
@@ -481,7 +421,7 @@ document.querySelectorAll('.quiz-option').forEach(function(opt){
 function showVerdict(){
   var btn=document.querySelector('#q1 .quiz-next');
   if(!btn.classList.contains('ready'))return;
-  var val=btn.dataset.val;
+    var val=btn.dataset.val;
 
   document.getElementById('screen-quiz').style.display='none';
   document.getElementById('screen-verdict').style.display='block';
