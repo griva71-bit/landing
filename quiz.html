@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Можно ли вам голодать? — Бесплатный тест</title>
+<meta name="description" content="Бесплатный тест за 3 минуты. Узнайте, можно ли вам голодать прямо сейчас. Персональный вердикт от военврача с 10-летним опытом.">
+<meta property="og:title" content="Можно ли вам голодать? — Бесплатный тест">
+<meta property="og:description" content="Персональный вердикт за 3 минуты. От военврача-практика.">
+<meta property="og:url" content="https://golodanie-s-ulybkoy.ru/quiz.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<link rel="icon" type="image/png" href="images/icon.png">
+<link rel="apple-touch-icon" href="images/icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0f1a;
+  --bg2:#111827;
+  --gold:#c8a44e;
+  --gold-l:#e6c97e;
+  --gold-d:#a07c2e;
+  --txt:#f0ead6;
+  --txt2:#9ca3af;
+  --txt3:#6b7280;
+  --green:#22c55e;
+  --yellow:#eab308;
+  --red:#ef4444;
+  --border:#1e293b;
+  --paper:#f5e9c8;
+  --paper-line:#d9c89a;
+  --ink:#3a2e15
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;font-size:16px;min-height:100vh}
+.container{max-width:920px;margin:0 auto;padding:0 24px}
+
+/* HEADER (минимальный) */
+.q-header{padding:20px 0;border-bottom:1px solid var(--border)}
+.q-header-inner{display:flex;align-items:center;justify-content:center;max-width:920px;margin:0 auto;padding:0 24px}
+.q-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--txt)}
+.q-logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700}
+
+/* MAIN — стартовый экран */
+.q-main{padding:60px 0 80px}
+.q-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,164,78,.1);border:1px solid rgba(200,164,78,.25);color:var(--gold);padding:8px 18px;border-radius:20px;font-size:13px;font-weight:500;margin-bottom:24px}
+.q-title{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;line-height:1.1;margin-bottom:20px;text-align:center}
+.q-title .gold{color:var(--gold)}
+.q-sub{color:var(--txt2);font-size:18px;line-height:1.6;margin-bottom:48px;text-align:center;max-width:680px;margin-left:auto;margin-right:auto}
+.q-center{text-align:center}
+
+/* ОКОШКО — рукописный дневник */
+.diary-frame{position:relative;max-width:560px;margin:0 auto 48px;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--bg2);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.diary-frame::before{content:'';position:absolute;top:0;left:0;right:0;height:32px;background:linear-gradient(180deg,rgba(10,15,26,.95) 0%,rgba(10,15,26,0) 100%);z-index:2;pointer-events:none}
+.diary-frame::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(0deg,rgba(17,24,39,1) 0%,rgba(17,24,39,0) 100%);z-index:2;pointer-events:none}
+.diary-paper{background:var(--paper);background-image:repeating-linear-gradient(transparent,transparent 36px,var(--paper-line) 36px,var(--paper-line) 37px);padding:40px 36px 60px;min-height:380px;position:relative}
+.diary-paper::before{content:'';position:absolute;top:0;bottom:0;left:54px;width:1px;background:rgba(200,80,80,.35)}
+.diary-text{font-family:'Caveat',cursive;font-size:26px;line-height:36px;color:var(--ink);padding-left:30px}
+.diary-line{display:block;margin-bottom:0;min-height:36px}
+.diary-line.fade{opacity:.45;filter:blur(.3px)}
+.diary-line.fade-more{opacity:.25;filter:blur(.5px)}
+
+/* CTA */
+.cta-wrap{text-align:center;margin-bottom:24px}
+.cta-btn{display:inline-block;background:var(--gold);color:#0a0f1a;padding:18px 42px;border-radius:12px;font-weight:700;font-size:18px;text-decoration:none;border:none;cursor:pointer;transition:all .25s ease;box-shadow:0 4px 24px rgba(200,164,78,.3)}
+.cta-btn:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 8px 32px rgba(200,164,78,.45)}
+.cta-note{color:var(--txt3);font-size:13px;margin-top:14px}
+
+/* QUIZ — сам тест */
+.quiz-block{display:none;max-width:640px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:40px}
+.quiz-block.active{display:block}
+.quiz-progress{font-size:13px;color:var(--txt3);text-align:center;margin-bottom:18px;letter-spacing:.05em;text-transform:uppercase}
+.quiz-question{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;text-align:center;margin-bottom:28px;line-height:1.3}
+.quiz-options{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.quiz-option{display:block;background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:18px 22px;cursor:pointer;transition:all .2s;font-size:16px;color:var(--txt);text-align:left}
+.quiz-option:hover{border-color:rgba(200,164,78,.5);background:rgba(200,164,78,.05)}
+.quiz-option.selected{border-color:var(--gold);background:rgba(200,164,78,.1);color:var(--gold)}
+.quiz-next{display:block;width:100%;background:var(--gold);color:#0a0f1a;padding:16px;border:none;border-radius:10px;font-weight:700;font-size:16px;cursor:pointer;transition:all .2s;opacity:.4;pointer-events:none}
+.quiz-next.ready{opacity:1;pointer-events:auto}
+.quiz-next.ready:hover{background:var(--gold-l);transform:translateY(-1px)}
+
+/* ВЕРДИКТЫ */
+.verdict-block{display:none;max-width:640px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:48px 40px;text-align:center}
+.verdict-block.active{display:block}
+.verdict-icon{font-size:64px;margin-bottom:20px;line-height:1}
+.verdict-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;margin-bottom:14px}
+.verdict-text{color:var(--txt2);font-size:16px;line-height:1.7;margin-bottom:28px}
+.verdict-green{border-color:rgba(34,197,94,.4)}
+.verdict-green .verdict-title{color:#86efac}
+.verdict-yellow{border-color:rgba(234,179,8,.4)}
+.verdict-yellow .verdict-title{color:#fde047}
+.verdict-red{border-color:rgba(239,68,68,.4)}
+.verdict-red .verdict-title{color:#fca5a5}
+
+/* DISCLAIMER */
+.q-foot{padding:24px 0 40px;text-align:center;color:var(--txt3);font-size:12px;line-height:1.7;border-top:1px solid var(--border);margin-top:60px}
+.q-foot a{color:var(--txt3);text-decoration:underline}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .q-title{font-size:34px}
+  .q-sub{font-size:16px;margin-bottom:32px}
+  .q-main{padding:40px 0 60px}
+  .diary-paper{padding:30px 24px 50px}
+  .diary-text{font-size:22px;line-height:32px;padding-left:22px}
+  .diary-paper::before{left:42px}
+  .cta-btn{padding:16px 32px;font-size:16px;width:100%}
+  .quiz-block{padding:28px 20px}
+  .quiz-question{font-size:21px}
+  .verdict-block{padding:36px 24px}
+  .verdict-title{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="q-header">
+  <div class="q-header-inner">
+    <a href="/" class="q-logo">
+      <span style="font-size:24px;color:var(--gold)">⚓</span>
+      <span class="q-logo-text">Dr. Alexandrov</span>
+    </a>
+  </div>
+</header>
+
+<!-- СТАРТОВЫЙ ЭКРАН -->
+<main class="q-main" id="screen-start">
+  <div class="container">
+
+    <div class="q-center">
+      <div class="q-badge">⚕️ Бесплатный тест · 3 минуты</div>
+    </div>
+
+    <h1 class="q-title">Можно ли вам<br><span class="gold">голодать</span> прямо сейчас?</h1>
+
+    <p class="q-sub">Ответьте на 7 вопросов — и получите персональный вердикт от военврача с 10-летним опытом. Без воды, без вебинаров, без слива контактов.</p>
+
+    <!-- ОКОШКО — рукописный дневник -->
+    <div class="diary-frame">
+      <div class="diary-paper">
+        <div class="diary-text">
+          <span class="diary-line">День 1. Голова шумит,</span>
+          <span class="diary-line">но я держусь. Решил —</span>
+          <span class="diary-line">значит дойду.</span>
+          <span class="diary-line">&nbsp;</span>
+          <span class="diary-line">День 3. Кризис прошёл</span>
+          <span class="diary-line">ночью. Утром встал —</span>
+          <span class="diary-line">как будто проснулся</span>
+          <span class="diary-line">впервые за десять лет.</span>
+          <span class="diary-line fade">&nbsp;</span>
+          <span class="diary-line fade">День 5. Голода нет.</span>
+          <span class="diary-line fade">Энергии — на двоих.</span>
+          <span class="diary-line fade-more">Это не диета. Это...</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <button class="cta-btn" onclick="startQuiz()">Узнать, можно ли мне →</button>
+      <p class="cta-note">Бесплатно · 7 вопросов · Без регистрации</p>
+    </div>
+
+  </div>
+</main>
+
+<!-- ЭКРАН ТЕСТА -->
+<section class="q-main" id="screen-quiz" style="display:none">
+  <div class="container">
+
+    <div class="quiz-block active" id="q1">
+      <div class="quiz-progress">Вопрос 1 из 7</div>
+      <h2 class="quiz-question">Сколько вам полных лет?</h2>
+      <div class="quiz-options">
+        <label class="quiz-option" data-val="young">До 35 лет</label>
+        <label class="quiz-option" data-val="middle">От 35 до 60 лет</label>
+        <label class="quiz-option" data-val="senior">Старше 60 лет</label>
+      </div>
+      <button class="quiz-next" onclick="showVerdict()">Далее →</button>
+    </div>
+
+  </div>
+</section>
+<!-- ЭКРАНЫ ВЕРДИКТОВ -->
+<section class="q-main" id="screen-verdict" style="display:none">
+  <div class="container">
+
+    <div class="verdict-block verdict-green" id="v-green">
+      <div class="verdict-icon">✅</div>
+      <h2 class="verdict-title">Вам можно</h2>
+      <p class="verdict-text">По вашим ответам — противопоказаний нет. Голодание 4–7 дней при грамотной подготовке безопасно для вас.<br><br><em style="color:var(--txt3);font-size:14px">Это заглушка. Здесь будет ссылка на курс.</em></p>
+    </div>
+
+    <div class="verdict-block verdict-yellow" id="v-yellow">
+      <div class="verdict-icon">⚠️</div>
+      <h2 class="verdict-title">Можно — с оговорками</h2>
+      <p class="verdict-text">У вас есть факторы, которые требуют осторожного подхода. Голодать можно, но с обязательными корректировками.<br><br><em style="color:var(--txt3);font-size:14px">Это заглушка. Здесь будет персональная инструкция + ссылка на курс.</em></p>
+    </div>
+
+    <div class="verdict-block verdict-red" id="v-red">
+      <div class="verdict-icon">🚫</div>
+      <h2 class="verdict-title">Сейчас — не стоит</h2>
+      <p class="verdict-text">По вашим ответам есть прямые противопоказания. Голодать в таком состоянии — навредить себе. Сначала — к врачу.<br><br><em style="color:var(--txt3);font-size:14px">Это заглушка. Здесь будет объяснение, что делать вместо.</em></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ФУТЕР -->
+<footer class="q-foot">
+  <div class="container">
+    <p>Образовательный материал. Не является индивидуальной медицинской рекомендацией. Перед длительным голоданием — очный осмотр у врача обязателен.</p>
+    <p style="margin-top:10px">© 2025 Голодание с улыбкой · <a href="/">На главную</a></p>
+  </div>
+</footer>
+
+<script>
+function startQuiz(){
+  document.getElementById('screen-start').style.display='none';
+  document.getElementById('screen-quiz').style.display='block';
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+document.querySelectorAll('.quiz-option').forEach(function(opt){
+  opt.addEventListener('click',function(){
+    var parent=this.closest('.quiz-options');
+    parent.querySelectorAll('.quiz-option').forEach(function(o){o.classList.remove('selected')});
+    this.classList.add('selected');
+    var nextBtn=this.closest('.quiz-block').querySelector('.quiz-next');
+    nextBtn.classList.add('ready');
+    nextBtn.dataset.val=this.dataset.val;
+  });
+});
+
+function showVerdict(){
+  var btn=document.querySelector('#q1 .quiz-next');
+  if(!btn.classList.contains('ready'))return;
+  var val=btn.dataset.val;
+
+  document.getElementById('screen-quiz').style.display='none';
+  document.getElementById('screen-verdict').style.display='block';
+
+  document.getElementById('v-green').style.display='none';
+  document.getElementById('v-yellow').style.display='none';
+  document.getElementById('v-red').style.display='none';
+
+  if(val==='young')document.getElementById('v-green').style.display='block';
+  if(val==='middle')document.getElementById('v-yellow').style.display='block';
+  if(val==='senior')document.getElementById('v-red').style.display='block';
+
+  window.scrollTo({top:0,behavior:'instant'});
+}
+</script>
+
+</body>
+</html>
