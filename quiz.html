@@ -42,7 +42,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 /* MAIN */
 .q-main{padding:48px 0 80px}
 
-/* === HERO ГРИД 1fr 2fr (текст слева, картинка 2/3) === */
+/* === HERO ГРИД === */
 .hero-grid{
   display:grid;
   grid-template-columns:1fr 2fr;
@@ -54,29 +54,64 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 .hero-left{display:flex;flex-direction:column;align-items:flex-start}
 .hero-right{position:relative;display:flex;justify-content:center;align-items:center;min-height:560px}
 
-.q-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,164,78,.1);border:1px solid rgba(200,164,78,.25);color:var(--gold);padding:7px 16px;border-radius:20px;font-size:12px;font-weight:500;margin-bottom:22px;letter-spacing:.02em}
+/* === ГЛАВНАЯ ФРАЗА (вместо H1) === */
+.q-headline{
+  font-family:'Inter',sans-serif;
+  font-size:34px;
+  font-weight:300;
+  line-height:1.25;
+  letter-spacing:-.015em;
+  color:var(--txt);
+  margin-bottom:32px;
+  text-align:left;
+  max-width:520px;
+}
+.q-headline .accent{color:var(--gold);font-weight:400}
+.q-headline .strong{color:#fff;font-weight:500}
 
-.q-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;line-height:1.08;margin-bottom:24px;text-align:left;letter-spacing:-.01em}
-.q-title .gold{color:var(--gold)}
+/* === 4 ПЛАШКИ С ВЕРДИКТАМИ === */
+.verdict-preview{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:36px;
+  max-width:480px;
+}
+.vp-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  padding:12px 14px;
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  font-weight:300;
+  color:var(--txt2);
+  letter-spacing:.005em;
+}
+.vp-item .vp-icon{font-size:16px;line-height:1;flex-shrink:0}
+.vp-red{border-color:rgba(239,68,68,.25)}
+.vp-yellow{border-color:rgba(234,179,8,.25)}
+.vp-orange{border-color:rgba(249,115,22,.25)}
+.vp-green{border-color:rgba(34,197,94,.25)}
 
-.q-sub{color:var(--txt2);font-size:17px;line-height:1.65;margin-bottom:34px;text-align:left;max-width:460px}
-.q-sub .accent{color:var(--txt);font-weight:500}
-
-/* === CTA: свечение видно ВСЕГДА, при hover усиливается === */
-.cta-wrap{text-align:left;position:relative;display:inline-block}
+/* === КНОПКА — СВЕЧЕНИЕ КАК НА РЕФЕРЕНСЕ === */
+.cta-wrap{text-align:left;position:relative;display:inline-block;margin-top:8px}
 .cta-btn{
   position:relative;
   display:inline-block;
-  background:#0d0d0d;
-  color:var(--gold);
-  padding:18px 44px;
-  border-radius:48px;
-  font-weight:700;
+  background:#0a0a0a;
+  color:#fff;
+  padding:20px 52px;
+  border-radius:60px;
+  font-weight:500;
   font-size:18px;
   text-decoration:none;
-  border:1px solid rgba(200,164,78,.3);
+  border:1px solid rgba(255,255,255,.12);
   cursor:pointer;
-  transition:all .35s ease;
+  transition:transform .35s ease, border-color .35s ease;
   z-index:2;
   letter-spacing:.01em;
   font-family:'Inter',sans-serif;
@@ -84,29 +119,28 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 .cta-btn::before{
   content:'';
   position:absolute;
-  inset:-26px;
+  inset:-40px;
   background:
-    radial-gradient(ellipse at 25% 50%, rgba(168,85,247,.55) 0%, transparent 55%),
-    radial-gradient(ellipse at 75% 50%, rgba(236,72,153,.5) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 85%, rgba(234,179,8,.55) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 15%, rgba(99,102,241,.45) 0%, transparent 55%);
-  border-radius:60px;
-  filter:blur(22px);
-  opacity:.45;
+    radial-gradient(ellipse 60% 80% at 15% 50%, rgba(99,102,241,.95) 0%, rgba(99,102,241,0) 65%),
+    radial-gradient(ellipse 55% 75% at 85% 50%, rgba(236,72,153,.9) 0%, rgba(236,72,153,0) 65%),
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(234,179,8,.95) 0%, rgba(234,179,8,0) 65%),
+    radial-gradient(ellipse 65% 65% at 50% 0%, rgba(34,197,94,.7) 0%, rgba(34,197,94,0) 65%);
+  border-radius:80px;
+  filter:blur(28px);
+  opacity:.85;
   transition:opacity .4s ease, filter .4s ease;
   z-index:-1;
   pointer-events:none;
 }
 .cta-btn:hover{
-  color:var(--gold-l);
-  border-color:rgba(200,164,78,.65);
-  transform:translateY(-1px);
+  border-color:rgba(255,255,255,.25);
+  transform:translateY(-2px);
 }
 .cta-btn:hover::before{
   opacity:1;
-  filter:blur(28px);
+  filter:blur(34px);
 }
-.cta-note{color:var(--txt3);font-size:13px;margin-top:14px}
+.cta-note{color:var(--txt3);font-size:12px;margin-top:18px;font-weight:300;letter-spacing:.02em}
 
 /* === ОКНО-РАМКА С ДНЕВНИКОМ === */
 .diary-window{
@@ -187,215 +221,147 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 .verdict-block.active{display:block}
 .verdict-icon{font-size:64px;margin-bottom:20px;line-height:1}
 .verdict-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;margin-bottom:14px}
-.verdict-text{color:var(--txt2);font-size:16px;line-height:1.7;margin-bottom:20px}
-.verdict-green{border-color:rgba(34,197,94,.4)}
-.verdict-green .verdict-title{color:#86efac}
-.verdict-yellow{border-color:rgba(234,179,8,.4)}
-.verdict-yellow .verdict-title{color:#fde047}
-.verdict-red{border-color:rgba(239,68,68,.4)}
-.verdict-red .verdict-title{color:#fca5a5}
-
-.cta-btn-secondary{display:inline-block;margin-top:14px;padding:14px 32px;background:transparent;color:var(--txt2);border:1px solid var(--txt3);border-radius:12px;font-size:15px;font-weight:500;text-decoration:none;transition:all .25s ease;font-family:'Inter',sans-serif}
-.cta-btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.verdict-text{color:var(--txt2);font-size:16px;margin-bottom:28px;line-height:1.6}
+.verdict-cta{display:inline-block;background:var(--gold);color:#0a0f1a;padding:14px 32px;border-radius:10px;font-weight:700;text-decoration:none;font-size:15px;transition:all .2s}
+.verdict-cta:hover{background:var(--gold-l);transform:translateY(-1px)}
+.v-green .verdict-icon{color:var(--green)}
+.v-yellow .verdict-icon{color:var(--yellow)}
+.v-red .verdict-icon{color:var(--red)}
 
 /* FOOTER */
-.q-foot{padding:24px 0 40px;text-align:center;color:var(--txt3);font-size:12px;line-height:1.7;border-top:1px solid var(--border);margin-top:60px}
-.q-foot a{color:var(--txt3);text-decoration:underline}
+.q-footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--txt3);font-size:13px}
+.q-footer a{color:var(--txt2);text-decoration:none}
 
-/* === RESPONSIVE === */
-@media(max-width:1024px){
-  .hero-grid{grid-template-columns:1fr 1.6fr;gap:36px}
-  .q-title{font-size:36px}
-}
+/* АДАПТИВ */
 @media(max-width:860px){
-  .hero-grid{grid-template-columns:1fr;gap:40px}
-  .hero-left{align-items:center;text-align:center;order:1}
-  .q-title{text-align:center;font-size:38px}
-  .q-sub{text-align:center;margin-left:auto;margin-right:auto}
+  .hero-grid{grid-template-columns:1fr;gap:32px;text-align:center}
+  .hero-right{min-height:auto;order:-1}
+  .diary-window{max-width:480px;margin:0 auto}
+  .q-headline{text-align:center;font-size:30px;margin-left:auto;margin-right:auto}
+  .verdict-preview{margin-left:auto;margin-right:auto}
   .cta-wrap{text-align:center;width:100%}
-  .hero-right{min-height:auto;order:2}
-  .diary-window{max-width:520px}
 }
 @media(max-width:600px){
-  .q-title{font-size:30px}
-  .q-sub{font-size:15px;margin-bottom:28px}
-  .q-main{padding:28px 0 60px}
-  .cta-btn{padding:16px 30px;font-size:16px}
-  .diary-window{max-width:100%;transform:rotate(-0.5deg)}
-  .quiz-block{padding:28px 20px}
-  .quiz-question{font-size:21px}
-  .verdict-block{padding:36px 24px}
+  .q-main{padding:32px 0 60px}
+  .q-headline{font-size:24px;margin-bottom:24px}
+  .verdict-preview{grid-template-columns:1fr;gap:8px;margin-bottom:28px}
+  .vp-item{font-size:13px}
+  .cta-btn{padding:18px 38px;font-size:16px}
+  .quiz-block,.verdict-block{padding:28px 20px}
+  .quiz-question{font-size:22px}
   .verdict-title{font-size:24px}
-  .cta-btn-secondary{font-size:14px;padding:12px 24px}
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="q-header">
   <div class="q-header-inner">
     <a href="/" class="q-logo">
-      <span style="font-size:24px;color:var(--gold)">⚓</span>
-      <span class="q-logo-text">Dr. Alexandrov</span>
+      <span class="q-logo-text">Голодание с улыбкой</span>
     </a>
   </div>
 </header>
 
-<!-- СТАРТОВЫЙ ЭКРАН -->
-<main class="q-main" id="screen-start">
+<main class="q-main">
   <div class="container">
 
-    <div class="hero-grid">
+    <!-- ЭКРАН 1: СТАРТ -->
+    <section id="screen-start">
+      <div class="hero-grid">
 
-      <!-- ЛЕВАЯ КОЛОНКА: текст + кнопка -->
-      <div class="hero-left">
-        <div class="q-badge">⚕️ Тест от военврача · 3 минуты</div>
+        <div class="hero-left">
 
-        <h1 class="q-title">Не начинайте<br><span class="gold">голодать</span>,<br>пока не пройдёте<br>этот тест.</h1>
+          <p class="q-headline">
+            <span class="strong">Авторский курс</span> по 7-дневному голоданию вы получите <span class="accent">только после прохождения теста.</span><br>
+            И только если вам можно.
+          </p>
 
-        <p class="q-sub">
-          <span class="accent">Нельзя — приходите позже. Рано. Готовьтесь. Можно сейчас.</span><br>
-          Один из четырёх ответов — ваш.
-        </p>
+          <div class="verdict-preview">
+            <div class="vp-item vp-red">
+              <span class="vp-icon">🚫</span>
+              <span>Вам нельзя</span>
+            </div>
+            <div class="vp-item vp-yellow">
+              <span class="vp-icon">⏳</span>
+              <span>Вам пока рано</span>
+            </div>
+            <div class="vp-item vp-orange">
+              <span class="vp-icon">⚙️</span>
+              <span>Нужна подготовка</span>
+            </div>
+            <div class="vp-item vp-green">
+              <span class="vp-icon">✅</span>
+              <span>Можно прямо сейчас</span>
+            </div>
+          </div>
 
-        <div class="cta-wrap">
-          <a href="#" class="cta-btn" onclick="startQuiz();return false;">Пройти тест →</a>
-          <p class="cta-note">Бесплатно · 3 минуты · Результат сразу на экране</p>
+          <div class="cta-wrap">
+            <a href="#" class="cta-btn" onclick="startQuiz();return false;">Начать тест →</a>
+            <p class="cta-note">Бесплатно · 3 минуты · Результат сразу на экране</p>
+          </div>
+
         </div>
-      </div>
 
-      <!-- ПРАВАЯ КОЛОНКА: окно-дневник -->
-      <div class="hero-right">
-        <div class="diary-window">
-          <span class="diary-tag">Дневник практика</span>
-          <div class="diary-frame">
-            <img src="images/diary-window.jpg" alt="Дневник практика лечебного голодания" class="diary-img">
+        <div class="hero-right">
+          <div class="diary-window">
+            <div class="diary-tag">Дневник врача</div>
+            <div class="diary-frame">
+              <img src="images/diary.jpg" alt="Дневник голодания" class="diary-img">
+            </div>
           </div>
         </div>
+
+      </div>
+    </section>
+
+    <!-- ЭКРАН 2: КВИЗ -->
+    <section id="screen-quiz" style="display:none">
+      <div class="quiz-block active" id="q1">
+        <div class="quiz-progress">Вопрос 1 из 1</div>
+        <h2 class="quiz-question">Сколько вам лет?</h2>
+        <div class="quiz-options">
+          <div class="quiz-option" data-val="young">18–35 лет</div>
+          <div class="quiz-option" data-val="middle">36–55 лет</div>
+          <div class="quiz-option" data-val="senior">56+ лет</div>
+        </div>
+        <button class="quiz-next" onclick="showVerdict()">Узнать вердикт →</button>
+      </div>
+    </section>
+
+    <!-- ЭКРАН 3: ВЕРДИКТЫ -->
+    <section id="screen-verdict" style="display:none">
+
+      <div class="verdict-block v-green" id="v-green">
+        <div class="verdict-icon">✅</div>
+        <h2 class="verdict-title">Можно приступать прямо сейчас</h2>
+        <p class="verdict-text">Противопоказаний не выявлено. Вам открыт доступ к авторскому курсу 7-дневного голодания.</p>
+        <a href="#" class="verdict-cta">Получить курс →</a>
       </div>
 
-    </div>
+      <div class="verdict-block v-yellow" id="v-yellow">
+        <div class="verdict-icon">⚙️</div>
+        <h2 class="verdict-title">Необходима подготовка</h2>
+        <p class="verdict-text">Голодать вам можно, но сначала нужно подготовить организм. Курс включает блок подготовки — начните с него.</p>
+        <a href="#" class="verdict-cta">Получить курс с подготовкой →</a>
+      </div>
+
+      <div class="verdict-block v-red" id="v-red">
+        <div class="verdict-icon">🚫</div>
+        <h2 class="verdict-title">Вам пока рано / нельзя</h2>
+        <p class="verdict-text">В вашем возрасте 7-дневное голодание без врачебного контроля небезопасно. Курс пока не отдаю — берегите здоровье.</p>
+      </div>
+
+    </section>
 
   </div>
 </main>
 
-<!-- ЭКРАН ТЕСТА -->
-<section class="q-main" id="screen-quiz" style="display:none">
+<footer class="q-footer">
   <div class="container">
-
-    <div class="quiz-block active" id="q1">
-      <div class="quiz-progress">Вопрос 1 из 7</div>
-      <h2 class="quiz-question">Сколько вам полных лет?</h2>
-      <div class="quiz-options">
-        <label class="quiz-option" data-val="young">До 35 лет</label>
-        <label class="quiz-option" data-val="middle">От 35 до 60 лет</label>
-        <label class="quiz-option" data-val="senior">Старше 60 лет</label>
-      </div>
-      <button class="quiz-next" onclick="showVerdict()">Далее →</button>
-    </div>
-
+    © 2026 Голодание с улыбкой · <a href="/">На главную</a>
   </div>
-</section>
-<!-- ЭКРАНЫ ВЕРДИКТОВ -->
-<section class="q-main" id="screen-verdict" style="display:none">
-  <div class="container">
-
-    <!-- ============ ЗЕЛЁНЫЙ ВЕРДИКТ ============ -->
-    <div class="verdict-block verdict-green" id="v-green">
-      <div class="verdict-icon">✅</div>
-      <h2 class="verdict-title">Вам можно голодать сейчас</h2>
-
-      <p class="verdict-text">
-        По вашим ответам — <strong>прямых противопоказаний нет</strong>. Организм готов пройти 7-дневный курс лечебного голодания при грамотной подготовке и сопровождении.
-      </p>
-      <p class="verdict-text">
-        Вы — именно тот человек, для которого создана эта методика. Возраст, состояние здоровья и мотивация совпали. Дальше — дело техники.
-      </p>
-
-      <h3 style="color:var(--gold);font-size:20px;margin:32px 0 16px;font-family:'Playfair Display',serif">Что вас ждёт за 7 дней:</h3>
-      <ul style="text-align:left;color:var(--txt2);font-size:16px;line-height:1.8;list-style:none;padding:0">
-        <li>✓ Запуск аутофагии — клеточное обновление</li>
-        <li>✓ Минус 4–7 кг (в основном — висцеральный жир)</li>
-        <li>✓ Ясность в голове, которой не было годами</li>
-        <li>✓ Перезагрузка пищевых привычек</li>
-        <li>✓ Закрытый клуб практиков на всё время курса</li>
-      </ul>
-
-      <div class="cta-wrap" style="text-align:center;margin-top:28px">
-        <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303235353734375f30343731636431633833303665383330616434373333343231396536353030393537353639396661" class="cta-btn">Купить курс — 3 900 ₽ →</a>
-        <br><a href="/" class="cta-btn-secondary">Сначала изучить на сайте</a>
-        <p class="cta-note">Доступ к курсу и клубу — сразу после оплаты</p>
-      </div>
-    </div>
-
-    <!-- ============ ЖЁЛТЫЙ ВЕРДИКТ ============ -->
-    <div class="verdict-block verdict-yellow" id="v-yellow">
-      <div class="verdict-icon">⚠️</div>
-      <h2 class="verdict-title">Можно — но с подготовкой</h2>
-
-      <p class="verdict-text">
-        По вашим ответам видно: <strong>физиологически голодание вам не противопоказано</strong>, но есть факторы, которые требуют осторожного подхода. Бросаться в 7-дневный курс прямо сегодня — рано.
-      </p>
-      <p class="verdict-text">
-        Это нормально. Большинство приходят к голоданию именно так — через подготовку. Курс можно купить сейчас и пройти позже — доступ остаётся навсегда.
-      </p>
-
-      <h3 style="color:var(--gold);font-size:20px;margin:32px 0 16px;font-family:'Playfair Display',serif">Что сделать перед курсом:</h3>
-      <ul style="text-align:left;color:var(--txt2);font-size:16px;line-height:1.8;list-style:none;padding:0">
-        <li><strong style="color:var(--gold)">1.</strong> Сходите к врачу — базовый осмотр, анализы крови</li>
-        <li><strong style="color:var(--gold)">2.</strong> Изучите материалы курса в спокойном режиме</li>
-        <li><strong style="color:var(--gold)">3.</strong> Начните с малого — попробуйте 16/8 на неделю</li>
-        <li><strong style="color:var(--gold)">4.</strong> Когда будете готовы — заходите на курс</li>
-      </ul>
-
-      <div class="cta-wrap" style="text-align:center;margin-top:28px">
-        <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303235353734375f30343731636431633833303665383330616434373333343231396536353030393537353639396661" class="cta-btn">Купить курс — 3 900 ₽ →</a>
-        <br><a href="/" class="cta-btn-secondary">Сначала изучить на сайте</a>
-        <p class="cta-note">Доступ навсегда. Пройдёте, когда будете готовы.</p>
-      </div>
-    </div>
-
-    <!-- ============ КРАСНЫЙ ВЕРДИКТ ============ -->
-    <div class="verdict-block verdict-red" id="v-red">
-      <div class="verdict-icon">🚫</div>
-      <h2 class="verdict-title">Сейчас — не стоит. Приходите позже</h2>
-
-      <p class="verdict-text">
-        По вашим ответам у вас есть <strong>прямые противопоказания</strong> к длительному голоданию. Голодать в таком состоянии — навредить себе. Я не возьму на себя такую ответственность, и вам не советую.
-      </p>
-      <p class="verdict-text">
-        Это не значит, что голодание вам запрещено навсегда. Это значит — <strong>не сейчас</strong>. Сначала нужно решить более важные вопросы со здоровьем.
-      </p>
-
-      <h3 style="color:var(--gold);font-size:20px;margin:32px 0 16px;font-family:'Playfair Display',serif">Что делать вместо:</h3>
-      <ul style="text-align:left;color:var(--txt2);font-size:16px;line-height:1.8;list-style:none;padding:0">
-        <li><strong style="color:var(--gold)">1.</strong> Очный визит к врачу — разобраться с состоянием</li>
-        <li><strong style="color:var(--gold)">2.</strong> Чистка питания (убрать сахар, фастфуд, алкоголь)</li>
-        <li><strong style="color:var(--gold)">3.</strong> Лёгкое интервальное 14/10 — если врач разрешит</li>
-        <li><strong style="color:var(--gold)">4.</strong> Когда состояние стабилизируется — пройдите тест ещё раз</li>
-      </ul>
-
-      <p class="verdict-text" style="margin-top:32px;font-style:italic;color:var(--txt3);font-size:15px">
-        На сайте есть библиотека материалов и вводное видео о методе — для общего понимания, для близких или просто из интереса. Решение остаётся за вами.
-      </p>
-
-      <div class="cta-wrap" style="text-align:center;margin-top:20px">
-        <a href="/" class="cta-btn-secondary">Перейти на сайт</a>
-        <p class="cta-note">Сохраните страницу. Когда состояние изменится — тест будет ждать.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ФУТЕР -->
-<footer class="q-foot">
-  <div class="container">
-    <p>Образовательный материал. Не является индивидуальной медицинской рекомендацией. Перед длительным голоданием — очный осмотр у врача обязателен.</p>
-    <p style="margin-top:10px">© 2025 Голодание с улыбкой · <a href="/">На главную</a></p>
-  </div>
-</footer></footer>
+</footer>
 
 <script>
 function startQuiz(){
@@ -404,7 +370,6 @@ function startQuiz(){
   window.scrollTo({top:0,behavior:'instant'});
 }
 
-// Выбор опции
 document.querySelectorAll('.quiz-option').forEach(function(opt){
   opt.addEventListener('click',function(){
     var parent=this.closest('.quiz-block');
