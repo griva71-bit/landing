@@ -3,441 +3,635 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Можно ли вам голодать? — Бесплатный тест</title>
-<meta name="description" content="Не начинайте голодать, пока не пройдёте тест. Четыре возможных вердикта от военврача-практика. Без впаривания курса.">
-<meta property="og:title" content="Не начинайте голодать, пока не пройдёте тест">
-<meta property="og:description" content="Один из четырёх ответов — ваш. Бесплатный тест от военврача с 10-летним опытом.">
-<meta property="og:url" content="https://golodanie-s-ulybkoy.ru/quiz.html">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="ru_RU">
-<link rel="icon" type="image/png" href="images/icon.png">
-<link rel="apple-touch-icon" href="images/icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@200;300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+<title>Тест: можно ли вам голодать?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0a0f1a;
-  --bg2:#111827;
-  --gold:#c8a44e;
-  --gold-l:#e6c97e;
-  --gold-d:#a07c2e;
-  --txt:#f0ead6;
-  --txt2:#9ca3af;
-  --txt3:#6b7280;
-  --green:#22c55e;
-  --yellow:#eab308;
-  --red:#ef4444;
-  --border:#1e293b
-}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;font-size:16px;min-height:100vh}
-.container{max-width:1080px;margin:0 auto;padding:0 24px}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* HEADER */
-.q-header{padding:20px 0;border-bottom:1px solid var(--border)}
-.q-header-inner{display:flex;align-items:center;justify-content:center;max-width:1180px;margin:0 auto;padding:0 24px}
-.q-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--txt)}
-.q-logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700}
-
-/* MAIN */
-.q-main{padding:64px 0 80px}
-
-/* === ЗАГОЛОВОК === */
-.q-headline{
-  font-family:'Inter',sans-serif;
-  font-size:30px;
-  font-weight:300;
-  line-height:1.35;
-  letter-spacing:-.01em;
-  color:var(--txt);
-  text-align:center;
-  max-width:880px;
-  margin:0 auto 48px;
-}
-.q-headline .strong{color:#fff;font-weight:500}
-.q-headline .accent{color:var(--gold);font-weight:400}
-
-/* === КАРТИНКА === */
-.diary-window{
-  position:relative;
-  width:100%;
-  max-width:880px;
-  margin:0 auto 48px;
-  filter:drop-shadow(0 30px 50px rgba(0,0,0,.6));
-}
-.diary-frame{
-  position:relative;
-  padding:14px;
-  background:linear-gradient(145deg,#1a1410 0%,#0d0a07 100%);
-  border-radius:8px;
-  box-shadow:
-    0 0 0 1px rgba(200,164,78,.35),
-    0 0 0 2px rgba(0,0,0,.6),
-    inset 2px 2px 8px rgba(255,235,180,.08),
-    inset -2px -2px 8px rgba(0,0,0,.6);
-}
-.diary-frame::before{
-  content:'';
-  position:absolute;
-  inset:8px;
-  border:1px solid rgba(200,164,78,.25);
-  border-radius:4px;
-  pointer-events:none;
-  z-index:2;
-}
-.diary-img{
-  display:block;
-  width:100%;
-  height:auto;
-  border-radius:3px;
-  filter:brightness(.94) contrast(1.04);
-}
-.diary-frame::after{
-  content:'';
-  position:absolute;
-  inset:14px;
-  border-radius:3px;
-  background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.4) 100%);
-  pointer-events:none;
-  z-index:1;
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #0a0e1a;
+  color: #e8e8e8;
+  min-height: 100vh;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* === КНОПКА в стиле Яндекса === */
-.cta-section{
-  max-width:680px;
-  margin:0 auto 56px;
-  text-align:center;
-  position:relative;
-  padding:30px 0;
+.container {
+  width: 100%;
+  max-width: 720px;
 }
 
-.cta-glow-wrap{
-  position:relative;
-  display:block;
-  width:100%;
+/* ===== ПРОГРЕСС-БАР ===== */
+.progress-wrap {
+  margin-bottom: 32px;
+}
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+.progress-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700, #ffaa00);
+  width: 0%;
+  transition: width 0.4s ease;
 }
 
-.cta-btn{
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:22px;
-  width:100%;
-  background:linear-gradient(180deg,#0d0d0d 0%,#050505 100%);
-  padding:32px 48px;
-  border-radius:120px;
-  text-decoration:none;
-  cursor:pointer;
-  transition:all .3s ease;
-  z-index:2;
-  box-shadow:
-    -25px -10px 60px 0 rgba(80,130,255,.85),
-    -30px 25px 70px 0 rgba(50,200,120,.55),
-    35px 0 80px 0 rgba(236,72,153,.85),
-    0 30px 70px 0 rgba(255,220,40,.7),
-    inset 0 -20px 40px -10px rgba(255,220,40,.18),
-    inset 0 0 1px 1px rgba(255,255,255,.04);
+/* ===== ЭКРАН ===== */
+.screen {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+.screen.active {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.cta-btn:hover{
-  transform:translateY(-3px) scale(1.02);
-  box-shadow:
-    -30px -12px 70px 0 rgba(80,130,255,1),
-    -35px 30px 80px 0 rgba(50,200,120,.7),
-    40px 0 90px 0 rgba(236,72,153,1),
-    0 35px 80px 0 rgba(255,220,40,.85),
-    inset 0 -22px 45px -10px rgba(255,220,40,.25),
-    inset 0 0 1px 1px rgba(255,255,255,.06);
+.question {
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.question-hint {
+  font-size: 15px;
+  color: #888;
+  margin-bottom: 32px;
+  font-weight: 300;
 }
 
-/* Цветной неоновый ободок */
-.cta-btn::before{
-  content:'';
-  position:absolute;
-  inset:-2px;
-  border-radius:120px;
-  padding:2px;
-  background:conic-gradient(
-    from 90deg,
-    rgba(80,130,255,.6) 0%,
-    rgba(50,200,120,.5) 25%,
-    rgba(255,220,40,.7) 50%,
-    rgba(236,72,153,.6) 75%,
-    rgba(80,130,255,.6) 100%
-  );
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-          mask-composite:exclude;
-  pointer-events:none;
-  opacity:.7;
-  z-index:1;
+/* ===== ВАРИАНТЫ ОТВЕТОВ ===== */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.option {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 16px;
+  color: #e8e8e8;
+  font-weight: 400;
+  text-align: left;
+  font-family: inherit;
+}
+.option:hover {
+  background: rgba(255,215,0,0.05);
+  border-color: rgba(255,215,0,0.3);
+}
+.option.selected {
+  background: rgba(255,215,0,0.1);
+  border-color: #ffd700;
+  color: #fff;
 }
 
-/* ТЕКСТ — Inter Light, в одном стиле с заголовком */
-.cta-btn-text{
-  font-family:'Inter',sans-serif;
-  font-size:54px;
-  font-weight:300;
-  letter-spacing:-.02em;
-  color:#FFE600;
-  text-shadow:
-    0 0 8px rgba(255,230,0,.45),
-    0 0 18px rgba(255,230,0,.28),
-    0 0 32px rgba(255,230,0,.15);
-  line-height:1;
-  position:relative;
-  z-index:3;
+/* ===== ЧЕКБОКСЫ (для красных/жёлтых флагов) ===== */
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 15px;
+  font-weight: 400;
+}
+.checkbox-item:hover {
+  background: rgba(255,255,255,0.06);
+}
+.checkbox-item.checked {
+  background: rgba(255,215,0,0.08);
+  border-color: rgba(255,215,0,0.4);
+}
+.checkbox-item input {
+  margin-top: 3px;
+  cursor: pointer;
+  accent-color: #ffd700;
 }
 
-.cta-btn-arrow{
-  width:48px;
-  height:48px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#FFE600;
-  filter:
-    drop-shadow(0 0 6px rgba(255,230,0,.5))
-    drop-shadow(0 0 14px rgba(255,230,0,.25));
-  flex-shrink:0;
-  position:relative;
-  z-index:3;
-  transition:transform .3s ease;
+/* ===== ПОЛЯ ВВОДА (рост/вес) ===== */
+.inputs-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
 }
-.cta-btn-arrow svg{width:100%;height:100%}
-.cta-btn:hover .cta-btn-arrow{transform:translateX(6px)}
-
-.cta-note{color:var(--txt3);font-size:13px;margin-top:24px;font-weight:300;letter-spacing:.02em;text-align:center}
-
-/* === 4 ПЛАШКИ === */
-.verdict-preview{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  max-width:880px;
-  margin:0 auto;
+.input-group {
+  flex: 1;
 }
-.vp-item{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  background:rgba(255,255,255,.025);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:10px;
-  padding:14px 12px;
-  font-family:'Inter',sans-serif;
-  font-size:13px;
-  font-weight:300;
-  color:var(--txt2);
-  letter-spacing:.005em;
-  text-align:center;
+.input-group label {
+  display: block;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 8px;
+  font-weight: 400;
 }
-.vp-item .vp-icon{font-size:16px;line-height:1;flex-shrink:0}
-.vp-red{border-color:rgba(239,68,68,.28)}
-.vp-yellow{border-color:rgba(234,179,8,.28)}
-.vp-orange{border-color:rgba(249,115,22,.28)}
-.vp-green{border-color:rgba(34,197,94,.28)}
-
-/* === QUIZ === */
-.quiz-block{display:none;max-width:640px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:40px}
-.quiz-block.active{display:block}
-.quiz-progress{font-size:13px;color:var(--txt3);text-align:center;margin-bottom:18px;letter-spacing:.05em;text-transform:uppercase}
-.quiz-question{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;text-align:center;margin-bottom:28px;line-height:1.3}
-.quiz-options{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
-.quiz-option{display:block;background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:18px 22px;cursor:pointer;transition:all .2s;font-size:16px;color:var(--txt);text-align:left}
-.quiz-option:hover{border-color:rgba(200,164,78,.5);background:rgba(200,164,78,.05)}
-.quiz-option.selected{border-color:var(--gold);background:rgba(200,164,78,.1);color:var(--gold)}
-.quiz-next{display:block;width:100%;background:var(--gold);color:#0a0f1a;padding:16px;border:none;border-radius:10px;font-weight:700;font-size:16px;cursor:pointer;transition:all .2s;opacity:.4;pointer-events:none;font-family:'Inter',sans-serif}
-.quiz-next.ready{opacity:1;pointer-events:auto}
-.quiz-next.ready:hover{background:var(--gold-l);transform:translateY(-1px)}
-
-/* === ВЕРДИКТЫ === */
-.verdict-block{display:none;max-width:640px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:48px 40px;text-align:center}
-.verdict-block.active{display:block}
-.verdict-icon{font-size:64px;margin-bottom:20px;line-height:1}
-.verdict-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;margin-bottom:14px}
-.verdict-text{color:var(--txt2);font-size:16px;margin-bottom:28px;line-height:1.6}
-.verdict-cta{display:inline-block;background:var(--gold);color:#0a0f1a;padding:14px 32px;border-radius:10px;font-weight:700;text-decoration:none;font-size:15px;transition:all .2s}
-.verdict-cta:hover{background:var(--gold-l);transform:translateY(-1px)}
-.v-green .verdict-icon{color:var(--green)}
-.v-yellow .verdict-icon{color:var(--yellow)}
-.v-red .verdict-icon{color:var(--red)}
-
-/* FOOTER */
-.q-footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--txt3);font-size:13px}
-.q-footer a{color:var(--txt2);text-decoration:none}
-
-/* АДАПТИВ */
-@media(max-width:860px){
-  .q-headline{font-size:24px;margin-bottom:36px}
-  .diary-window{margin-bottom:40px}
-  .cta-section{margin-bottom:44px}
-  .cta-btn{padding:26px 32px;gap:16px}
-  .cta-btn-text{font-size:40px}
-  .cta-btn-arrow{width:38px;height:38px}
-  .verdict-preview{grid-template-columns:repeat(2,1fr);gap:10px}
-  .vp-item{font-size:13px}
+.input-group input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 16px 18px;
+  font-size: 18px;
+  color: #fff;
+  font-family: inherit;
+  font-weight: 400;
 }
-@media(max-width:600px){
-  .q-main{padding:40px 0 60px}
-  .q-headline{font-size:20px;margin-bottom:28px}
-  .diary-window{margin-bottom:32px}
-  .cta-section{margin-bottom:36px;padding:20px 0}
-  .cta-btn{padding:20px 22px;gap:12px}
-  .cta-btn-text{font-size:28px}
-  .cta-btn-arrow{width:28px;height:28px}
-  .verdict-preview{grid-template-columns:1fr;gap:8px}
-  .quiz-block,.verdict-block{padding:28px 20px}
-  .quiz-question{font-size:22px}
-  .verdict-title{font-size:24px}
+.input-group input:focus {
+  outline: none;
+  border-color: #ffd700;
+}
+
+/* ===== КНОПКИ НАВИГАЦИИ ===== */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.btn {
+  padding: 14px 28px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 400;
+  transition: all 0.2s;
+}
+.btn-back {
+  background: transparent;
+  color: #888;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.btn-back:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
+.btn-next {
+  background: #ffd700;
+  color: #000;
+  font-weight: 500;
+  margin-left: auto;
+}
+.btn-next:hover {
+  background: #ffe033;
+}
+.btn-next:disabled {
+  background: rgba(255,255,255,0.1);
+  color: #555;
+  cursor: not-allowed;
+}
+
+/* ===== ЭКРАНЫ ВЕРДИКТОВ ===== */
+.verdict {
+  text-align: center;
+  padding: 40px 20px;
+}
+.verdict-icon {
+  font-size: 64px;
+  margin-bottom: 24px;
+}
+.verdict-title {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.verdict-text {
+  font-size: 17px;
+  color: #c0c0c0;
+  margin-bottom: 32px;
+  line-height: 1.6;
+  font-weight: 300;
+}
+.verdict.green .verdict-title { color: #4ade80; }
+.verdict.yellow .verdict-title { color: #facc15; }
+.verdict.red .verdict-title { color: #f87171; }
+
+/* ===== МОБИЛКА ===== */
+@media (max-width: 600px) {
+  body { padding: 16px; }
+  .question { font-size: 22px; }
+  .question-hint { font-size: 14px; margin-bottom: 24px; }
+  .option { font-size: 15px; padding: 16px; }
+  .inputs-row { flex-direction: column; gap: 12px; }
+  .btn { padding: 12px 20px; font-size: 14px; }
+  .verdict-title { font-size: 24px; }
+  .verdict-text { font-size: 15px; }
 }
 </style>
 </head>
 <body>
 
-<header class="q-header">
-  <div class="q-header-inner">
-    <a href="/" class="q-logo">
-      <span class="q-logo-text">Голодание с улыбкой</span>
-    </a>
+<div class="container">
+
+  <!-- ПРОГРЕСС-БАР -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-info">
+      <span id="progressStep">шаг 1 из 7</span>
+      <span id="progressPercent">14%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
   </div>
-</header>
 
-<main class="q-main">
-  <div class="container">
-
-    <!-- ЭКРАН 1: СТАРТ -->
-    <section id="screen-start">
-
-      <p class="q-headline">
-        <span class="strong">Авторский курс</span> по 7-дневному голоданию вы получите <span class="accent">только после прохождения теста.</span> И только если вам можно.
-      </p>
-
-      <div class="diary-window">
-        <div class="diary-frame">
-          <img src="images/diary-window.jpg" alt="Дневник голодания" class="diary-img">
-        </div>
+  <!-- ШАГ 1: ИМТ -->
+  <div class="screen active" data-step="1">
+    <div class="question">Ваш рост и вес</div>
+    <div class="question-hint">Нужно для расчёта индекса массы тела — это влияет на безопасность голодания.</div>
+    <div class="inputs-row">
+      <div class="input-group">
+        <label>Рост (см)</label>
+        <input type="number" id="height" placeholder="170" min="100" max="250">
       </div>
-
-      <div class="cta-section">
-        <div class="cta-glow-wrap">
-          <a href="#" class="cta-btn" onclick="startQuiz();return false;">
-            <span class="cta-btn-text">пройти тест</span>
-            <span class="cta-btn-arrow">
-              <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 22h28M24 10l12 12-12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </a>
-        </div>
-        <p class="cta-note">Бесплатно · 3 минуты · Результат сразу на экране</p>
+      <div class="input-group">
+        <label>Вес (кг)</label>
+        <input type="number" id="weight" placeholder="75" min="30" max="300">
       </div>
-
-      <div class="verdict-preview">
-        <div class="vp-item vp-red">
-          <span class="vp-icon">🚫</span>
-          <span>Вам нельзя</span>
-        </div>
-        <div class="vp-item vp-yellow">
-          <span class="vp-icon">⏳</span>
-          <span>Вам пока рано</span>
-        </div>
-        <div class="vp-item vp-orange">
-          <span class="vp-icon">⚙️</span>
-          <span>Нужна подготовка</span>
-        </div>
-        <div class="vp-item vp-green">
-          <span class="vp-icon">✅</span>
-          <span>Можно прямо сейчас</span>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ЭКРАН 2: КВИЗ -->
-    <section id="screen-quiz" style="display:none">
-      <div class="quiz-block active" id="q1">
-        <div class="quiz-progress">Вопрос 1 из 1</div>
-        <h2 class="quiz-question">Сколько вам лет?</h2>
-        <div class="quiz-options">
-          <div class="quiz-option" data-val="young">18–35 лет</div>
-          <div class="quiz-option" data-val="middle">36–55 лет</div>
-          <div class="quiz-option" data-val="senior">56+ лет</div>
-        </div>
-        <button class="quiz-next" onclick="showVerdict()">Узнать вердикт →</button>
-      </div>
-    </section>
-
-    <!-- ЭКРАН 3: ВЕРДИКТЫ -->
-    <section id="screen-verdict" style="display:none">
-
-      <div class="verdict-block v-green" id="v-green">
-        <div class="verdict-icon">✅</div>
-        <h2 class="verdict-title">Можно приступать прямо сейчас</h2>
-        <p class="verdict-text">Противопоказаний не выявлено. Вам открыт доступ к авторскому курсу 7-дневного голодания.</p>
-        <a href="#" class="verdict-cta">Получить курс →</a>
-      </div>
-
-      <div class="verdict-block v-yellow" id="v-yellow">
-        <div class="verdict-icon">⚙️</div>
-        <h2 class="verdict-title">Необходима подготовка</h2>
-        <p class="verdict-text">Голодать вам можно, но сначала нужно подготовить организм. Курс включает блок подготовки — начните с него.</p>
-        <a href="#" class="verdict-cta">Получить курс с подготовкой →</a>
-      </div>
-
-      <div class="verdict-block v-red" id="v-red">
-        <div class="verdict-icon">🚫</div>
-        <h2 class="verdict-title">Вам пока рано / нельзя</h2>
-        <p class="verdict-text">В вашем возрасте 7-дневное голодание без врачебного контроля небезопасно. Курс пока не отдаю — берегите здоровье.</p>
-      </div>
-
-    </section>
-
+    </div>
+    <div class="nav">
+      <button class="btn btn-next" onclick="nextStep()">продолжить →</button>
+    </div>
   </div>
-</main>
 
-<footer class="q-footer">
-  <div class="container">
-    © 2026 Голодание с улыбкой · <a href="/">На главную</a>
+  <!-- ШАГ 2: ЦЕЛИ -->
+  <div class="screen" data-step="2">
+    <div class="question">Зачем вы хотите голодать?</div>
+    <div class="question-hint">Выберите главную цель.</div>
+    <div class="options" data-q="goal">
+      <button class="option" data-val="weight">Похудеть</button>
+      <button class="option" data-val="health">Поправить здоровье</button>
+      <button class="option" data-val="reset">Перезагрузить организм</button>
+      <button class="option" data-val="energy">Вернуть энергию и ясность</button>
+      <button class="option" data-val="curious">Просто интересно попробовать</button>
+    </div>
+    <div class="nav">
+      <button class="btn btn-back" onclick="prevStep()">← назад</button>
+      <button class="btn btn-next" onclick="nextStep()" disabled>продолжить →</button>
+    </div>
   </div>
-</footer>
+
+  <!-- ШАГ 3: ОПЫТ -->
+  <div class="screen" data-step="3">
+    <div class="question">Ваш опыт голодания</div>
+    <div class="question-hint">Честно — никто не оценивает.</div>
+    <div class="options" data-q="experience">
+      <button class="option" data-val="none">Никогда не голодал</button>
+      <button class="option" data-val="short">Делал интервальное (16/8 и т.п.)</button>
+      <button class="option" data-val="1-3days">Голодал 1-3 дня</button>
+      <button class="option" data-val="long">Голодал больше 3 дней</button>
+    </div>
+    <div class="nav">
+      <button class="btn btn-back" onclick="prevStep()">← назад</button>
+      <button class="btn btn-next" onclick="nextStep()" disabled>продолжить →</button>
+    </div>
+  </div>
+
+  <!-- ШАГ 4: СОСТОЯНИЕ -->
+  <div class="screen" data-step="4">
+    <div class="question">Как вы себя чувствуете сейчас?</div>
+    <div class="question-hint">Общее самочувствие в последние недели.</div>
+    <div class="options" data-q="state">
+      <button class="option" data-val="good">Хорошо, полон сил</button>
+      <button class="option" data-val="ok">Нормально, бывают спады</button>
+      <button class="option" data-val="tired">Часто устаю, нет энергии</button>
+      <button class="option" data-val="bad">Плохо, много жалоб</button>
+    </div>
+    <div class="nav">
+      <button class="btn btn-back" onclick="prevStep()">← назад</button>
+      <button class="btn btn-next" onclick="nextStep()" disabled>продолжить →</button>
+    </div>
+  </div>
+
+  <!-- ШАГ 5: КРАСНЫЕ ФЛАГИ -->
+  <div class="screen" data-step="5">
+    <div class="question">Есть ли у вас что-то из этого?</div>
+    <div class="question-hint">Отметьте всё подходящее. Если ничего — просто продолжите.</div>
+    <div class="checkboxes" data-q="red">
+      <label class="checkbox-item">
+        <input type="checkbox" value="diabetes1">
+        <span>Сахарный диабет 1 типа</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="pregnancy">
+        <span>Беременность или кормление</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="underweight">
+        <span>Сильный недовес или истощение</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="eating-disorder">
+        <span>РПП (анорексия, булимия)</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="cancer">
+        <span>Активное онкологическое заболевание</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="kidney">
+        <span>Тяжёлая почечная или печёночная недостаточность</span>
+      </label>
+    </div>
+    <div class="nav">
+      <button class="btn btn-back" onclick="prevStep()">← назад</button>
+      <button class="btn btn-next" onclick="nextStep()">продолжить →</button>
+    </div>
+  </div>
+
+  <!-- ШАГ 6: ЖЁЛТЫЕ ФЛАГИ -->
+  <div class="screen" data-step="6">
+    <div class="question">А такое есть?</div>
+    <div class="question-hint">Это не запрет, но требует подготовки и осторожности.</div>
+    <div class="checkboxes" data-q="yellow">
+      <label class="checkbox-item">
+        <input type="checkbox" value="diabetes2">
+        <span>Сахарный диабет 2 типа</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="heart">
+        <span>Заболевания сердца</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="pressure">
+        <span>Гипертония или гипотония</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="meds">
+        <span>Принимаю лекарства постоянно</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="gastro">
+        <span>Гастрит, язва, проблемы с ЖКТ</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="thyroid">
+        <span>Проблемы со щитовидкой</span>
+      </label>
+    </div>
+    <div class="nav">
+      <button class="btn btn-back" onclick="prevStep()">← назад</button>
+      <button class="btn btn-next" onclick="nextStep()">показать результат →</button>
+    </div>
+  </div>
+
+  <!-- ВЕРДИКТ ЗЕЛЁНЫЙ -->
+  <div class="screen" data-step="7" data-verdict="green">
+    <div class="verdict green">
+      <div class="verdict-icon">✓</div>
+      <div class="verdict-title">Вам можно голодать</div>
+      <div class="verdict-text">
+        По вашим ответам противопоказаний нет. Ваш ИМТ: <span id="bmi-green">—</span>.<br><br>
+        [Здесь будет финальный текст с рекомендацией курса — итерация 4]
+      </div>
+    </div>
+  </div>
+
+  <!-- ВЕРДИКТ ЖЁЛТЫЙ -->
+  <div class="screen" data-step="7" data-verdict="yellow">
+    <div class="verdict yellow">
+      <div class="verdict-icon">⚠</div>
+      <div class="verdict-title">Голодать можно, но осторожно</div>
+      <div class="verdict-text">
+        У вас есть состояния, которые требуют подготовки. Ваш ИМТ: <span id="bmi-yellow">—</span>.<br><br>
+        [Здесь будет финальный текст с рекомендациями — итерация 4]
+      </div>
+    </div>
+  </div>
+
+  <!-- ВЕРДИКТ КРАСНЫЙ -->
+  <div class="screen" data-step="7" data-verdict="red">
+    <div class="verdict red">
+      <div class="verdict-icon">✕</div>
+      <div class="verdict-title">Голодание вам противопоказано</div>
+      <div class="verdict-text">
+        У вас есть серьёзные противопоказания. Ваш ИМТ: <span id="bmi-red">—</span>.<br><br>
+        [Здесь будет финальный текст — итерация 4]
+      </div>
+    </div>
+  </div>
+
+</div>
 
 <script>
-function startQuiz(){
-  document.getElementById('screen-start').style.display='none';
-  document.getElementById('screen-quiz').style.display='block';
-  window.scrollTo({top:0,behavior:'instant'});
+// ===== СОСТОЯНИЕ =====
+let currentStep = 1;
+const TOTAL_STEPS = 7;
+const answers = {
+  height: null,
+  weight: null,
+  goal: null,
+  experience: null,
+  state: null,
+  red: [],
+  yellow: []
+};
+
+// ===== ПРОГРЕСС =====
+function updateProgress() {
+  const percent = Math.round((currentStep / TOTAL_STEPS) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressStep').textContent = `шаг ${currentStep} из ${TOTAL_STEPS}`;
+  document.getElementById('progressPercent').textContent = percent + '%';
 }
 
-document.querySelectorAll('.quiz-option').forEach(function(opt){
-  opt.addEventListener('click',function(){
-    var parent=this.closest('.quiz-block');
-    parent.querySelectorAll('.quiz-option').forEach(function(o){o.classList.remove('selected')});
-    this.classList.add('selected');
-    parent.querySelector('.quiz-next').classList.add('ready');
+// ===== ПОКАЗ ЭКРАНА =====
+function showStep(step, verdict = null) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+
+  if (step === 7 && verdict) {
+    document.querySelector(`.screen[data-verdict="${verdict}"]`).classList.add('active');
+    document.getElementById('progressWrap').style.display = 'none';
+  } else {
+    document.querySelector(`.screen[data-step="${step}"]`).classList.add('active');
+    document.getElementById('progressWrap').style.display = 'block';
+    updateProgress();
+  }
+}
+
+// ===== ВАЛИДАЦИЯ ШАГА =====
+function validateCurrentStep() {
+  if (currentStep === 1) {
+    const h = parseInt(document.getElementById('height').value);
+    const w = parseInt(document.getElementById('weight').value);
+    if (!h || !w || h < 100 || h > 250 || w < 30 || w > 300) {
+      alert('Введите корректные рост (100-250 см) и вес (30-300 кг)');
+      return false;
+    }
+    answers.height = h;
+    answers.weight = w;
+    return true;
+  }
+  return true;
+}
+
+// ===== НАВИГАЦИЯ =====
+function nextStep() {
+  if (!validateCurrentStep()) return;
+  saveState();
+
+  if (currentStep === 6) {
+    // считаем вердикт и переходим на 7
+    const verdict = calcVerdict();
+    fillBMI();
+    currentStep = 7;
+    showStep(7, verdict);
+    return;
+  }
+
+  if (currentStep < 7) {
+    currentStep++;
+    showStep(currentStep);
+  }
+}
+
+function prevStep() {
+  if (currentStep > 1) {
+    currentStep--;
+    showStep(currentStep);
+  }
+}
+
+// ===== ЛОГИКА КОРИДОРОВ =====
+function calcVerdict() {
+  if (answers.red.length > 0) return 'red';
+  if (answers.yellow.length > 0) return 'yellow';
+  // ИМТ-проверка
+  const bmi = calcBMI();
+  if (bmi < 17) return 'red';
+  if (bmi < 18.5) return 'yellow';
+  return 'green';
+}
+
+function calcBMI() {
+  if (!answers.height || !answers.weight) return null;
+  const h = answers.height / 100;
+  return +(answers.weight / (h * h)).toFixed(1);
+}
+
+function fillBMI() {
+  const bmi = calcBMI();
+  if (bmi) {
+    ['green', 'yellow', 'red'].forEach(v => {
+      const el = document.getElementById('bmi-' + v);
+      if (el) el.textContent = bmi;
+    });
+  }
+}
+
+// ===== ОБРАБОТЧИКИ ВАРИАНТОВ =====
+document.querySelectorAll('.options').forEach(group => {
+  const qName = group.dataset.q;
+  group.querySelectorAll('.option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      group.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      answers[qName] = btn.dataset.val;
+      // включаем кнопку "продолжить"
+      const screen = btn.closest('.screen');
+      const nextBtn = screen.querySelector('.btn-next');
+      if (nextBtn) nextBtn.disabled = false;
+      saveState();
+    });
   });
 });
 
-function showVerdict(){
-  var btn=document.querySelector('#q1 .quiz-option.selected');
-  if(!btn)return;
-  var val=btn.dataset.val;
+// ===== ОБРАБОТЧИКИ ЧЕКБОКСОВ =====
+document.querySelectorAll('.checkboxes').forEach(group => {
+  const qName = group.dataset.q;
+  group.querySelectorAll('.checkbox-item').forEach(item => {
+    const input = item.querySelector('input');
+    input.addEventListener('change', () => {
+      if (input.checked) {
+        item.classList.add('checked');
+        if (!answers[qName].includes(input.value)) answers[qName].push(input.value);
+      } else {
+        item.classList.remove('checked');
+        answers[qName] = answers[qName].filter(v => v !== input.value);
+      }
+      saveState();
+    });
+  });
+});
 
-  document.getElementById('screen-quiz').style.display='none';
-  document.getElementById('screen-verdict').style.display='block';
-
-  document.getElementById('v-green').style.display='none';
-  document.getElementById('v-yellow').style.display='none';
-  document.getElementById('v-red').style.display='none';
-
-  if(val==='young')document.getElementById('v-green').style.display='block';
-  if(val==='middle')document.getElementById('v-yellow').style.display='block';
-  if(val==='senior')document.getElementById('v-red').style.display='block';
-
-  window.scrollTo({top:0,behavior:'instant'});
+// ===== СОХРАНЕНИЕ В localStorage =====
+function saveState() {
+  localStorage.setItem('quiz_answers', JSON.stringify(answers));
+  localStorage.setItem('quiz_step', currentStep);
 }
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem('quiz_answers');
+    const step = localStorage.getItem('quiz_step');
+    if (saved) {
+      const data = JSON.parse(saved);
+      Object.assign(answers, data);
+      // восстановим UI
+      if (answers.height) document.getElementById('height').value = answers.height;
+      if (answers.weight) document.getElementById('weight').value = answers.weight;
+      ['goal', 'experience', 'state'].forEach(q => {
+        if (answers[q]) {
+          const btn = document.querySelector(`.options[data-q="${q}"] .option[data-val="${answers[q]}"]`);
+          if (btn) {
+            btn.classList.add('selected');
+            const nb = btn.closest('.screen').querySelector('.btn-next');
+            if (nb) nb.disabled = false;
+          }
+        }
+      });
+      ['red', 'yellow'].forEach(q => {
+        answers[q].forEach(val => {
+          const inp = document.querySelector(`.checkboxes[data-q="${q}"] input[value="${val}"]`);
+          if (inp) {
+            inp.checked = true;
+            inp.closest('.checkbox-item').classList.add('checked');
+          }
+        });
+      });
+    }
+    if (step && parseInt(step) >= 1 && parseInt(step) <= 6) {
+      currentStep = parseInt(step);
+      showStep(currentStep);
+    }
+  } catch(e) { console.warn('loadState error', e); }
+}
+
+// ===== СТАРТ =====
+loadState();
+updateProgress();
 </script>
 
 </body>
