@@ -79,7 +79,7 @@ body {
   font-weight: 300;
 }
 
-/* ===== ВАРИАНТЫ ОТВЕТОВ ===== */
+/* ===== ВАРИАНТЫ ОТВЕТОВ (radio-style) ===== */
 .options {
   display: flex;
   flex-direction: column;
@@ -109,7 +109,7 @@ body {
   color: #fff;
 }
 
-/* ===== ЧЕКБОКСЫ (для красных/жёлтых флагов) ===== */
+/* ===== ЧЕКБОКСЫ ===== */
 .checkboxes {
   display: flex;
   flex-direction: column;
@@ -142,7 +142,7 @@ body {
   accent-color: #ffd700;
 }
 
-/* ===== ПОЛЯ ВВОДА (рост/вес) ===== */
+/* ===== ПОЛЯ ВВОДА ===== */
 .inputs-row {
   display: flex;
   gap: 16px;
@@ -189,6 +189,9 @@ body {
   font-family: inherit;
   font-weight: 400;
   transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 .btn-back {
   background: transparent;
@@ -239,6 +242,42 @@ body {
 .verdict.yellow .verdict-title { color: #facc15; }
 .verdict.red .verdict-title { color: #f87171; }
 
+/* ===== КНОПКИ НА ВЕРДИКТАХ ===== */
+.verdict-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.btn-primary {
+  background: #ffd700;
+  color: #000;
+  font-weight: 500;
+  padding: 16px 28px;
+  font-size: 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  display: block;
+}
+.btn-primary:hover {
+  background: #ffe033;
+}
+.btn-secondary {
+  background: transparent;
+  color: #c0c0c0;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 14px 28px;
+  font-size: 15px;
+  border-radius: 12px;
+  text-decoration: none;
+  display: block;
+}
+.btn-secondary:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.4);
+}
+
 /* ===== МОБИЛКА ===== */
 @media (max-width: 600px) {
   body { padding: 16px; }
@@ -286,27 +325,42 @@ body {
     </div>
   </div>
 
-  <!-- ШАГ 2: ЦЕЛИ -->
+  <!-- ШАГ 2: ЦЕЛИ (МУЛЬТИВЫБОР) -->
   <div class="screen" data-step="2">
     <div class="question">Зачем вы хотите голодать?</div>
-    <div class="question-hint">Выберите главную цель.</div>
-    <div class="options" data-q="goal">
-      <button class="option" data-val="weight">Похудеть</button>
-      <button class="option" data-val="health">Поправить здоровье</button>
-      <button class="option" data-val="reset">Перезагрузить организм</button>
-      <button class="option" data-val="energy">Вернуть энергию и ясность</button>
-      <button class="option" data-val="curious">Просто интересно попробовать</button>
+    <div class="question-hint">Можно выбрать несколько вариантов.</div>
+    <div class="checkboxes" data-q="goal">
+      <label class="checkbox-item">
+        <input type="checkbox" value="weight">
+        <span>Похудеть</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="health">
+        <span>Поправить здоровье</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="reset">
+        <span>Перезагрузить организм</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="energy">
+        <span>Вернуть энергию и ясность</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="curious">
+        <span>Просто интересно попробовать</span>
+      </label>
     </div>
     <div class="nav">
       <button class="btn btn-back" onclick="prevStep()">← назад</button>
-      <button class="btn btn-next" onclick="nextStep()" disabled>продолжить →</button>
+      <button class="btn btn-next" onclick="nextStep()">продолжить →</button>
     </div>
   </div>
 
-  <!-- ШАГ 3: ОПЫТ -->
+  <!-- ШАГ 3: ОПЫТ (ОДИН ВЫБОР) -->
   <div class="screen" data-step="3">
     <div class="question">Ваш опыт голодания</div>
-    <div class="question-hint">Честно — никто не оценивает.</div>
+    <div class="question-hint">Выберите максимальный опыт.</div>
     <div class="options" data-q="experience">
       <button class="option" data-val="none">Никогда не голодал</button>
       <button class="option" data-val="short">Делал интервальное (16/8 и т.п.)</button>
@@ -319,19 +373,31 @@ body {
     </div>
   </div>
 
-  <!-- ШАГ 4: СОСТОЯНИЕ -->
+  <!-- ШАГ 4: СОСТОЯНИЕ (МУЛЬТИВЫБОР) -->
   <div class="screen" data-step="4">
     <div class="question">Как вы себя чувствуете сейчас?</div>
-    <div class="question-hint">Общее самочувствие в последние недели.</div>
-    <div class="options" data-q="state">
-      <button class="option" data-val="good">Хорошо, полон сил</button>
-      <button class="option" data-val="ok">Нормально, бывают спады</button>
-      <button class="option" data-val="tired">Часто устаю, нет энергии</button>
-      <button class="option" data-val="bad">Плохо, много жалоб</button>
+    <div class="question-hint">Можно выбрать несколько вариантов.</div>
+    <div class="checkboxes" data-q="state">
+      <label class="checkbox-item">
+        <input type="checkbox" value="good">
+        <span>Хорошо, полон сил</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="ok">
+        <span>Нормально, бывают спады</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="tired">
+        <span>Часто устаю, нет энергии</span>
+      </label>
+      <label class="checkbox-item">
+        <input type="checkbox" value="bad">
+        <span>Плохо, много жалоб</span>
+      </label>
     </div>
     <div class="nav">
       <button class="btn btn-back" onclick="prevStep()">← назад</button>
-      <button class="btn btn-next" onclick="nextStep()" disabled>продолжить →</button>
+      <button class="btn btn-next" onclick="nextStep()">продолжить →</button>
     </div>
   </div>
 
@@ -416,6 +482,10 @@ body {
         По вашим ответам противопоказаний нет. Ваш ИМТ: <span id="bmi-green">—</span>.<br><br>
         [Здесь будет финальный текст с рекомендацией курса — итерация 4]
       </div>
+      <div class="verdict-actions">
+        <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303631363935375f36316339633461616164623934336230356163373039366136373835353436396435373066636362" class="btn-primary">оплатить курс — 3 900 ₽</a>
+        <a href="/" class="btn-secondary">вернуться на сайт</a>
+      </div>
     </div>
   </div>
 
@@ -427,6 +497,10 @@ body {
       <div class="verdict-text">
         У вас есть состояния, которые требуют подготовки. Ваш ИМТ: <span id="bmi-yellow">—</span>.<br><br>
         [Здесь будет финальный текст с рекомендациями — итерация 4]
+      </div>
+      <div class="verdict-actions">
+        <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303631363935375f36316339633461616164623934336230356163373039366136373835353436396435373066636362" class="btn-primary">оплатить курс — 3 900 ₽</a>
+        <a href="/" class="btn-secondary">вернуться на сайт</a>
       </div>
     </div>
   </div>
@@ -440,6 +514,10 @@ body {
         У вас есть серьёзные противопоказания. Ваш ИМТ: <span id="bmi-red">—</span>.<br><br>
         [Здесь будет финальный текст — итерация 4]
       </div>
+      <div class="verdict-actions">
+        <a href="/" class="btn-primary">вернуться на сайт</a>
+        <a href="#" class="btn-secondary">подписаться на канал</a>
+      </div>
     </div>
   </div>
 
@@ -452,9 +530,9 @@ const TOTAL_STEPS = 7;
 const answers = {
   height: null,
   weight: null,
-  goal: null,
-  experience: null,
-  state: null,
+  goal: [],         // мультивыбор
+  experience: null, // одиночный
+  state: [],        // мультивыбор
   red: [],
   yellow: []
 };
@@ -503,7 +581,6 @@ function nextStep() {
   saveState();
 
   if (currentStep === 6) {
-    // считаем вердикт и переходим на 7
     const verdict = calcVerdict();
     fillBMI();
     currentStep = 7;
@@ -528,7 +605,6 @@ function prevStep() {
 function calcVerdict() {
   if (answers.red.length > 0) return 'red';
   if (answers.yellow.length > 0) return 'yellow';
-  // ИМТ-проверка
   const bmi = calcBMI();
   if (bmi < 17) return 'red';
   if (bmi < 18.5) return 'yellow';
@@ -551,7 +627,7 @@ function fillBMI() {
   }
 }
 
-// ===== ОБРАБОТЧИКИ ВАРИАНТОВ =====
+// ===== ОБРАБОТЧИКИ ВАРИАНТОВ (одиночный выбор) =====
 document.querySelectorAll('.options').forEach(group => {
   const qName = group.dataset.q;
   group.querySelectorAll('.option').forEach(btn => {
@@ -559,7 +635,6 @@ document.querySelectorAll('.options').forEach(group => {
       group.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
       answers[qName] = btn.dataset.val;
-      // включаем кнопку "продолжить"
       const screen = btn.closest('.screen');
       const nextBtn = screen.querySelector('.btn-next');
       if (nextBtn) nextBtn.disabled = false;
@@ -568,7 +643,7 @@ document.querySelectorAll('.options').forEach(group => {
   });
 });
 
-// ===== ОБРАБОТЧИКИ ЧЕКБОКСОВ =====
+// ===== ОБРАБОТЧИКИ ЧЕКБОКСОВ (мультивыбор) =====
 document.querySelectorAll('.checkboxes').forEach(group => {
   const qName = group.dataset.q;
   group.querySelectorAll('.checkbox-item').forEach(item => {
@@ -602,7 +677,9 @@ function loadState() {
       // восстановим UI
       if (answers.height) document.getElementById('height').value = answers.height;
       if (answers.weight) document.getElementById('weight').value = answers.weight;
-      ['goal', 'experience', 'state'].forEach(q => {
+
+      // одиночный выбор
+      ['experience'].forEach(q => {
         if (answers[q]) {
           const btn = document.querySelector(`.options[data-q="${q}"] .option[data-val="${answers[q]}"]`);
           if (btn) {
@@ -612,14 +689,18 @@ function loadState() {
           }
         }
       });
-      ['red', 'yellow'].forEach(q => {
-        answers[q].forEach(val => {
-          const inp = document.querySelector(`.checkboxes[data-q="${q}"] input[value="${val}"]`);
-          if (inp) {
-            inp.checked = true;
-            inp.closest('.checkbox-item').classList.add('checked');
-          }
-        });
+
+      // мультивыбор
+      ['goal', 'state', 'red', 'yellow'].forEach(q => {
+        if (Array.isArray(answers[q])) {
+          answers[q].forEach(val => {
+            const inp = document.querySelector(`.checkboxes[data-q="${q}"] input[value="${val}"]`);
+            if (inp) {
+              inp.checked = true;
+              inp.closest('.checkbox-item').classList.add('checked');
+            }
+          });
+        }
       });
     }
     if (step && parseInt(step) >= 1 && parseInt(step) <= 6) {
