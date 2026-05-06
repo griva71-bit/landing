@@ -10,8 +10,8 @@
 <meta property="og:url" content="https://golodanie-s-ulybkoy.ru/quiz.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
-<link rel="icon" type="image/png" href="images/icon.png">
-<link rel="apple-touch-icon" href="images/icon.png">
+<link rel="icon" type="image/png" href="изображения/icon.png">
+<link rel="apple-touch-icon" href="изображения/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -40,30 +40,30 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 .q-logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700}
 
 /* MAIN */
-.q-main{padding:80px 0 80px;display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 80px)}
+.q-main{padding:64px 0 80px}
 
 /* === ЗАГОЛОВОК === */
 .q-headline{
   font-family:'Inter',sans-serif;
-  font-size:32px;
+  font-size:30px;
   font-weight:300;
   line-height:1.35;
   letter-spacing:-.01em;
   color:var(--txt);
   text-align:center;
   max-width:880px;
-  margin:0 auto 44px;
+  margin:0 auto 40px;
 }
 .q-headline .strong{color:#fff;font-weight:500}
 .q-headline .accent{color:var(--gold);font-weight:400}
 
-/* === 4 ПЛАШКИ ВДОЛЬ === */
+/* === 4 ПЛАШКИ === */
 .verdict-preview{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:12px;
   max-width:880px;
-  margin:0 auto 80px;
+  margin:0 auto 48px;
 }
 .vp-item{
   display:flex;
@@ -87,45 +87,127 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 .vp-orange{border-color:rgba(249,115,22,.28)}
 .vp-green{border-color:rgba(34,197,94,.28)}
 
-/* === БОЛЬШАЯ КНОПКА С ОВАЛОМ-НЕОНОМ === */
+/* === КАРТИНКА === */
+.diary-window{
+  position:relative;
+  width:100%;
+  max-width:880px;
+  margin:0 auto 56px;
+  filter:drop-shadow(0 30px 50px rgba(0,0,0,.6));
+}
+.diary-frame{
+  position:relative;
+  padding:14px;
+  background:linear-gradient(145deg,#1a1410 0%,#0d0a07 100%);
+  border-radius:8px;
+  box-shadow:
+    0 0 0 1px rgba(200,164,78,.35),
+    0 0 0 2px rgba(0,0,0,.6),
+    inset 2px 2px 8px rgba(255,235,180,.08),
+    inset -2px -2px 8px rgba(0,0,0,.6);
+}
+.diary-frame::before{
+  content:'';
+  position:absolute;
+  inset:8px;
+  border:1px solid rgba(200,164,78,.25);
+  border-radius:4px;
+  pointer-events:none;
+  z-index:2;
+}
+.diary-img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:3px;
+  filter:brightness(.94) contrast(1.04);
+}
+.diary-frame::after{
+  content:'';
+  position:absolute;
+  inset:14px;
+  border-radius:3px;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.4) 100%);
+  pointer-events:none;
+  z-index:1;
+}
+.diary-tag{
+  position:absolute;
+  top:-14px;
+  left:50%;
+  transform:translateX(-50%) rotate(-2deg);
+  background:var(--gold);
+  color:#0a0f1a;
+  padding:6px 16px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  border-radius:3px;
+  z-index:5;
+  box-shadow:0 4px 12px rgba(0,0,0,.5);
+}
+
+/* === КНОПКА С МОНОХРОМ-НЕОНОМ === */
 .cta-section{
   max-width:680px;
   margin:0 auto;
   text-align:center;
   position:relative;
+  padding:20px 0 0;
 }
 
 .cta-glow-wrap{
   position:relative;
   display:block;
   width:100%;
-  padding:60px 40px;
+  padding:70px 40px;
 }
 
-/* ОВАЛ СВЕЧЕНИЯ - яркий, плотный, как на референсе */
+/* МОНОХРОМ-НЕОН: фиолетово-розовый, плотный, однородный овал */
 .cta-glow-wrap::before{
   content:'';
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:108%;
-  height:200%;
+  width:95%;
+  height:160%;
   border-radius:50%;
-  background:
-    radial-gradient(ellipse 28% 70% at 5% 50%,   rgba(99,102,241,1)   0%, rgba(99,102,241,0)   55%),
-    radial-gradient(ellipse 28% 70% at 95% 50%,  rgba(236,72,153,1)   0%, rgba(236,72,153,0)   55%),
-    radial-gradient(ellipse 50% 45% at 50% 100%, rgba(234,179,8,1)    0%, rgba(234,179,8,0)    60%),
-    radial-gradient(ellipse 50% 45% at 50% 0%,   rgba(34,197,94,.95)  0%, rgba(34,197,94,0)    60%),
-    radial-gradient(ellipse 60% 60% at 50% 50%,  rgba(150,100,200,.4) 0%, rgba(150,100,200,0)  70%);
-  filter:blur(28px);
+  background:radial-gradient(ellipse 70% 60% at 50% 50%,
+    rgba(217,70,239,1) 0%,
+    rgba(168,85,247,.95) 30%,
+    rgba(139,92,246,.7) 50%,
+    rgba(139,92,246,0) 75%);
+  filter:blur(36px);
   opacity:1;
   z-index:0;
   pointer-events:none;
   transition:filter .4s ease;
 }
+
+/* второй слой — внутреннее ядро, ярче */
+.cta-glow-wrap::after{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:75%;
+  height:130%;
+  border-radius:50%;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%,
+    rgba(232,121,249,1) 0%,
+    rgba(217,70,239,.7) 40%,
+    rgba(217,70,239,0) 75%);
+  filter:blur(20px);
+  opacity:.9;
+  z-index:0;
+  pointer-events:none;
+}
+
 .cta-glow-wrap:hover::before{
-  filter:blur(36px);
+  filter:blur(44px);
 }
 
 .cta-btn{
@@ -188,17 +270,17 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 
 /* АДАПТИВ */
 @media(max-width:860px){
-  .q-main{padding:48px 0;min-height:auto}
   .q-headline{font-size:24px;margin-bottom:32px}
-  .verdict-preview{grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:56px}
+  .verdict-preview{grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:36px}
   .vp-item{font-size:13px}
+  .diary-window{margin-bottom:40px}
   .cta-glow-wrap{padding:50px 24px}
   .cta-btn{padding:24px 32px;font-size:18px}
 }
 @media(max-width:600px){
-  .q-main{padding:32px 0 60px}
+  .q-main{padding:40px 0 60px}
   .q-headline{font-size:20px;margin-bottom:24px}
-  .verdict-preview{grid-template-columns:1fr;gap:8px;margin-bottom:40px}
+  .verdict-preview{grid-template-columns:1fr;gap:8px;margin-bottom:28px}
   .cta-glow-wrap{padding:40px 16px}
   .cta-btn{padding:20px 24px;font-size:16px}
   .quiz-block,.verdict-block{padding:28px 20px}
@@ -243,6 +325,13 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         <div class="vp-item vp-green">
           <span class="vp-icon">✅</span>
           <span>Можно прямо сейчас</span>
+        </div>
+      </div>
+
+      <div class="diary-window">
+        <div class="diary-tag">Дневник врача</div>
+        <div class="diary-frame">
+          <img src="изображения/diary-window.jpg" alt="Дневник голодания" class="diary-img">
         </div>
       </div>
 
