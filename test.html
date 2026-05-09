@@ -1,1 +1,612 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ТЕСТ — Опросник + Вердикт (песочница)</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0f1a;
+  --bg2:#111827;
+  --gold:#c8a44e;
+  --gold-l:#e6c97e;
+  --gold-d:#a07c2e;
+  --txt:#f0ead6;
+  --txt2:#9ca3af;
+  --txt3:#6b7280;
+  --green:#22c55e;
+  --yellow:#eab308;
+  --red:#ef4444;
+  --border:#1e293b
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;font-size:16px;min-height:100vh}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
 
+.q-header{padding:20px 0;border-bottom:1px solid var(--border)}
+.q-header-inner{display:flex;align-items:center;justify-content:center;max-width:1180px;margin:0 auto;padding:0 24px}
+.q-logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--txt)}
+.q-sandbox-mark{margin-left:14px;font-size:11px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;border:1px solid var(--gold-d);padding:4px 10px;border-radius:20px}
+
+.q-main{padding:48px 0 80px}
+
+/* QUIZ */
+.quiz-block{display:none;max-width:680px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:48px 40px}
+.quiz-block.active{display:block}
+.quiz-progress{font-size:12px;color:var(--gold);text-align:center;margin-bottom:18px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.quiz-question{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;text-align:center;margin-bottom:10px;line-height:1.3;color:var(--txt)}
+.quiz-subq{font-size:14px;color:var(--txt3);text-align:center;margin-bottom:28px;font-weight:300}
+
+.quiz-fields{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
+.quiz-field{display:flex;flex-direction:column;gap:8px}
+.quiz-field label{font-size:13px;color:var(--txt2);letter-spacing:.02em}
+.quiz-field input{
+  background:var(--bg);
+  border:2px solid var(--border);
+  border-radius:10px;
+  padding:16px 18px;
+  color:var(--txt);
+  font-size:18px;
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  outline:none;
+  transition:border-color .2s;
+}
+.quiz-field input:focus{border-color:var(--gold)}
+
+.quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.quiz-option{
+  display:flex;align-items:center;gap:14px;
+  background:var(--bg);
+  border:2px solid var(--border);
+  border-radius:12px;
+  padding:16px 20px;
+  cursor:pointer;
+  transition:all .2s;
+  font-size:15px;
+  color:var(--txt);
+  text-align:left;
+  user-select:none;
+}
+.quiz-option:hover{border-color:rgba(200,164,78,.45);background:rgba(200,164,78,.04)}
+.quiz-option.selected{border-color:var(--gold);background:rgba(200,164,78,.1);color:var(--gold-l)}
+.quiz-option .qo-mark{
+  width:22px;height:22px;flex-shrink:0;
+  border:2px solid var(--txt3);
+  border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.quiz-option.single .qo-mark{border-radius:50%}
+.quiz-option.selected .qo-mark{border-color:var(--gold);background:var(--gold)}
+.quiz-option.selected .qo-mark::after{
+  content:'✓';color:#0a0f1a;font-size:14px;font-weight:700;line-height:1;
+}
+.quiz-option.single.selected .qo-mark::after{content:'';width:8px;height:8px;background:#0a0f1a;border-radius:50%}
+.quiz-option.disabled{opacity:.35;pointer-events:none}
+
+.quiz-counter{font-size:12px;color:var(--txt3);text-align:right;margin:-18px 0 12px;letter-spacing:.02em}
+
+.quiz-nav{display:flex;gap:10px}
+.quiz-back{
+  background:transparent;color:var(--txt3);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:14px 22px;
+  font-size:14px;cursor:pointer;
+  font-family:'Inter',sans-serif;
+  transition:all .2s;
+}
+.quiz-back:hover{color:var(--txt2);border-color:var(--txt3)}
+.quiz-next{
+  flex:1;
+  background:var(--gold);color:#0a0f1a;
+  padding:16px;border:none;
+  border-radius:10px;
+  font-weight:700;font-size:15px;
+  cursor:pointer;
+  transition:all .2s;
+  opacity:.4;pointer-events:none;
+  font-family:'Inter',sans-serif;
+  letter-spacing:.02em;
+}
+.quiz-next.ready{opacity:1;pointer-events:auto}
+.quiz-next.ready:hover{background:var(--gold-l);transform:translateY(-1px)}
+
+/* VERDICT */
+.verdict-block{display:none;max-width:680px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:56px 40px}
+.verdict-block.active{display:block}
+.verdict-icon{font-size:64px;margin-bottom:20px;line-height:1;text-align:center}
+.verdict-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;margin-bottom:24px;line-height:1.25;color:var(--txt);text-align:center}
+.verdict-text{color:var(--txt2);font-size:16px;margin-bottom:32px;line-height:1.7;text-align:left}
+.verdict-text strong{color:var(--txt);font-weight:500}
+.verdict-text h3{color:var(--txt);font-family:'Playfair Display',serif;font-size:20px;margin:24px 0 12px;font-weight:700}
+.verdict-text p{margin-bottom:14px}
+.verdict-text ul{margin:12px 0 14px 0;padding-left:22px}
+.verdict-text li{margin-bottom:8px}
+.verdict-cta-wrap{text-align:center}
+.verdict-cta{
+  display:inline-block;
+  background:var(--gold);color:#0a0f1a;
+  padding:18px 36px;
+  border-radius:12px;
+  font-weight:700;text-decoration:none;
+  font-size:16px;
+  transition:all .2s;
+  letter-spacing:.02em;
+  margin-bottom:14px;
+}
+.verdict-cta:hover{background:var(--gold-l);transform:translateY(-1px)}
+.verdict-back{
+  display:inline-block;
+  color:var(--txt3);text-decoration:none;
+  padding:14px 28px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  font-size:14px;
+  transition:all .2s;
+  cursor:pointer;
+  background:transparent;
+  font-family:'Inter',sans-serif;
+}
+.verdict-back:hover{color:var(--txt2);border-color:var(--txt3)}
+
+.v-green .verdict-icon{color:var(--green)}
+.v-yellow .verdict-icon{color:var(--yellow)}
+.v-red .verdict-icon{color:var(--red)}
+
+.disclaimer{
+  margin-top:20px;font-size:12px;color:var(--txt3);
+  font-style:italic;line-height:1.5;
+  text-align:center;
+}
+
+/* DEBUG PANEL */
+.debug-panel{
+  max-width:680px;margin:24px auto 0;
+  background:#000;border:1px dashed var(--gold-d);
+  border-radius:8px;padding:16px;
+  font-family:monospace;font-size:12px;color:var(--txt2);
+  white-space:pre-wrap;word-break:break-all;
+}
+.debug-panel-title{color:var(--gold);font-weight:700;margin-bottom:8px;font-family:'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;font-size:11px}
+
+@media(max-width:600px){
+  .q-main{padding:24px 0 60px}
+  .quiz-block,.verdict-block{padding:32px 22px}
+  .quiz-question{font-size:22px}
+  .verdict-title{font-size:24px}
+  .quiz-option{font-size:14px;padding:14px 16px}
+}
+</style>
+</head>
+<body>
+
+<header class="q-header">
+  <div class="q-header-inner">
+    <span class="q-logo-text">Голодание с улыбкой</span>
+    <span class="q-sandbox-mark">песочница / тест</span>
+  </div>
+</header>
+
+<main class="q-main">
+  <div class="container">
+
+    <!-- ============ ОПРОСНИК ============ -->
+    <section id="screen-quiz">
+
+      <!-- ШАГ 1: ИМЯ -->
+      <div class="quiz-block active" data-step="1">
+        <div class="quiz-progress">Шаг 1 из 7</div>
+        <h2 class="quiz-question">Как к вам обращаться?</h2>
+        <p class="quiz-subq">Чтобы вердикт был лично для вас</p>
+        <div class="quiz-fields">
+          <div class="quiz-field">
+            <label for="f-name">Ваше имя</label>
+            <input type="text" id="f-name" maxlength="40" placeholder="например, Анна" autocomplete="given-name">
+          </div>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-next" data-step-btn="1">Далее →</button>
+        </div>
+      </div>
+
+      <!-- ШАГ 2: ЦЕЛЬ (одиночный, 7 вариантов) -->
+      <div class="quiz-block" data-step="2">
+        <div class="quiz-progress">Шаг 2 из 7</div>
+        <h2 class="quiz-question">Главная цель голодания</h2>
+        <p class="quiz-subq">Выберите один вариант — самый важный для вас</p>
+        <div class="quiz-options" data-multi="0" data-group="goal">
+          <label class="quiz-option single" data-val="weight"><span class="qo-mark"></span><span>Сбросить вес</span></label>
+          <label class="quiz-option single" data-val="energy"><span class="qo-mark"></span><span>Вернуть энергию, силы</span></label>
+          <label class="quiz-option single" data-val="gut"><span class="qo-mark"></span><span>Поправить ЖКТ (вздутие, изжога, запоры)</span></label>
+          <label class="quiz-option single" data-val="detox"><span class="qo-mark"></span><span>Сделать «детокс», перезагрузку</span></label>
+          <label class="quiz-option single" data-val="health"><span class="qo-mark"></span><span>Улучшить показатели здоровья (давление, сахар, холестерин)</span></label>
+          <label class="quiz-option single" data-val="longevity"><span class="qo-mark"></span><span>Долголетие, профилактика</span></label>
+          <label class="quiz-option single" data-val="clarity"><span class="qo-mark"></span><span>Ясность ума, концентрация</span></label>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-back" data-step-back="2">← Назад</button>
+          <button class="quiz-next" data-step-btn="2">Далее →</button>
+        </div>
+      </div>
+
+      <!-- ШАГ 3: КРАСНЫЕ ФЛАГИ -->
+      <div class="quiz-block" data-step="3">
+        <div class="quiz-progress">Шаг 3 из 7</div>
+        <h2 class="quiz-question">Есть ли у вас что-то из этого?</h2>
+        <p class="quiz-subq">Отметьте всё, что про вас. Если ничего — выберите «ничего из этого»</p>
+        <div class="quiz-options" data-multi="1" data-group="red_flags" data-has-none="1">
+          <label class="quiz-option" data-val="diabetes1"><span class="qo-mark"></span><span>Диабет 1 типа / инсулинозависимый диабет</span></label>
+          <label class="quiz-option" data-val="onco"><span class="qo-mark"></span><span>Онкология (активная или в лечении)</span></label>
+          <label class="quiz-option" data-val="pregnancy"><span class="qo-mark"></span><span>Беременность или кормление грудью</span></label>
+          <label class="quiz-option" data-val="underweight"><span class="qo-mark"></span><span>Дефицит веса, истощение</span></label>
+          <label class="quiz-option" data-val="eating_disorder"><span class="qo-mark"></span><span>Расстройство пищевого поведения (анорексия, булимия)</span></label>
+          <label class="quiz-option" data-val="heart"><span class="qo-mark"></span><span>Серьёзные проблемы с сердцем (порок, аритмия, после инфаркта)</span></label>
+          <label class="quiz-option none" data-val="none"><span class="qo-mark"></span><span>Ничего из этого</span></label>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-back" data-step-back="3">← Назад</button>
+          <button class="quiz-next" data-step-btn="3">Далее →</button>
+        </div>
+      </div>
+
+      <!-- ШАГ 4: ОПЫТ (одиночный, 4 варианта) -->
+      <div class="quiz-block" data-step="4">
+        <div class="quiz-progress">Шаг 4 из 7</div>
+        <h2 class="quiz-question">Ваш опыт голодания</h2>
+        <p class="quiz-subq">Выберите один вариант</p>
+        <div class="quiz-options" data-multi="0" data-group="experience">
+          <label class="quiz-option single" data-val="never"><span class="qo-mark"></span><span>Никогда не голодал(а)</span></label>
+          <label class="quiz-option single" data-val="tried_failed"><span class="qo-mark"></span><span>Пробовал(а), но не получилось — срывался(ась)</span></label>
+          <label class="quiz-option single" data-val="few_times"><span class="qo-mark"></span><span>Голодал(а) несколько раз</span></label>
+          <label class="quiz-option single" data-val="regular"><span class="qo-mark"></span><span>Регулярно практикую</span></label>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-back" data-step-back="4">← Назад</button>
+          <button class="quiz-next" data-step-btn="4">Далее →</button>
+        </div>
+      </div>
+
+      <!-- ШАГ 5: ЖЁЛТЫЕ ФЛАГИ -->
+      <div class="quiz-block" data-step="5">
+        <div class="quiz-progress">Шаг 5 из 7</div>
+        <h2 class="quiz-question">Что-то ещё из этого?</h2>
+        <p class="quiz-subq">Это не запреты, но требует подготовки и осторожности</p>
+        <div class="quiz-options" data-multi="1" data-group="yellow_flags" data-has-none="1">
+          <label class="quiz-option" data-val="hypertension"><span class="qo-mark"></span><span>Гипертония, скачки давления</span></label>
+          <label class="quiz-option" data-val="thyroid"><span class="qo-mark"></span><span>Проблемы со щитовидкой</span></label>
+          <label class="quiz-option" data-val="gut_issues"><span class="qo-mark"></span><span>Гастрит, язва, проблемы с ЖКТ</span></label>
+          <label class="quiz-option" data-val="meds"><span class="qo-mark"></span><span>Принимаю рецептурные лекарства постоянно</span></label>
+          <label class="quiz-option" data-val="age60"><span class="qo-mark"></span><span>Мне 60+ лет</span></label>
+          <label class="quiz-option" data-val="thin"><span class="qo-mark"></span><span>Худощавое телосложение, мало запаса</span></label>
+          <label class="quiz-option" data-val="past_failures"><span class="qo-mark"></span><span>Раньше срывался(ась) на голодании</span></label>
+          <label class="quiz-option none" data-val="none"><span class="qo-mark"></span><span>Ничего из этого</span></label>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-back" data-step-back="5">← Назад</button>
+          <button class="quiz-next" data-step-btn="5">Далее →</button>
+        </div>
+      </div>
+
+      <!-- ШАГ 6: СТРАХИ (мульти, до 3) -->
+      <div class="quiz-block" data-step="6">
+        <div class="quiz-progress">Шаг 6 из 7</div>
+        <h2 class="quiz-question">Чего вы больше всего боитесь?</h2>
+        <p class="quiz-subq">Можно выбрать до 3 вариантов</p>
+        <div class="quiz-options" data-multi="1" data-group="fears" data-max="3">
+          <label class="quiz-option" data-val="hunger"><span class="qo-mark"></span><span>Не выдержать голод</span></label>
+          <label class="quiz-option" data-val="weakness"><span class="qo-mark"></span><span>Слабость, упадок сил</span></label>
+          <label class="quiz-option" data-val="dizziness"><span class="qo-mark"></span><span>Головокружение, обмороки</span></label>
+          <label class="quiz-option" data-val="harm"><span class="qo-mark"></span><span>Навредить здоровью</span></label>
+          <label class="quiz-option" data-val="muscle_loss"><span class="qo-mark"></span><span>Потерять мышцы вместо жира</span></label>
+          <label class="quiz-option" data-val="rebound"><span class="qo-mark"></span><span>Вес вернётся обратно после выхода</span></label>
+          <label class="quiz-option" data-val="breakdown"><span class="qo-mark"></span><span>Сорваться, не дойти до конца</span></label>
+          <label class="quiz-option" data-val="social"><span class="qo-mark"></span><span>Что подумают близкие, коллеги</span></label>
+          <label class="quiz-option" data-val="bad_breath"><span class="qo-mark"></span><span>Запах изо рта, неприятные ощущения</span></label>
+          <label class="quiz-option" data-val="unknown"><span class="qo-mark"></span><span>Просто страшно, не знаю чего</span></label>
+        </div>
+        <div class="quiz-counter" data-counter-for="fears">Выбрано: 0 / 3</div>
+        <div class="quiz-nav">
+          <button class="quiz-back" data-step-back="6">← Назад</button>
+          <button class="quiz-next" data-step-btn="6">Далее →</button>
+        </div>
+      </div>
+
+      <!-- ШАГ 7: ВОЗРАСТ -->
+      <div class="quiz-block" data-step="7">
+        <div class="quiz-progress">Шаг 7 из 7</div>
+        <h2 class="quiz-question">Сколько вам лет?</h2>
+        <p class="quiz-subq">Возраст важен для оценки рисков и подбора рекомендаций</p>
+        <div class="quiz-fields">
+          <div class="quiz-field">
+            <label for="f-age">Возраст, полных лет</label>
+            <input type="number" id="f-age" min="14" max="100" placeholder="например, 42" inputmode="numeric">
+          </div>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-back" data-step-back="7">← Назад</button>
+          <button class="quiz-next" data-step-btn="7">Получить вердикт →</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ ВЕРДИКТ ============ -->
+    <section id="screen-verdict" style="display:none">
+      <div class="verdict-block active" id="verdict-render">
+        <div class="verdict-icon" id="verdict-icon"></div>
+        <h2 class="verdict-title" id="verdict-title"></h2>
+        <div class="verdict-text" id="verdict-text"></div>
+        <div class="verdict-cta-wrap" id="verdict-cta-wrap"></div>
+        <p class="disclaimer">Тест носит ознакомительный характер и не заменяет очной консультации врача.</p>
+        <div style="text-align:center;margin-top:20px">
+          <button class="verdict-back" onclick="restartQuiz()">← Пройти ещё раз</button>
+        </div>
+      </div>
+
+      <!-- ОТЛАДКА: какие ответы ушли в verdicts.js -->
+      <div class="debug-panel" id="debug-panel">
+        <div class="debug-panel-title">Отладка — что ушло в verdicts.js</div>
+        <div id="debug-content"></div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ВАЖНО: verdicts.js должен лежать рядом с этим файлом в той же папке -->
+<script src="verdicts.js"></script>
+
+<script>
+// ===========================================
+// СОСТОЯНИЕ ОПРОСНИКА
+// ===========================================
+var answers = {
+  name: '',
+  goal: '',
+  red_flags: [],
+  experience: '',
+  yellow_flags: [],
+  fears: [],
+  age: 0
+};
+
+var currentStep = 1;
+
+// ===========================================
+// НАВИГАЦИЯ
+// ===========================================
+function showStep(n){
+  document.querySelectorAll('.quiz-block').forEach(function(b){b.classList.remove('active')});
+  var el = document.querySelector('.quiz-block[data-step="'+n+'"]');
+  if(el) el.classList.add('active');
+  currentStep = n;
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+function goNext(from){
+  // Валидация и сбор по шагу
+  if(from === 1){
+    var name = document.getElementById('f-name').value.trim();
+    if(!name){alert('Введите имя');return}
+    answers.name = name;
+  }
+    if(from === 2) answers.goal = collectSingle('goal');
+  if(from === 3) answers.red_flags = collectGroup('red_flags');
+  if(from === 4) answers.experience = collectSingle('experience');
+  if(from === 5) answers.yellow_flags = collectGroup('yellow_flags');
+  if(from === 6) answers.fears = collectGroup('fears');
+  if(from === 7){
+    var age = parseInt(document.getElementById('f-age').value, 10);
+    if(!age || age < 14 || age > 100){alert('Укажите возраст (14–100)');return}
+    answers.age = age;
+    renderVerdict();
+    return;
+  }
+  showStep(from + 1);
+}
+
+function goBack(from){
+  showStep(from - 1);
+}
+
+// ===========================================
+// СБОР ОТВЕТОВ
+// ===========================================
+function collectGroup(group){
+  var arr = [];
+  document.querySelectorAll('.quiz-options[data-group="'+group+'"] .quiz-option.selected').forEach(function(o){
+    arr.push(o.dataset.val);
+  });
+  // Если выбрано "ничего из этого" — возвращаем пустой массив
+  if(arr.length === 1 && arr[0] === 'none') return [];
+  return arr;
+}
+function collectSingle(group){
+  var sel = document.querySelector('.quiz-options[data-group="'+group+'"] .quiz-option.selected');
+  return sel ? sel.dataset.val : '';
+}
+
+// ===========================================
+// КЛИКИ ПО ОПЦИЯМ
+// ===========================================
+document.addEventListener('click', function(e){
+  // Кнопки навигации
+  var nextBtn = e.target.closest('.quiz-next');
+  if(nextBtn && nextBtn.dataset.stepBtn){
+    goNext(parseInt(nextBtn.dataset.stepBtn, 10));
+    return;
+  }
+  var backBtn = e.target.closest('.quiz-back');
+  if(backBtn && backBtn.dataset.stepBack){
+    goBack(parseInt(backBtn.dataset.stepBack, 10));
+    return;
+  }
+
+  // Опции
+  var opt = e.target.closest('.quiz-option');
+  if(!opt) return;
+  var group = opt.closest('.quiz-options');
+  if(!group) return;
+  var multi = group.dataset.multi === '1';
+  var hasNone = group.dataset.hasNone === '1';
+  var maxSel = parseInt(group.dataset.max || '0', 10);
+  var isNone = opt.classList.contains('none');
+
+  if(!multi){
+    group.querySelectorAll('.quiz-option').forEach(function(o){o.classList.remove('selected')});
+    opt.classList.add('selected');
+  } else {
+    if(hasNone && isNone){
+      group.querySelectorAll('.quiz-option').forEach(function(o){o.classList.remove('selected')});
+      opt.classList.add('selected');
+    } else {
+      if(hasNone){
+        var noneOpt = group.querySelector('.quiz-option.none');
+        if(noneOpt) noneOpt.classList.remove('selected');
+      }
+      // Лимит выбора
+      if(maxSel > 0 && !opt.classList.contains('selected')){
+        var current = group.querySelectorAll('.quiz-option.selected').length;
+        if(current >= maxSel) return; // не даём выбрать больше
+      }
+      opt.classList.toggle('selected');
+    }
+  }
+
+  updateNextButton(group);
+  updateCounter(group);
+});
+
+// ===========================================
+// ВАЛИДАЦИЯ КНОПКИ "ДАЛЕЕ"
+// ===========================================
+function updateNextButton(group){
+  var block = group.closest('.quiz-block');
+  var btn = block.querySelector('.quiz-next');
+  if(!btn) return;
+  var hasSelection = group.querySelectorAll('.quiz-option.selected').length > 0;
+  if(hasSelection) btn.classList.add('ready');
+  else btn.classList.remove('ready');
+}
+
+function updateCounter(group){
+  var groupName = group.dataset.group;
+  var counter = document.querySelector('.quiz-counter[data-counter-for="'+groupName+'"]');
+  if(!counter) return;
+  var maxSel = parseInt(group.dataset.max || '0', 10);
+  if(maxSel === 0) return;
+  var current = group.querySelectorAll('.quiz-option.selected:not(.none)').length;
+  counter.textContent = 'Выбрано: ' + current + ' / ' + maxSel;
+}
+
+// Шаг 1 (имя) — валидация по вводу
+document.getElementById('f-name').addEventListener('input', function(){
+  var val = this.value.trim();
+  var btn = document.querySelector('.quiz-block[data-step="1"] .quiz-next');
+  if(val.length > 0) btn.classList.add('ready');
+  else btn.classList.remove('ready');
+});
+
+// Шаг 7 (возраст) — валидация по вводу
+document.getElementById('f-age').addEventListener('input', function(){
+  var val = parseInt(this.value, 10);
+  var btn = document.querySelector('.quiz-block[data-step="7"] .quiz-next');
+  if(val && val >= 14 && val <= 100) btn.classList.add('ready');
+  else btn.classList.remove('ready');
+});
+
+// ===========================================
+// ВЫЗОВ verdicts.js И РЕНДЕР
+// ===========================================
+function renderVerdict(){
+  // Отладка — показываем что ушло
+  document.getElementById('debug-content').textContent = JSON.stringify(answers, null, 2);
+
+  // Проверяем что verdicts.js подгрузился
+  if(typeof window.getVerdict !== 'function'){
+    document.getElementById('screen-quiz').style.display = 'none';
+    document.getElementById('screen-verdict').style.display = 'block';
+    document.getElementById('verdict-icon').textContent = '⚠️';
+    document.getElementById('verdict-title').textContent = 'Ошибка загрузки verdicts.js';
+    document.getElementById('verdict-text').innerHTML = '<p>Файл <strong>verdicts.js</strong> не найден или не содержит функцию <code>getVerdict</code>. Проверь, что файл лежит в той же папке, что и test.html, и что в нём есть <code>window.getVerdict = function(answers){...}</code>.</p>';
+    return;
+  }
+
+  var result;
+  try {
+    result = window.getVerdict(answers);
+  } catch(err){
+    document.getElementById('screen-quiz').style.display = 'none';
+    document.getElementById('screen-verdict').style.display = 'block';
+    document.getElementById('verdict-icon').textContent = '⚠️';
+    document.getElementById('verdict-title').textContent = 'Ошибка в verdicts.js';
+    document.getElementById('verdict-text').innerHTML = '<p>В коде verdicts.js произошла ошибка:</p><pre style="color:#ef4444;font-size:12px;white-space:pre-wrap">'+err.message+'</pre>';
+    return;
+  }
+
+  if(!result || !result.title){
+    document.getElementById('verdict-icon').textContent = '⚠️';
+    document.getElementById('verdict-title').textContent = 'verdicts.js вернул пусто';
+    document.getElementById('verdict-text').innerHTML = '<p>Функция getVerdict не вернула объект с полями title/text/icon/color/cta.</p>';
+    document.getElementById('screen-quiz').style.display = 'none';
+    document.getElementById('screen-verdict').style.display = 'block';
+    return;
+  }
+
+  // Применяем цвет (green/yellow/red)
+  var renderEl = document.getElementById('verdict-render');
+  renderEl.classList.remove('v-green','v-yellow','v-red');
+  if(result.color) renderEl.classList.add('v-' + result.color);
+
+  // Иконка
+  document.getElementById('verdict-icon').textContent = result.icon || '';
+
+  // Заголовок
+  document.getElementById('verdict-title').textContent = result.title || '';
+
+  // Текст (HTML разрешён, потому что в verdicts.js шаблоны с <strong>, <ul>, <h3>)
+  document.getElementById('verdict-text').innerHTML = result.text || '';
+
+  // CTA
+  var ctaWrap = document.getElementById('verdict-cta-wrap');
+  if(result.cta && result.cta.text && result.cta.url){
+    ctaWrap.innerHTML = '<a href="'+result.cta.url+'" class="verdict-cta" target="_blank" rel="noopener">'+result.cta.text+'</a>';
+  } else {
+    ctaWrap.innerHTML = '';
+  }
+
+  // Показываем экран вердикта
+  document.getElementById('screen-quiz').style.display = 'none';
+  document.getElementById('screen-verdict').style.display = 'block';
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+// ===========================================
+// ПЕРЕЗАПУСК
+// ===========================================
+function restartQuiz(){
+  answers = {name:'',goal:'',red_flags:[],experience:'',yellow_flags:[],fears:[],age:0};
+  document.querySelectorAll('.quiz-option.selected').forEach(function(o){o.classList.remove('selected')});
+  document.querySelectorAll('.quiz-next').forEach(function(b){b.classList.remove('ready')});
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-age').value = '';
+  document.querySelectorAll('.quiz-counter').forEach(function(c){
+    var g = c.dataset.counterFor;
+    var grp = document.querySelector('.quiz-options[data-group="'+g+'"]');
+    if(grp){
+      var max = parseInt(grp.dataset.max || '0', 10);
+      if(max > 0) c.textContent = 'Выбрано: 0 / ' + max;
+    }
+  });
+  document.getElementById('screen-verdict').style.display = 'none';
+  document.getElementById('screen-quiz').style.display = 'block';
+  showStep(1);
+}
+</script>
+
+</body>
+</html>
