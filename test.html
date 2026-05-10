@@ -3,8 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Подходит ли вам голодание — тест за 2 минуты | Dr. Alexandrov</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Подходит ли вам голодание — тест за 2 минуты | Александров</title>
+<meta name="description" content="Не начинайте голодать, пока не пройдёте тест. Бесплатно, 2 минуты, результат сразу на экране.">
+<meta property="og:title" content="Не начинайте голодать, пока не пройдёте тест">
+<meta property="og:description" content="Один из четырёх ответов — ваш. Бесплатный тест от автора методики «Голодание с улыбкой».">
+<meta property="og:url" content="https://golodanie-s-ulybkoy.ru/test.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<link rel="icon" type="image/png" href="images/icon.png">
+<link rel="apple-touch-icon" href="images/icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@200;300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -25,16 +33,246 @@ html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;font-size:16px;min-height:100vh}
 .container{max-width:1080px;margin:0 auto;padding:0 24px}
 
+/* ============ HEADER ============ */
 .q-header{padding:20px 0;border-bottom:1px solid var(--border)}
 .q-header-inner{display:flex;align-items:center;justify-content:center;max-width:1180px;margin:0 auto;padding:0 24px}
-.q-logo-link{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--txt);transition:opacity .2s}
+.q-logo-link{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--txt);transition:opacity .2s;white-space:nowrap;flex-wrap:nowrap}
 .q-logo-link:hover{opacity:.85}
-.q-logo-anchor{font-size:22px;color:var(--gold);line-height:1}
-.q-logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--txt);letter-spacing:.01em}
+.q-logo-anchor{font-size:22px;color:var(--gold);line-height:1;flex-shrink:0}
+.q-logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--txt);letter-spacing:.01em;line-height:1.2}
+.q-logo-sep{color:var(--gold);margin:0 4px;opacity:.7}
+.q-logo-sub{font-family:'Inter',sans-serif;font-size:15px;font-weight:300;color:var(--txt2);letter-spacing:.005em}
 
+/* ============ MAIN ============ */
 .q-main{padding:48px 0 80px}
 
-/* QUIZ */
+/* ============ ТИТУЛЬНАЯ ============ */
+.q-headline{
+  font-family:'Inter',sans-serif;
+  font-size:30px;
+  font-weight:300;
+  line-height:1.35;
+  letter-spacing:-.01em;
+  color:var(--txt);
+  text-align:center;
+  max-width:880px;
+  margin:0 auto 48px;
+}
+.q-headline .strong{color:#fff;font-weight:500}
+.q-headline .accent{color:var(--gold);font-weight:400}
+
+.diary-window{
+  position:relative;
+  width:100%;
+  max-width:880px;
+  margin:0 auto 48px;
+  filter:drop-shadow(0 30px 50px rgba(0,0,0,.6));
+}
+.diary-frame{
+  position:relative;
+  padding:14px;
+  background:linear-gradient(145deg,#1a1410 0%,#0d0a07 100%);
+  border-radius:8px;
+  box-shadow:
+    0 0 0 1px rgba(200,164,78,.35),
+    0 0 0 2px rgba(0,0,0,.6),
+    inset 2px 2px 8px rgba(255,235,180,.08),
+    inset -2px -2px 8px rgba(0,0,0,.6);
+}
+.diary-frame::before{
+  content:'';
+  position:absolute;
+  inset:8px;
+  border:1px solid rgba(200,164,78,.25);
+  border-radius:4px;
+  pointer-events:none;
+  z-index:2;
+}
+.diary-img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:3px;
+  filter:brightness(.94) contrast(1.04);
+}
+.diary-frame::after{
+  content:'';
+  position:absolute;
+  inset:14px;
+  border-radius:3px;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.4) 100%);
+  pointer-events:none;
+  z-index:1;
+}
+
+.cta-section{
+  max-width:680px;
+  margin:0 auto 56px;
+  text-align:center;
+  position:relative;
+  padding:30px 0;
+}
+.cta-glow-wrap{position:relative;display:block;width:100%}
+.cta-btn{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  width:100%;
+  background:linear-gradient(180deg,#0d0d0d 0%,#050505 100%);
+  padding:32px 48px;
+  border-radius:120px;
+  text-decoration:none;
+  cursor:pointer;
+  transition:all .3s ease;
+  z-index:2;
+  box-shadow:
+    -25px -10px 60px 0 rgba(80,130,255,.85),
+    -30px 25px 70px 0 rgba(50,200,120,.55),
+    35px 0 80px 0 rgba(236,72,153,.85),
+    0 30px 70px 0 rgba(255,220,40,.7),
+    inset 0 -20px 40px -10px rgba(255,220,40,.18),
+    inset 0 0 1px 1px rgba(255,255,255,.04);
+  border:none;
+}
+.cta-btn:hover{
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:
+    -30px -12px 70px 0 rgba(80,130,255,1),
+    -35px 30px 80px 0 rgba(50,200,120,.7),
+    40px 0 90px 0 rgba(236,72,153,1),
+    0 35px 80px 0 rgba(255,220,40,.85),
+    inset 0 -22px 45px -10px rgba(255,220,40,.25),
+    inset 0 0 1px 1px rgba(255,255,255,.06);
+}
+.cta-btn::before{
+  content:'';
+  position:absolute;
+  inset:-2px;
+  border-radius:120px;
+  padding:2px;
+  background:conic-gradient(
+    from 90deg,
+    rgba(80,130,255,.6) 0%,
+    rgba(50,200,120,.5) 25%,
+    rgba(255,220,40,.7) 50%,
+    rgba(236,72,153,.6) 75%,
+    rgba(80,130,255,.6) 100%
+  );
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  pointer-events:none;
+  opacity:.7;
+  z-index:1;
+}
+.cta-btn-text{
+  font-family:'Inter',sans-serif;
+  font-size:54px;
+  font-weight:300;
+  letter-spacing:-.02em;
+  color:#FFE600;
+  text-shadow:
+    0 0 8px rgba(255,230,0,.45),
+    0 0 18px rgba(255,230,0,.28),
+    0 0 32px rgba(255,230,0,.15);
+  line-height:1;
+  position:relative;
+  z-index:3;
+}
+.cta-btn-arrow{
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#FFE600;
+  filter:
+    drop-shadow(0 0 6px rgba(255,230,0,.5))
+    drop-shadow(0 0 14px rgba(255,230,0,.25));
+  flex-shrink:0;
+  position:relative;
+  z-index:3;
+  transition:transform .3s ease;
+}
+.cta-btn-arrow svg{width:100%;height:100%}
+.cta-btn:hover .cta-btn-arrow{transform:translateX(6px)}
+
+.cta-note{color:var(--txt3);font-size:13px;margin-top:24px;font-weight:300;letter-spacing:.02em;text-align:center}
+
+.verdict-preview{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  max-width:880px;
+  margin:0 auto;
+}
+.vp-item{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  padding:14px 12px;
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  font-weight:300;
+  color:var(--txt2);
+  letter-spacing:.005em;
+  text-align:center;
+}
+.vp-item .vp-icon{font-size:16px;line-height:1;flex-shrink:0}
+.vp-red{border-color:rgba(239,68,68,.28)}
+.vp-yellow{border-color:rgba(234,179,8,.28)}
+.vp-orange{border-color:rgba(249,115,22,.28)}
+.vp-green{border-color:rgba(34,197,94,.28)}
+
+.skip-buy{
+  max-width:440px;
+  margin:32px auto 0;
+  text-align:center;
+}
+.skip-buy-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  background:transparent;
+  border:1px solid rgba(200,164,78,.5);
+  border-radius:40px;
+  padding:14px 28px;
+  color:var(--gold-l);
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  font-weight:400;
+  letter-spacing:.01em;
+  text-decoration:none;
+  transition:all .25s ease;
+  cursor:pointer;
+}
+.skip-buy-btn:hover{
+  border-color:var(--gold);
+  background:rgba(200,164,78,.06);
+  color:var(--gold-l);
+  transform:translateY(-1px);
+}
+.skip-buy-btn .skip-price{
+  color:var(--gold);
+  font-weight:600;
+}
+.skip-buy-hint{
+  color:var(--txt3);
+  font-size:12px;
+  margin-top:10px;
+  font-weight:300;
+  letter-spacing:.02em;
+}
+
+/* ============ QUIZ ============ */
 .quiz-block{display:none;max-width:680px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:48px 40px}
 .quiz-block.active{display:block}
 .quiz-progress{font-size:12px;color:var(--gold);text-align:center;margin-bottom:18px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
@@ -117,7 +355,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 .quiz-next.ready{opacity:1;pointer-events:auto}
 .quiz-next.ready:hover{background:var(--gold-l);transform:translateY(-1px)}
 
-/* VERDICT */
+/* ============ VERDICT ============ */
 .verdict-block{display:none;max-width:680px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:56px 40px}
 .verdict-block.active{display:block}
 .verdict-icon{font-size:64px;margin-bottom:20px;line-height:1;text-align:center}
@@ -165,14 +403,41 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
   text-align:center;
 }
 
+/* ============ FOOTER ============ */
+.q-footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--txt3);font-size:13px}
+.q-footer a{color:var(--txt2);text-decoration:none}
+
+/* ============ АДАПТИВ ============ */
+@media(max-width:860px){
+  .q-headline{font-size:24px;margin-bottom:36px}
+  .diary-window{margin-bottom:40px}
+  .cta-section{margin-bottom:44px}
+  .cta-btn{padding:26px 32px;gap:16px}
+  .cta-btn-text{font-size:40px}
+  .cta-btn-arrow{width:38px;height:38px}
+  .verdict-preview{grid-template-columns:repeat(2,1fr);gap:10px}
+  .vp-item{font-size:13px}
+}
 @media(max-width:600px){
-  .q-main{padding:24px 0 60px}
+  .q-main{padding:32px 0 60px}
+  .q-headline{font-size:20px;margin-bottom:28px}
+  .diary-window{margin-bottom:32px}
+  .cta-section{margin-bottom:36px;padding:20px 0}
+  .cta-btn{padding:20px 22px;gap:12px}
+  .cta-btn-text{font-size:28px}
+  .cta-btn-arrow{width:28px;height:28px}
+  .verdict-preview{grid-template-columns:1fr;gap:8px}
   .quiz-block,.verdict-block{padding:32px 22px}
   .quiz-question{font-size:22px}
   .verdict-title{font-size:24px}
   .quiz-option{font-size:14px;padding:14px 16px}
-  .q-logo-text{font-size:17px}
-  .q-logo-anchor{font-size:19px}
+  .skip-buy{margin-top:24px;max-width:100%}
+  .skip-buy-btn{font-size:13px;padding:12px 20px}
+  .q-logo-link{flex-wrap:wrap;justify-content:center;gap:6px}
+  .q-logo-text{font-size:15px}
+  .q-logo-sub{font-size:12px;width:100%;text-align:center}
+  .q-logo-sep{display:none}
+  .q-logo-anchor{font-size:18px}
 }
 </style>
 </head>
@@ -182,7 +447,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
   <div class="q-header-inner">
     <a href="https://golodanie-s-ulybkoy.ru/" class="q-logo-link" title="На главную сайта">
       <span class="q-logo-anchor">⚓</span>
-      <span class="q-logo-text">Dr. Alexandrov</span>
+      <span class="q-logo-text">Александров</span>
+      <span class="q-logo-sep">·</span>
+      <span class="q-logo-sub">Автор методики «Голодание с улыбкой»</span>
     </a>
   </div>
 </header>
@@ -190,8 +457,51 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 <main class="q-main">
   <div class="container">
 
-    <!-- ============ ОПРОСНИК ============ -->
-    <section id="screen-quiz">
+    <!-- ============ ЭКРАН 1: ТИТУЛЬНАЯ ============ -->
+    <section id="screen-start">
+
+      <p class="q-headline">
+        <span class="strong">Авторский курс</span> по 7-дневному голоданию вы получите <span class="accent">только после прохождения теста.</span> И только если вам можно.
+      </p>
+
+      <div class="diary-window">
+        <div class="diary-frame">
+          <img src="images/diary-window.jpg" alt="Дневник голодания" class="diary-img">
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <div class="cta-glow-wrap">
+          <a href="#" class="cta-btn" onclick="startQuiz();return false;">
+            <span class="cta-btn-text">пройти тест</span>
+            <span class="cta-btn-arrow">
+              <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 22h28M24 10l12 12-12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+        <p class="cta-note">Бесплатно · 2 минуты · Результат сразу на экране</p>
+      </div>
+
+      <div class="verdict-preview">
+        <div class="vp-item vp-red"><span class="vp-icon">🚫</span><span>Вам нельзя</span></div>
+        <div class="vp-item vp-yellow"><span class="vp-icon">⏳</span><span>Вам пока рано</span></div>
+        <div class="vp-item vp-orange"><span class="vp-icon">⚙️</span><span>Нужна подготовка</span></div>
+               <div class="vp-item vp-green"><span class="vp-icon">✅</span><span>Можно прямо сейчас</span></div>
+      </div>
+
+      <div class="skip-buy">
+        <a href="https://yoomoney.ru/transfer/quickpay?requestId=353637303631363935375f36316339633461616164623934336230356163373039366136373835353436396435373066636362" class="skip-buy-btn" target="_blank" rel="noopener">
+          Уже знаю что подходит — купить курс <span class="skip-price">3 900 ₽</span>
+        </a>
+        <p class="skip-buy-hint">Для тех, кто уже проходил тест или уверен в своих показателях</p>
+      </div>
+
+    </section>
+
+    <!-- ============ ЭКРАН 2: ОПРОСНИК ============ -->
+    <section id="screen-quiz" style="display:none">
 
       <!-- ШАГ 1: ИМЯ -->
       <div class="quiz-block active" data-step="1">
@@ -266,7 +576,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         </div>
       </div>
 
-      <!-- ШАГ 5: ЖЁЛТЫЕ ФЛАГИ (past_failures удалён) -->
+      <!-- ШАГ 5: ЖЁЛТЫЕ ФЛАГИ -->
       <div class="quiz-block" data-step="5">
         <div class="quiz-progress">Шаг 5 из 7</div>
         <h2 class="quiz-question">Что-то ещё из этого?</h2>
@@ -318,7 +628,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         <div class="quiz-fields">
           <div class="quiz-field">
             <label for="f-age">Возраст, полных лет</label>
-            <input type="number" id="f-age" min="40" max="100" placeholder="например, 42" inputmode="numeric">
+            <input type="number" id="f-age" min="18" max="100" placeholder="например, 42" inputmode="numeric">
           </div>
         </div>
         <div class="quiz-nav">
@@ -329,7 +639,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 
     </section>
 
-    <!-- ============ ВЕРДИКТ ============ -->
+    <!-- ============ ЭКРАН 3: ВЕРДИКТ ============ -->
     <section id="screen-verdict" style="display:none">
       <div class="verdict-block active" id="verdict-render">
         <div class="verdict-icon" id="verdict-icon"></div>
@@ -345,6 +655,12 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 
   </div>
 </main>
+
+<footer class="q-footer">
+  <div class="container">
+    © 2026 Голодание с улыбкой · <a href="https://golodanie-s-ulybkoy.ru/">На главную</a>
+  </div>
+</footer>
 
 <script src="verdicts.js"></script>
 <script>
@@ -364,7 +680,16 @@ var answers = {
 var currentStep = 1;
 
 // ===========================================
-// НАВИГАЦИЯ
+// СТАРТ КВИЗА (с титульной)
+// ===========================================
+function startQuiz(){
+  document.getElementById('screen-start').style.display = 'none';
+  document.getElementById('screen-quiz').style.display = 'block';
+  showStep(1);
+}
+
+// ===========================================
+// НАВИГАЦИЯ ПО ШАГАМ
 // ===========================================
 function showStep(n){
   document.querySelectorAll('.quiz-block').forEach(function(b){b.classList.remove('active')});
@@ -387,7 +712,7 @@ function goNext(from){
   if(from === 6) answers.fears = collectGroup('fears');
   if(from === 7){
     var age = parseInt(document.getElementById('f-age').value, 10);
-    if(!age || age < 40 || age > 100){alert('Укажите возраст (40–100)');return}
+    if(!age || age < 18 || age > 100){alert('Укажите возраст (18–100)');return}
     answers.age = age;
     renderVerdict();
     return;
@@ -416,7 +741,7 @@ function collectSingle(group){
 }
 
 // ===========================================
-// КЛИКИ ПО ОПЦИЯМ
+// КЛИКИ ПО ОПЦИЯМ И КНОПКАМ
 // ===========================================
 document.addEventListener('click', function(e){
   var nextBtn = e.target.closest('.quiz-next');
@@ -497,7 +822,7 @@ document.getElementById('f-name').addEventListener('input', function(){
 document.getElementById('f-age').addEventListener('input', function(){
   var val = parseInt(this.value, 10);
   var btn = document.querySelector('.quiz-block[data-step="7"] .quiz-next');
-  if(val && val >= 40 && val <= 100) btn.classList.add('ready');
+  if(val && val >= 18 && val <= 100) btn.classList.add('ready');
   else btn.classList.remove('ready');
 });
 
@@ -573,9 +898,10 @@ function restartQuiz(){
     }
   });
   document.getElementById('screen-verdict').style.display = 'none';
-  document.getElementById('screen-quiz').style.display = 'block';
+  document.getElementById('screen-quiz').style.display = 'none';
+  document.getElementById('screen-start').style.display = 'block';
   showStep(1);
-}
+  }
 </script>
 
 </body>
