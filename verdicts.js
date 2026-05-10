@@ -1,21 +1,16 @@
 /* ============================================================
    VERDICTS.JS — модуль вердиктов опросника
    Курс "Лечебное голодание: Заход"
-   Slawa | v2.1 | 09.05.2026
+   Slawa | v2.2 | 09.05.2026
+   
+   ИЗМЕНЕНИЯ v2.2:
+   - Добавлен PDF-бонус "Как победить свой мозг до старта"
+     во все 5 вердиктов (bonus.pdf)
    
    ИЗМЕНЕНИЯ v2.1:
    - Убран yellow flag "past_failures"
    - CTA_BUY теперь ведёт на ЮMoney (3900₽, возврат на сайт)
    - Добавлен CTA_SITE для красного вердикта
-   
-   КОНТРАКТ:
-   window.getVerdict(answers) → {
-     title:  string,
-     text:   string (HTML разрешён),
-     icon:   string (эмодзи),
-     color:  'green' | 'yellow' | 'red',
-     cta:    { text: string, url: string } | null
-   }
    ============================================================ */
 
 (function(){
@@ -45,7 +40,7 @@ const FEARS = {
   unknown:     `<p><strong>«Просто страшно».</strong> Самый честный из страхов. Это страх неизвестности — а не страх голодания как такового. Уходит он не от уговоров, а от информации: что происходит в теле по дням, что считается нормой, что — сигналом к выходу. Когда знаешь карту — страшно перестаёт быть.</p>`
 };
 
-/* ---------- 3. ЖЁЛТЫЕ МЕДБЛОКИ (past_failures удалён) ---------- */
+/* ---------- 3. ЖЁЛТЫЕ МЕДБЛОКИ ---------- */
 const YELLOW = {
   hypertension:  `<p><strong>Гипертония / скачки давления.</strong> На голодании давление обычно снижается — это плюс, но требует контроля препаратов. Перед заходом: согласовать с кардиологом коррекцию таблеток, мерить давление 2 раза в день. Гипотоникам — соль в воде по схеме из курса.</p>`,
   thyroid:       `<p><strong>Щитовидка.</strong> При гипотиреозе L-тироксин не пропускается — таблетка не калорийна, не нарушает голодание. Перед заходом: согласовать с эндокринологом, не менять дозу самостоятельно, начинать с 3 дней.</p>`,
@@ -68,6 +63,25 @@ function buildYellow(arr){
   if(!html) return '';
   return `<h3>На что обратить внимание</h3>${html}`;
 }
+
+/* ---------- 4.5. PDF-БОНУС ---------- */
+const BONUS_BUYER = `
+  <div style="background:rgba(200,164,78,.08);border:1px solid rgba(200,164,78,.3);border-radius:12px;padding:20px 22px;margin:24px 0">
+    <div style="font-size:13px;color:#c8a44e;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:600">🎁 Подарок перед стартом</div>
+    <div style="color:#f0ead6;font-weight:500;margin-bottom:6px">PDF «Как победить свой мозг до старта»</div>
+    <div style="color:#9ca3af;font-size:14px;margin-bottom:12px">Прочтите перед началом голодания — это не про технику, а про то, как ваш мозг будет вас саботировать первые 2-3 дня и что с этим делать. Бесплатно, без регистрации.</div>
+    <a href="/bonus.pdf" target="_blank" rel="noopener" style="display:inline-block;color:#c8a44e;text-decoration:none;border-bottom:1px dashed #c8a44e;font-size:14px;font-weight:500">Скачать памятку →</a>
+  </div>
+`;
+
+const BONUS_RED = `
+  <div style="background:rgba(200,164,78,.08);border:1px solid rgba(200,164,78,.3);border-radius:12px;padding:20px 22px;margin:24px 0">
+    <div style="font-size:13px;color:#c8a44e;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:600">🎁 Подарок от автора</div>
+    <div style="color:#f0ead6;font-weight:500;margin-bottom:6px">PDF «Как победить свой мозг до старта»</div>
+    <div style="color:#9ca3af;font-size:14px;margin-bottom:12px">Полезный материал о психологии голодания — как мозг сопротивляется и что с этим делать. Может пригодиться, когда подойдёте к вопросу осознанно. Бесплатно.</div>
+    <a href="/bonus.pdf" target="_blank" rel="noopener" style="display:inline-block;color:#c8a44e;text-decoration:none;border-bottom:1px dashed #c8a44e;font-size:14px;font-weight:500">Скачать памятку →</a>
+  </div>
+`;
 
 /* ---------- 5. CTA ---------- */
 const CTA_BUY = {
@@ -97,6 +111,7 @@ function vRed(a){
         <li><strong>Попробуйте мягкие практики.</strong> Интервальное голодание 14:10 или 16:8, разгрузочные дни — у них нет противопоказаний длительного полного голодания.</li>
       </ul>
       <p>Если ситуация изменится — приходите снова, пройдём опросник заново. А пока вы можете изучить материалы о методе на сайте — это бесплатно и полезно для общего понимания.</p>
+      ${BONUS_RED}
     `,
     cta: CTA_SITE
   };
@@ -129,6 +144,7 @@ function vGreenBeginner(a){
         <li>Разбор страхов и точек срыва</li>
         <li>Чек-листы, дневник, шаблоны</li>
       </ul>
+      ${BONUS_BUYER}
     `,
     cta: CTA_BUY
   };
@@ -153,6 +169,7 @@ function vGreenExperienced(a){
       </ul>
       <p>Плюс редкие темы: анализы до/после, женский цикл, тренировки, плато, выход на сухое.</p>
       ${buildFears(a.fears)}
+      ${BONUS_BUYER}
     `,
     cta: CTA_BUY
   };
@@ -173,6 +190,7 @@ function vGreenExperiencedMed(a){
       <p><strong>${g.proto}</strong></p>
       ${buildFears(a.fears)}
       <p><strong>Перед заходом — обязательно:</strong> согласовать голодание с лечащим врачом. Курс даёт схему, но не заменяет очного контроля при хроническом состоянии.</p>
+      ${BONUS_BUYER}
     `,
     cta: CTA_BUY
   };
@@ -198,6 +216,7 @@ function vYellow(a){
       <p>В вашем случае — длинная игра. Не пытаться достичь всего за один заход, а выстроить регулярную практику. <strong>${g.proto}</strong> — но начинать с минимума.</p>
       ${buildFears(a.fears)}
       <p><strong>Важно:</strong> курс не заменяет врача. Перед заходом — обязательная консультация. Финальное «зелёный свет» должен дать врач.</p>
+      ${BONUS_BUYER}
     `,
     cta: CTA_BUY
   };
@@ -208,7 +227,7 @@ function getVerdict(a){
   if(!a || typeof a !== 'object'){
     return { icon:'⚠️', color:'red', title:'Ошибка', text:'<p>Ответы не получены.</p>', cta:null };
   }
-  if(!a.name || !a.name.trim()) a.name = 'Друг';
+   if(!a.name || !a.name.trim()) a.name = 'Друг';
   a.fears        = a.fears || [];
   a.yellow_flags = a.yellow_flags || [];
   a.red_flags    = a.red_flags || [];
