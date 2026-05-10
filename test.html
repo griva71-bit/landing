@@ -318,7 +318,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         <div class="quiz-fields">
           <div class="quiz-field">
             <label for="f-age">Возраст, полных лет</label>
-            <input type="number" id="f-age" min="14" max="100" placeholder="например, 42" inputmode="numeric">
+            <input type="number" id="f-age" min="40" max="100" placeholder="например, 42" inputmode="numeric">
           </div>
         </div>
         <div class="quiz-nav">
@@ -387,7 +387,7 @@ function goNext(from){
   if(from === 6) answers.fears = collectGroup('fears');
   if(from === 7){
     var age = parseInt(document.getElementById('f-age').value, 10);
-    if(!age || age < 14 || age > 100){alert('Укажите возраст (14–100)');return}
+    if(!age || age < 40 || age > 100){alert('Укажите возраст (40–100)');return}
     answers.age = age;
     renderVerdict();
     return;
@@ -497,7 +497,7 @@ document.getElementById('f-name').addEventListener('input', function(){
 document.getElementById('f-age').addEventListener('input', function(){
   var val = parseInt(this.value, 10);
   var btn = document.querySelector('.quiz-block[data-step="7"] .quiz-next');
-  if(val && val >= 14 && val <= 100) btn.classList.add('ready');
+  if(val && val >= 40 && val <= 100) btn.classList.add('ready');
   else btn.classList.remove('ready');
 });
 
