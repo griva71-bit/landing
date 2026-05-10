@@ -1,16 +1,14 @@
 /* ============================================================
    VERDICTS.JS — модуль вердиктов опросника
    Курс "Лечебное голодание: Заход"
-   Slawa | v2.2 | 09.05.2026
+   Slawa | v2.3 | 09.05.2026
+   
+   ИЗМЕНЕНИЯ v2.3:
+   - Бонус заменён с PDF на HTML-страницу /bonus.html
+   - Текст "Скачать памятку" → "Открыть памятку"
    
    ИЗМЕНЕНИЯ v2.2:
-   - Добавлен PDF-бонус "Как победить свой мозг до старта"
-     во все 5 вердиктов (bonus.pdf)
-   
-   ИЗМЕНЕНИЯ v2.1:
-   - Убран yellow flag "past_failures"
-   - CTA_BUY теперь ведёт на ЮMoney (3900₽, возврат на сайт)
-   - Добавлен CTA_SITE для красного вердикта
+   - Добавлен бонус-блок во все 5 вердиктов
    ============================================================ */
 
 (function(){
@@ -64,22 +62,22 @@ function buildYellow(arr){
   return `<h3>На что обратить внимание</h3>${html}`;
 }
 
-/* ---------- 4.5. PDF-БОНУС ---------- */
+/* ---------- 4.5. БОНУС-ПАМЯТКА ---------- */
 const BONUS_BUYER = `
   <div style="background:rgba(200,164,78,.08);border:1px solid rgba(200,164,78,.3);border-radius:12px;padding:20px 22px;margin:24px 0">
     <div style="font-size:13px;color:#c8a44e;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:600">🎁 Подарок перед стартом</div>
-    <div style="color:#f0ead6;font-weight:500;margin-bottom:6px">PDF «Как победить свой мозг до старта»</div>
-    <div style="color:#9ca3af;font-size:14px;margin-bottom:12px">Прочтите перед началом голодания — это не про технику, а про то, как ваш мозг будет вас саботировать первые 2-3 дня и что с этим делать. Бесплатно, без регистрации.</div>
-    <a href="/bonus.pdf" target="_blank" rel="noopener" style="display:inline-block;color:#c8a44e;text-decoration:none;border-bottom:1px dashed #c8a44e;font-size:14px;font-weight:500">Скачать памятку →</a>
+    <div style="color:#f0ead6;font-weight:500;margin-bottom:6px">Памятка «Как победить свой мозг до старта»</div>
+    <div style="color:#9ca3af;font-size:14px;margin-bottom:12px">Прочтите перед началом голодания — это не про технику, а про то, как ваш мозг будет вас саботировать первые 2–3 дня и что с этим делать.</div>
+    <a href="/bonus.html" target="_blank" rel="noopener" style="display:inline-block;color:#c8a44e;text-decoration:none;border-bottom:1px dashed #c8a44e;font-size:14px;font-weight:500">Открыть памятку →</a>
   </div>
 `;
 
 const BONUS_RED = `
   <div style="background:rgba(200,164,78,.08);border:1px solid rgba(200,164,78,.3);border-radius:12px;padding:20px 22px;margin:24px 0">
     <div style="font-size:13px;color:#c8a44e;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:600">🎁 Подарок от автора</div>
-    <div style="color:#f0ead6;font-weight:500;margin-bottom:6px">PDF «Как победить свой мозг до старта»</div>
-    <div style="color:#9ca3af;font-size:14px;margin-bottom:12px">Полезный материал о психологии голодания — как мозг сопротивляется и что с этим делать. Может пригодиться, когда подойдёте к вопросу осознанно. Бесплатно.</div>
-    <a href="/bonus.pdf" target="_blank" rel="noopener" style="display:inline-block;color:#c8a44e;text-decoration:none;border-bottom:1px dashed #c8a44e;font-size:14px;font-weight:500">Скачать памятку →</a>
+    <div style="color:#f0ead6;font-weight:500;margin-bottom:6px">Памятка «Как победить свой мозг до старта»</div>
+    <div style="color:#9ca3af;font-size:14px;margin-bottom:12px">Полезный материал о психологии голодания — как мозг сопротивляется и что с этим делать. Может пригодиться, когда подойдёте к вопросу осознанно.</div>
+    <a href="/bonus.html" target="_blank" rel="noopener" style="display:inline-block;color:#c8a44e;text-decoration:none;border-bottom:1px dashed #c8a44e;font-size:14px;font-weight:500">Открыть памятку →</a>
   </div>
 `;
 
@@ -203,11 +201,7 @@ function vYellow(a){
     color: 'yellow',
     title: `${a.name}, вам можно — но осторожно и не сразу`,
     text: `
-      <p>У вас сочетание: первый раз в голодании + есть состояние, требующее внимания. Это не запрет — это сигнал, что заходить надо медленнее и с подготовкой, чем человеку без таких вводных.</p>
-      ${buildYellow(a.yellow_flags)}
-      <h3>Что я рекомендую</h3>
-      <ul>
-        <li><strong>Сначала — к врачу.</strong> До захода. Согласовать возможность, скорректировать препараты при необходимости.</li>
+      <p>У вас сочетаниеорректировать препараты при необходимости.</li>
         <li><strong>Короткий протокол.</strong> Не 5–7 дней, а 3 дня для первого раза.</li>
         <li><strong>Не в одиночку.</strong> С вашими вводными первый заход в одиночку — рискованно. Лучше в потоке курса/клуба.</li>
       </ul>
@@ -227,7 +221,7 @@ function getVerdict(a){
   if(!a || typeof a !== 'object'){
     return { icon:'⚠️', color:'red', title:'Ошибка', text:'<p>Ответы не получены.</p>', cta:null };
   }
-   if(!a.name || !a.name.trim()) a.name = 'Друг';
+  if(!a.name || !a.name.trim()) a.name = 'Друг';
   a.fears        = a.fears || [];
   a.yellow_flags = a.yellow_flags || [];
   a.red_flags    = a.red_flags || [];
@@ -240,7 +234,7 @@ function getVerdict(a){
   if(!isExperienced && hasYellow) return vYellow(a);
   if(isExperienced && hasYellow)  return vGreenExperiencedMed(a);
   if(isExperienced)               return vGreenExperienced(a);
-  return vGreenBeginner(a);
+   return vGreenBeginner(a);
 }
 
 window.getVerdict = getVerdict;
