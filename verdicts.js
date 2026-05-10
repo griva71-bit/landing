@@ -72,7 +72,7 @@ function buildYellow(arr){
 /* ---------- 5. CTA ---------- */
 const CTA_BUY = {
   text: "Перейти к оплате — 3 900 ₽",
-  url:  "https://yoomoney.ru/quickpay/confirm?receiver=4100118420031768&quickpay-form=button&paymentType=AC&sum=3900&label=quiz-zakhod&successURL=https%3A%2F%2Fgolodanie-s-ulybkoy.ru%2F&targets=Курс+Лечебное+голодание+Заход"
+  url:  "https://yoomoney.ru/quickpay/confirm?receiver=4100118420031768&quickpay-form=button&paymentType=AC&sum=3900&label=quiz-zakhod&successURL=https%3A%2F%2Fgolodanie-s-ulybkoy.ru%2Fsuccess&targets=Курс+Лечебное+голодание+Заход"
 };
 const CTA_SITE = {
   text: "Перейти на сайт для изучения материала",
