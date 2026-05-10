@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ТЕСТ — Опросник + Вердикт (песочница)</title>
+<title>Подходит ли вам голодание — тест за 2 минуты | Dr. Alexandrov</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -27,8 +27,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 
 .q-header{padding:20px 0;border-bottom:1px solid var(--border)}
 .q-header-inner{display:flex;align-items:center;justify-content:center;max-width:1180px;margin:0 auto;padding:0 24px}
-.q-logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--txt)}
-.q-sandbox-mark{margin-left:14px;font-size:11px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;border:1px solid var(--gold-d);padding:4px 10px;border-radius:20px}
+.q-logo-link{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--txt);transition:opacity .2s}
+.q-logo-link:hover{opacity:.85}
+.q-logo-anchor{font-size:22px;color:var(--gold);line-height:1}
+.q-logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--txt);letter-spacing:.01em}
 
 .q-main{padding:48px 0 80px}
 
@@ -163,22 +165,14 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
   text-align:center;
 }
 
-/* DEBUG PANEL */
-.debug-panel{
-  max-width:680px;margin:24px auto 0;
-  background:#000;border:1px dashed var(--gold-d);
-  border-radius:8px;padding:16px;
-  font-family:monospace;font-size:12px;color:var(--txt2);
-  white-space:pre-wrap;word-break:break-all;
-}
-.debug-panel-title{color:var(--gold);font-weight:700;margin-bottom:8px;font-family:'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;font-size:11px}
-
 @media(max-width:600px){
   .q-main{padding:24px 0 60px}
   .quiz-block,.verdict-block{padding:32px 22px}
   .quiz-question{font-size:22px}
   .verdict-title{font-size:24px}
   .quiz-option{font-size:14px;padding:14px 16px}
+  .q-logo-text{font-size:17px}
+  .q-logo-anchor{font-size:19px}
 }
 </style>
 </head>
@@ -186,8 +180,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
 
 <header class="q-header">
   <div class="q-header-inner">
-    <span class="q-logo-text">Голодание с улыбкой</span>
-    <span class="q-sandbox-mark">песочница / тест</span>
+    <a href="https://golodanie-s-ulybkoy.ru/" class="q-logo-link" title="На главную сайта">
+      <span class="q-logo-anchor">⚓</span>
+      <span class="q-logo-text">Dr. Alexandrov</span>
+    </a>
   </div>
 </header>
 
@@ -213,7 +209,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         </div>
       </div>
 
-      <!-- ШАГ 2: ЦЕЛЬ (одиночный, 7 вариантов) -->
+      <!-- ШАГ 2: ЦЕЛЬ -->
       <div class="quiz-block" data-step="2">
         <div class="quiz-progress">Шаг 2 из 7</div>
         <h2 class="quiz-question">Главная цель голодания</h2>
@@ -253,7 +249,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         </div>
       </div>
 
-      <!-- ШАГ 4: ОПЫТ (одиночный, 4 варианта) -->
+      <!-- ШАГ 4: ОПЫТ -->
       <div class="quiz-block" data-step="4">
         <div class="quiz-progress">Шаг 4 из 7</div>
         <h2 class="quiz-question">Ваш опыт голодания</h2>
@@ -270,7 +266,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         </div>
       </div>
 
-      <!-- ШАГ 5: ЖЁЛТЫЕ ФЛАГИ -->
+      <!-- ШАГ 5: ЖЁЛТЫЕ ФЛАГИ (past_failures удалён) -->
       <div class="quiz-block" data-step="5">
         <div class="quiz-progress">Шаг 5 из 7</div>
         <h2 class="quiz-question">Что-то ещё из этого?</h2>
@@ -282,7 +278,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
           <label class="quiz-option" data-val="meds"><span class="qo-mark"></span><span>Принимаю рецептурные лекарства постоянно</span></label>
           <label class="quiz-option" data-val="age60"><span class="qo-mark"></span><span>Мне 60+ лет</span></label>
           <label class="quiz-option" data-val="thin"><span class="qo-mark"></span><span>Худощавое телосложение, мало запаса</span></label>
-          <label class="quiz-option" data-val="past_failures"><span class="qo-mark"></span><span>Раньше срывался(ась) на голодании</span></label>
           <label class="quiz-option none" data-val="none"><span class="qo-mark"></span><span>Ничего из этого</span></label>
         </div>
         <div class="quiz-nav">
@@ -291,7 +286,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         </div>
       </div>
 
-      <!-- ШАГ 6: СТРАХИ (мульти, до 3) -->
+      <!-- ШАГ 6: СТРАХИ -->
       <div class="quiz-block" data-step="6">
         <div class="quiz-progress">Шаг 6 из 7</div>
         <h2 class="quiz-question">Чего вы больше всего боитесь?</h2>
@@ -346,20 +341,12 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
           <button class="verdict-back" onclick="restartQuiz()">← Пройти ещё раз</button>
         </div>
       </div>
-
-      <!-- ОТЛАДКА: какие ответы ушли в verdicts.js -->
-      <div class="debug-panel" id="debug-panel">
-        <div class="debug-panel-title">Отладка — что ушло в verdicts.js</div>
-        <div id="debug-content"></div>
-      </div>
     </section>
 
   </div>
 </main>
 
-<!-- ВАЖНО: verdicts.js должен лежать рядом с этим файлом в той же папке -->
 <script src="verdicts.js"></script>
-
 <script>
 // ===========================================
 // СОСТОЯНИЕ ОПРОСНИКА
@@ -388,13 +375,12 @@ function showStep(n){
 }
 
 function goNext(from){
-  // Валидация и сбор по шагу
   if(from === 1){
     var name = document.getElementById('f-name').value.trim();
     if(!name){alert('Введите имя');return}
     answers.name = name;
   }
-    if(from === 2) answers.goal = collectSingle('goal');
+  if(from === 2) answers.goal = collectSingle('goal');
   if(from === 3) answers.red_flags = collectGroup('red_flags');
   if(from === 4) answers.experience = collectSingle('experience');
   if(from === 5) answers.yellow_flags = collectGroup('yellow_flags');
@@ -421,7 +407,6 @@ function collectGroup(group){
   document.querySelectorAll('.quiz-options[data-group="'+group+'"] .quiz-option.selected').forEach(function(o){
     arr.push(o.dataset.val);
   });
-  // Если выбрано "ничего из этого" — возвращаем пустой массив
   if(arr.length === 1 && arr[0] === 'none') return [];
   return arr;
 }
@@ -434,7 +419,6 @@ function collectSingle(group){
 // КЛИКИ ПО ОПЦИЯМ
 // ===========================================
 document.addEventListener('click', function(e){
-  // Кнопки навигации
   var nextBtn = e.target.closest('.quiz-next');
   if(nextBtn && nextBtn.dataset.stepBtn){
     goNext(parseInt(nextBtn.dataset.stepBtn, 10));
@@ -446,7 +430,6 @@ document.addEventListener('click', function(e){
     return;
   }
 
-  // Опции
   var opt = e.target.closest('.quiz-option');
   if(!opt) return;
   var group = opt.closest('.quiz-options');
@@ -468,10 +451,9 @@ document.addEventListener('click', function(e){
         var noneOpt = group.querySelector('.quiz-option.none');
         if(noneOpt) noneOpt.classList.remove('selected');
       }
-      // Лимит выбора
       if(maxSel > 0 && !opt.classList.contains('selected')){
         var current = group.querySelectorAll('.quiz-option.selected').length;
-        if(current >= maxSel) return; // не даём выбрать больше
+        if(current >= maxSel) return;
       }
       opt.classList.toggle('selected');
     }
@@ -503,7 +485,7 @@ function updateCounter(group){
   counter.textContent = 'Выбрано: ' + current + ' / ' + maxSel;
 }
 
-// Шаг 1 (имя) — валидация по вводу
+// Шаг 1 (имя)
 document.getElementById('f-name').addEventListener('input', function(){
   var val = this.value.trim();
   var btn = document.querySelector('.quiz-block[data-step="1"] .quiz-next');
@@ -511,7 +493,7 @@ document.getElementById('f-name').addEventListener('input', function(){
   else btn.classList.remove('ready');
 });
 
-// Шаг 7 (возраст) — валидация по вводу
+// Шаг 7 (возраст)
 document.getElementById('f-age').addEventListener('input', function(){
   var val = parseInt(this.value, 10);
   var btn = document.querySelector('.quiz-block[data-step="7"] .quiz-next');
@@ -523,16 +505,12 @@ document.getElementById('f-age').addEventListener('input', function(){
 // ВЫЗОВ verdicts.js И РЕНДЕР
 // ===========================================
 function renderVerdict(){
-  // Отладка — показываем что ушло
-  document.getElementById('debug-content').textContent = JSON.stringify(answers, null, 2);
-
-  // Проверяем что verdicts.js подгрузился
   if(typeof window.getVerdict !== 'function'){
     document.getElementById('screen-quiz').style.display = 'none';
     document.getElementById('screen-verdict').style.display = 'block';
     document.getElementById('verdict-icon').textContent = '⚠️';
     document.getElementById('verdict-title').textContent = 'Ошибка загрузки verdicts.js';
-    document.getElementById('verdict-text').innerHTML = '<p>Файл <strong>verdicts.js</strong> не найден или не содержит функцию <code>getVerdict</code>. Проверь, что файл лежит в той же папке, что и test.html, и что в нём есть <code>window.getVerdict = function(answers){...}</code>.</p>';
+    document.getElementById('verdict-text').innerHTML = '<p>Файл <strong>verdicts.js</strong> не найден или не содержит функцию <code>getVerdict</code>.</p>';
     return;
   }
 
@@ -551,35 +529,27 @@ function renderVerdict(){
   if(!result || !result.title){
     document.getElementById('verdict-icon').textContent = '⚠️';
     document.getElementById('verdict-title').textContent = 'verdicts.js вернул пусто';
-    document.getElementById('verdict-text').innerHTML = '<p>Функция getVerdict не вернула объект с полями title/text/icon/color/cta.</p>';
+    document.getElementById('verdict-text').innerHTML = '<p>Функция getVerdict не вернула объект.</p>';
     document.getElementById('screen-quiz').style.display = 'none';
     document.getElementById('screen-verdict').style.display = 'block';
     return;
   }
 
-  // Применяем цвет (green/yellow/red)
   var renderEl = document.getElementById('verdict-render');
   renderEl.classList.remove('v-green','v-yellow','v-red');
   if(result.color) renderEl.classList.add('v-' + result.color);
 
-  // Иконка
   document.getElementById('verdict-icon').textContent = result.icon || '';
-
-  // Заголовок
   document.getElementById('verdict-title').textContent = result.title || '';
-
-  // Текст (HTML разрешён, потому что в verdicts.js шаблоны с <strong>, <ul>, <h3>)
   document.getElementById('verdict-text').innerHTML = result.text || '';
 
-  // CTA
   var ctaWrap = document.getElementById('verdict-cta-wrap');
   if(result.cta && result.cta.text && result.cta.url){
-    ctaWrap.innerHTML = '<a href="'+result.cta.url+'" class="verdict-cta" target="_blank" rel="noopener">'+result.cta.text+'</a>';
+    ctaWrap.innerHTML = '<a href="'+result.cta.url+'" class="verdict-cta" rel="noopener">'+result.cta.text+'</a>';
   } else {
     ctaWrap.innerHTML = '';
   }
 
-  // Показываем экран вердикта
   document.getElementById('screen-quiz').style.display = 'none';
   document.getElementById('screen-verdict').style.display = 'block';
   window.scrollTo({top:0,behavior:'instant'});
