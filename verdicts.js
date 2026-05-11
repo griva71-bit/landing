@@ -71,11 +71,7 @@ const AFTER_CTA_BUYER = `
   <div style="text-align:center;margin:14px 0 0">
     <div style="color:#c8a44e;font-size:14px;font-weight:500">🎁 После оплаты — бонус: памятка «Как победить свой мозг до старта»</div>
   </div>
-  
-  <div style="text-align:center;margin:18px 0 0;color:#888;font-size:13px;font-style:italic">
-    Тест носит ознакомительный характер и не заменяет очной консультации врача.
-  </div>
-  
+    
   <div style="height:1px;background:rgba(255,255,255,.08);margin:32px auto;max-width:200px"></div>
   
   <div style="text-align:center;margin:24px 0">
