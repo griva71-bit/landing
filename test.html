@@ -646,7 +646,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         <h2 class="verdict-title" id="verdict-title"></h2>
         <div class="verdict-text" id="verdict-text"></div>
         <div class="verdict-cta-wrap" id="verdict-cta-wrap"></div>
-        <p class="disclaimer">Тест носит ознакомительный характер и не заменяет очной консультации врача.</p>
+<div id="verdict-after-cta"></div>
+<p class="disclaimer">Тест носит ознакомительный характер и не заменяет очной консультации врача.</p>
         <div style="text-align:center;margin-top:20px">
           <button class="verdict-back" onclick="restartQuiz()">← Пройти ещё раз</button>
         </div>
@@ -867,12 +868,21 @@ function renderVerdict(){
   document.getElementById('verdict-icon').textContent = result.icon || '';
   document.getElementById('verdict-title').textContent = result.title || '';
   document.getElementById('verdict-text').innerHTML = result.text || '';
-
   var ctaWrap = document.getElementById('verdict-cta-wrap');
   if(result.cta && result.cta.text && result.cta.url){
     ctaWrap.innerHTML = '<a href="'+result.cta.url+'" class="verdict-cta" rel="noopener">'+result.cta.text+'</a>';
   } else {
     ctaWrap.innerHTML = '';
+  }
+
+  var afterCtaWrap = document.getElementById('verdict-after-cta');
+  if(afterCtaWrap){
+    afterCtaWrap.innerHTML = result.afterCta || '';
+  }
+
+  var afterCtaWrap = document.getElementById('verdict-after-cta');
+  if(afterCtaWrap){
+    afterCtaWrap.innerHTML = result.afterCta || '';
   }
 
   document.getElementById('screen-quiz').style.display = 'none';
