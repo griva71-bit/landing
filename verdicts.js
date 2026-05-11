@@ -1,14 +1,16 @@
 /* ============================================================
    VERDICTS.JS — модуль вердиктов опросника
    Курс "Лечебное голодание: Заход"
-   Slawa | v2.3 | 09.05.2026
+   Slawa | v2.4 | 11.05.2026
+   
+   ИЗМЕНЕНИЯ v2.4:
+   - Бонус-блок вынесен из text в afterCta (рендерится ПОСЛЕ кнопки)
+   - Добавлен fallback "забрать памятку отдельно" для несогласных
+   - Структура: текст → кнопка → тизер бонуса → дисклеймер → fallback
+   - Исправлен баг в vYellow (обрезанный текст)
    
    ИЗМЕНЕНИЯ v2.3:
    - Бонус заменён с PDF на HTML-страницу /bonus.html
-   - Текст "Скачать памятку" → "Открыть памятку"
-   
-   ИЗМЕНЕНИЯ v2.2:
-   - Добавлен бонус-блок во все 5 вердиктов
    ============================================================ */
 
 (function(){
@@ -62,22 +64,33 @@ function buildYellow(arr){
   return `<h3>На что обратить внимание</h3>${html}`;
 }
 
-/* ---------- 4.5. БОНУС-ПАМЯТКА ---------- */
-const BONUS_BUYER = `
-  <div style="background:rgba(200,164,78,.08);border:1px solid rgba(200,164,78,.3);border-radius:12px;padding:20px 22px;margin:24px 0">
-    <div style="font-size:13px;color:#c8a44e;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:600">🎁 Подарок перед стартом</div>
-    <div style="color:#f0ead6;font-weight:500;margin-bottom:6px">Памятка «Как победить свой мозг до старта»</div>
-    <div style="color:#9ca3af;font-size:14px;margin-bottom:12px">Прочтите перед началом голодания — это не про технику, а про то, как ваш мозг будет вас саботировать первые 2–3 дня и что с этим делать.</div>
-    <a href="/bonus.html" target="_blank" rel="noopener" style="display:inline-block;color:#c8a44e;text-decoration:none;border-bottom:1px dashed #c8a44e;font-size:14px;font-weight:500">Открыть памятку →</a>
+/* ---------- 4.5. БЛОКИ ПОСЛЕ КНОПКИ ---------- */
+
+// Для покупателей (зелёные и жёлтый): тизер бонуса под кнопкой + дисклеймер + fallback
+const AFTER_CTA_BUYER = `
+  <div style="text-align:center;margin:14px 0 0">
+    <div style="color:#c8a44e;font-size:14px;font-weight:500">🎁 После оплаты — бонус: памятка «Как победить свой мозг до старта»</div>
+  </div>
+  
+  <div style="text-align:center;margin:18px 0 0;color:#888;font-size:13px;font-style:italic">
+    Тест носит ознакомительный характер и не заменяет очной консультации врача.
+  </div>
+  
+  <div style="height:1px;background:rgba(255,255,255,.08);margin:32px auto;max-width:200px"></div>
+  
+  <div style="text-align:center;margin:24px 0">
+    <div style="color:#888;font-size:14px;margin-bottom:8px">Не готовы покупать прямо сейчас?</div>
+    <a href="/bonus.html" target="_blank" rel="noopener" style="color:#888;text-decoration:underline;text-decoration-style:dotted;font-size:14px">Забрать памятку «Как победить свой мозг до старта» отдельно →</a>
   </div>
 `;
 
-const BONUS_RED = `
-  <div style="background:rgba(200,164,78,.08);border:1px solid rgba(200,164,78,.3);border-radius:12px;padding:20px 22px;margin:24px 0">
-    <div style="font-size:13px;color:#c8a44e;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:600">🎁 Подарок от автора</div>
-    <div style="color:#f0ead6;font-weight:500;margin-bottom:6px">Памятка «Как победить свой мозг до старта»</div>
-    <div style="color:#9ca3af;font-size:14px;margin-bottom:12px">Полезный материал о психологии голодания — как мозг сопротивляется и что с этим делать. Может пригодиться, когда подойдёте к вопросу осознанно.</div>
-    <a href="/bonus.html" target="_blank" rel="noopener" style="display:inline-block;color:#c8a44e;text-decoration:none;border-bottom:1px dashed #c8a44e;font-size:14px;font-weight:500">Открыть памятку →</a>
+// Для красного: только мягкая ссылка на памятку (продавать не надо)
+const AFTER_CTA_RED = `
+  <div style="height:1px;background:rgba(255,255,255,.08);margin:32px auto;max-width:200px"></div>
+  
+  <div style="text-align:center;margin:24px 0">
+    <div style="color:#888;font-size:14px;margin-bottom:8px">Подарок от автора — может пригодиться позже:</div>
+    <a href="/bonus.html" target="_blank" rel="noopener" style="color:#c8a44e;text-decoration:underline;text-decoration-style:dotted;font-size:14px">Памятка «Как победить свой мозг до старта» →</a>
   </div>
 `;
 
@@ -90,7 +103,6 @@ const CTA_SITE = {
   text: "Перейти на сайт для изучения материала",
   url:  "https://golodanie-s-ulybkoy.ru/"
 };
-const CTA_NONE = null;
 
 /* ---------- 6. ВЕРДИКТЫ ---------- */
 
@@ -109,9 +121,9 @@ function vRed(a){
         <li><strong>Попробуйте мягкие практики.</strong> Интервальное голодание 14:10 или 16:8, разгрузочные дни — у них нет противопоказаний длительного полного голодания.</li>
       </ul>
       <p>Если ситуация изменится — приходите снова, пройдём опросник заново. А пока вы можете изучить материалы о методе на сайте — это бесплатно и полезно для общего понимания.</p>
-      ${BONUS_RED}
     `,
-    cta: CTA_SITE
+    cta: CTA_SITE,
+    afterCta: AFTER_CTA_RED
   };
 }
 
@@ -142,9 +154,9 @@ function vGreenBeginner(a){
         <li>Разбор страхов и точек срыва</li>
         <li>Чек-листы, дневник, шаблоны</li>
       </ul>
-      ${BONUS_BUYER}
     `,
-    cta: CTA_BUY
+    cta: CTA_BUY,
+    afterCta: AFTER_CTA_BUYER
   };
 }
 
@@ -167,9 +179,9 @@ function vGreenExperienced(a){
       </ul>
       <p>Плюс редкие темы: анализы до/после, женский цикл, тренировки, плато, выход на сухое.</p>
       ${buildFears(a.fears)}
-      ${BONUS_BUYER}
     `,
-    cta: CTA_BUY
+    cta: CTA_BUY,
+    afterCta: AFTER_CTA_BUYER
   };
 }
 
@@ -188,9 +200,9 @@ function vGreenExperiencedMed(a){
       <p><strong>${g.proto}</strong></p>
       ${buildFears(a.fears)}
       <p><strong>Перед заходом — обязательно:</strong> согласовать голодание с лечащим врачом. Курс даёт схему, но не заменяет очного контроля при хроническом состоянии.</p>
-      ${BONUS_BUYER}
     `,
-    cta: CTA_BUY
+    cta: CTA_BUY,
+    afterCta: AFTER_CTA_BUYER
   };
 }
 
@@ -201,25 +213,29 @@ function vYellow(a){
     color: 'yellow',
     title: `${a.name}, вам можно — но осторожно и не сразу`,
     text: `
-      <p>У вас сочетаниеорректировать препараты при необходимости.</li>
+      <p>У вас сочетание: опыта голодания нет + есть состояние, требующее внимания. Это не запрет — это значит, что подход должен быть аккуратным.</p>
+      ${buildYellow(a.yellow_flags)}
+      <h3>Что нужно сделать перед заходом</h3>
+      <ul>
+        <li><strong>Согласовать с врачом.</strong> Не для разрешения, а чтобы скорректировать препараты при необходимости.</li>
         <li><strong>Короткий протокол.</strong> Не 5–7 дней, а 3 дня для первого раза.</li>
         <li><strong>Не в одиночку.</strong> С вашими вводными первый заход в одиночку — рискованно. Лучше в потоке курса/клуба.</li>
       </ul>
-      <h3>Ваша цель</h3>
+            <h3>Ваша цель</h3>
       <p>${g.line}</p>
       <p>В вашем случае — длинная игра. Не пытаться достичь всего за один заход, а выстроить регулярную практику. <strong>${g.proto}</strong> — но начинать с минимума.</p>
       ${buildFears(a.fears)}
       <p><strong>Важно:</strong> курс не заменяет врача. Перед заходом — обязательная консультация. Финальное «зелёный свет» должен дать врач.</p>
-      ${BONUS_BUYER}
     `,
-    cta: CTA_BUY
+    cta: CTA_BUY,
+    afterCta: AFTER_CTA_BUYER
   };
 }
 
 /* ---------- 7. ДИСПЕТЧЕР ---------- */
 function getVerdict(a){
   if(!a || typeof a !== 'object'){
-    return { icon:'⚠️', color:'red', title:'Ошибка', text:'<p>Ответы не получены.</p>', cta:null };
+    return { icon:'⚠️', color:'red', title:'Ошибка', text:'<p>Ответы не получены.</p>', cta:null, afterCta:'' };
   }
   if(!a.name || !a.name.trim()) a.name = 'Друг';
   a.fears        = a.fears || [];
@@ -234,7 +250,7 @@ function getVerdict(a){
   if(!isExperienced && hasYellow) return vYellow(a);
   if(isExperienced && hasYellow)  return vGreenExperiencedMed(a);
   if(isExperienced)               return vGreenExperienced(a);
-   return vGreenBeginner(a);
+  return vGreenBeginner(a);
 }
 
 window.getVerdict = getVerdict;
