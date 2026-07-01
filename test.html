@@ -10,6 +10,61 @@
 <meta property="og:url" content="https://golodanie-s-ulybkoy.ru/test.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
+
+<!-- ============ SCHEMA.ORG (GEO / разметка для нейросетей и поисковиков) ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://golodanie-s-ulybkoy.ru/#website",
+      "url": "https://golodanie-s-ulybkoy.ru/",
+      "name": "Голодание с улыбкой",
+      "description": "Авторская методика 7-дневного голодания на воде. Личный опыт 10 лет, более 80 циклов. Практика без эзотерики.",
+      "inLanguage": "ru-RU",
+      "publisher": { "@id": "https://golodanie-s-ulybkoy.ru/#person" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://golodanie-s-ulybkoy.ru/#person",
+      "name": "Вячеслав Александров",
+      "alternateName": "Вячеслав Юрьевич Александров",
+      "jobTitle": "Практик и автор методики лечебного голодания",
+      "description": "Практик голодания с 10-летним опытом, более 80 циклов на себе. Изучил методы разных авторов, оставил только рабочее и добавил два собственных приёма — физический и психологический, — которые притупляют чувство голода и убирают панику. Отсюда название методики: голодать можно спокойно, без стресса — «с улыбкой». Не врач; делится личным опытом в образовательных целях.",
+      "url": "https://golodanie-s-ulybkoy.ru/",
+      "knowsAbout": [
+        "лечебное голодание",
+        "7-дневное голодание на воде",
+        "интервальное голодание",
+        "психология голодания",
+        "вход в голодание для новичков",
+        "противопоказания к голоданию"
+      ],
+      "sameAs": [
+        "https://t.me/golodanie_s_ulybkoy"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://golodanie-s-ulybkoy.ru/test.html#webpage",
+      "url": "https://golodanie-s-ulybkoy.ru/test.html",
+      "name": "Тест: подходит ли вам голодание",
+      "description": "Бесплатный тест за 2 минуты от автора методики «Голодание с улыбкой». Определяет, можно ли вам голодать: есть ли противопоказания, нужна ли подготовка. Результат сразу на экране.",
+      "inLanguage": "ru-RU",
+      "isPartOf": { "@id": "https://golodanie-s-ulybkoy.ru/#website" },
+      "author": { "@id": "https://golodanie-s-ulybkoy.ru/#person" },
+      "about": {
+        "@type": "MedicalWebPage",
+        "name": "Оценка готовности к лечебному голоданию",
+        "disclaimer": "Тест носит ознакомительный характер и не заменяет очной консультации врача."
+      }
+    }
+  ]
+}
+</script>
+<!-- ============ /SCHEMA.ORG ============ -->
+
 <link rel="icon" type="image/png" href="images/icon.png">
 <link rel="apple-touch-icon" href="images/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@200;300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
@@ -414,7 +469,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
   .cta-section{margin-bottom:44px}
   .cta-btn{padding:26px 32px;gap:16px}
   .cta-btn-text{font-size:40px}
-  .cta-btn-arrow{width:38px;height:38px}
+    .cta-btn-arrow{width:38px;height:38px}
   .verdict-preview{grid-template-columns:repeat(2,1fr);gap:10px}
   .vp-item{font-size:13px}
 }
@@ -488,7 +543,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         <div class="vp-item vp-red"><span class="vp-icon">🚫</span><span>Вам нельзя</span></div>
         <div class="vp-item vp-yellow"><span class="vp-icon">⏳</span><span>Вам пока рано</span></div>
         <div class="vp-item vp-orange"><span class="vp-icon">⚙️</span><span>Нужна подготовка</span></div>
-               <div class="vp-item vp-green"><span class="vp-icon">✅</span><span>Можно прямо сейчас</span></div>
+        <div class="vp-item vp-green"><span class="vp-icon">✅</span><span>Можно прямо сейчас</span></div>
       </div>
 
       <div class="skip-buy">
@@ -646,8 +701,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-h
         <h2 class="verdict-title" id="verdict-title"></h2>
         <div class="verdict-text" id="verdict-text"></div>
         <div class="verdict-cta-wrap" id="verdict-cta-wrap"></div>
-<div id="verdict-after-cta"></div>
-<p class="disclaimer">Тест носит ознакомительный характер и не заменяет очной консультации врача.</p>
+        <div id="verdict-after-cta"></div>
+        <p class="disclaimer">Тест носит ознакомительный характер и не заменяет очной консультации врача.</p>
         <div style="text-align:center;margin-top:20px">
           <button class="verdict-back" onclick="restartQuiz()">← Пройти ещё раз</button>
         </div>
@@ -823,7 +878,7 @@ document.getElementById('f-name').addEventListener('input', function(){
 document.getElementById('f-age').addEventListener('input', function(){
   var val = parseInt(this.value, 10);
   var btn = document.querySelector('.quiz-block[data-step="7"] .quiz-next');
-  if(val && val >= 40 && val <= 100) btn.classList.add('ready');
+    if(val && val >= 40 && val <= 100) btn.classList.add('ready');
   else btn.classList.remove('ready');
 });
 
@@ -880,11 +935,6 @@ function renderVerdict(){
     afterCtaWrap.innerHTML = result.afterCta || '';
   }
 
-  var afterCtaWrap = document.getElementById('verdict-after-cta');
-  if(afterCtaWrap){
-    afterCtaWrap.innerHTML = result.afterCta || '';
-  }
-
   document.getElementById('screen-quiz').style.display = 'none';
   document.getElementById('screen-verdict').style.display = 'block';
   window.scrollTo({top:0,behavior:'instant'});
@@ -911,7 +961,7 @@ function restartQuiz(){
   document.getElementById('screen-quiz').style.display = 'none';
   document.getElementById('screen-start').style.display = 'block';
   showStep(1);
-  }
+}
 </script>
 
 </body>
